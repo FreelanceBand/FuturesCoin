@@ -1,0 +1,142 @@
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --main-accent-color: #0078FF;
+    --root-section-padding: 20px;
+    --controls-width: 100%;
+
+    font-family: sans-serif;
+    font-weight: 500;
+    color: white;
+
+    font-synthesis: none;
+    -moz-font-feature-settings: 'kern';
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+input, button, .button {
+    display: inline-block;
+
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    background: transparent;
+    border: none;
+    border-radius: 3px;
+    width: var(--controls-width);
+    margin: 1rem 0;
+    margin-bottom: 2rem;
+    padding: 20px;
+
+    color: white;
+    font-size: 1rem;
+}
+
+a {
+    text-decoration: none;
+    color: var(--main-accent-color);
+}
+
+button, .button {
+    text-transform: uppercase;
+    text-align: center;
+}
+
+input {
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    width: calc(var(--controls-width) - 2px);
+}
+
+input.icon {
+    padding-left: 60px;
+}
+
+body.landing > main {
+    padding: var(--root-section-padding);
+}
+
+body.landing .slide {
+    min-height: 100vh;
+}
+
+body.landing .slide .content {
+    font-size: 1.4rem;
+}
+
+body.landing .cover {
+    background-color: #02203a;
+}
+
+body.landing > aside {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh;
+    padding: var(--root-section-padding);
+    background-color: #001D38;
+}
+
+body.landing aside .header {
+    position: absolute;
+    left: 20px;
+    top: 20px;
+}
+
+body.landing > aside .interactive-section, body.landing > aside .interactive-section form {
+    display: flex;
+    flex-direction: column;
+}
+
+body.landing > aside .title {
+    font-size: 2rem;
+    font-weight: 100;
+}
+
+.center-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.center-text {
+    text-align: center;
+}
+
+.space-above {
+    margin-top: 3rem;
+}
+
+.transparent {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.blue {
+    background-color: #007CFF;
+}
+
+.green {
+    background-color: #00DD60;
+}
+
+.logo {
+    margin: 0;
+    padding: 0;
+
+    text-transform: uppercase;
+    font-size: 1.6rem;
+    font-weight: 700;
+}
+
+.logo > span {
+    color: var(--main-accent-color);
+}

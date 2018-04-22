@@ -1,0 +1,40 @@
+:root {
+    --root-section-padding: 3rem;
+    --controls-width: 300px;
+}
+
+input, button, .button {
+    width: 300px;
+}
+
+body.landing {
+    display: flex;
+}
+
+body.landing > main {
+    width: calc(100vw - 400px);
+    order: 2;
+}
+
+body.landing .slide .content {
+    width: 500px;
+}
+
+body.landing > aside {
+    order: 1;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    width: 400px;
+    overflow-y: scroll;
+}
+
+body.landing aside .header {
+    position: relative;
+    left: unset;
+    top: unset;
+}
+
+body.landing > aside .title {
+    margin-top: 3rem;
+}
