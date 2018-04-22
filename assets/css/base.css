@@ -3,7 +3,8 @@
 }
 
 :root {
-    --main-accent-color: #0078FF;
+    --main-accent-color: #0087FF;
+    --second-accent-color: #3489D5;
     --root-section-padding: 20px;
     --controls-width: 100%;
 
@@ -28,14 +29,16 @@ input, button, .button {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
+    outline: transparent;
 
     background: transparent;
     border: none;
     border-radius: 3px;
     width: var(--controls-width);
-    margin: 1rem 0;
-    margin-bottom: 2rem;
-    padding: 20px;
+    max-width: 100%;
+    margin: 1rem 0 0;
+
+    padding: 1rem;
 
     color: white;
     font-size: 1rem;
@@ -49,6 +52,7 @@ a {
 button, .button {
     text-transform: uppercase;
     text-align: center;
+    background-color: var(--main-accent-color);
 }
 
 input {
@@ -57,7 +61,11 @@ input {
 }
 
 input.icon {
-    padding-left: 60px;
+    padding-left: 30px;
+}
+
+span.icon {
+    padding-left: 30px;
 }
 
 body.landing > main {
@@ -83,6 +91,7 @@ body.landing > aside {
     min-height: 100vh;
     padding: var(--root-section-padding);
     background-color: #001D38;
+    font-size: 14px;
 }
 
 body.landing aside .header {
@@ -96,9 +105,30 @@ body.landing > aside .interactive-section, body.landing > aside .interactive-sec
     flex-direction: column;
 }
 
+body.landing > aside .interactive-section form input, body.landing > aside .interactive-section form button, body.landing > aside .interactive-section form .button {
+    margin-bottom: .5rem;
+}
+
+body.landing > aside .interactive-section span, body.landing > aside .interactive-section a {
+    margin-top: 1rem;
+}
+
+body.landing > aside .interactive-section span:first-child {
+    margin-top: unset;
+}
+
 body.landing > aside .title {
     font-size: 2rem;
     font-weight: 100;
+}
+
+.highlight-section {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid white;
+    padding: 20px;
+    border-radius: 3px;
+    margin-bottom: 1rem;
 }
 
 .center-content {
@@ -113,19 +143,19 @@ body.landing > aside .title {
 }
 
 .space-above {
-    margin-top: 3rem;
+    margin-top: 2rem;
 }
 
-.transparent {
+button.transparent, .button.transparent {
     background-color: rgba(255, 255, 255, 0.3);
 }
 
-.blue {
-    background-color: #007CFF;
+button.green, .button.green {
+    background-color: #1FD05F;
 }
 
-.green {
-    background-color: #00DD60;
+.highlight-section.green {
+    border-color: #1FD05F;
 }
 
 .logo {
@@ -134,7 +164,7 @@ body.landing > aside .title {
 
     text-transform: uppercase;
     font-size: 1.6rem;
-    font-weight: 700;
+    font-weight: 900;
 }
 
 .logo > span {
