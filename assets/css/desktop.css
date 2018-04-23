@@ -612,6 +612,18 @@ body > .modal:target {
     display: block;
 }
 
+body > .modal > .backdrop-close {
+    display: block;
+    color: transparent;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1050;
+    cursor: default;
+}
+
 body > .modal > .content {
     position: relative;
     width: 360px;
@@ -623,6 +635,7 @@ body > .modal > .content {
     background-clip: padding-box;
     border-radius: 3px;
     outline: 0;
+    z-index: 1100;
 }
 
 body > .modal .close {
@@ -657,6 +670,7 @@ body > .modal > .content > .title {
     font-size: 1.5rem;
     font-weight: normal;
     line-height: 1.5rem;
+    margin-bottom: .5rem;
 }
 
 body > .modal > .content p {
@@ -664,7 +678,12 @@ body > .modal > .content p {
 }
 
 body > .modal > .content > .highlight-section {
+    margin-top: 1.5rem;
     margin-bottom: unset;
+}
+
+body > .modal > .content > .highlight-section > span:not(:first-child) {
+    margin-top: 1rem;
 }
 
 body > .modal > .content > img {

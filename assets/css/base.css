@@ -75,12 +75,39 @@ input[type="text"], input[type="email"], input[type="password"], select {
     width: calc(var(--controls-width) - 2px);
 }
 
-input.icon, select.icon {
-    padding-left: 30px;
+#login.icon, .icon.login {
+    background-image: url("../images/login-icon.svg");
+}
+
+.icon.login-blue {
+    background-image: url("../images/login-blue-icon.svg");
+}
+
+#password.icon, .icon.password {
+    background-image: url("../images/password-icon.svg");
+}
+
+#email.icon, .icon.email {
+    background-image: url("../images/email-icon.svg");
+}
+
+.icon.email-green {
+    background-image: url("../images/email-green-icon.svg");
+}
+
+#wallet.icon, .icon.wallet {
+    background-image: url("../images/cash-icon.svg");
+}
+
+input.icon, select.icon, span.icon {
+    padding-left: calc(2rem + 10px);
+    background-repeat: no-repeat;
+    background-position: left 1rem center;
 }
 
 span.icon {
-    padding-left: 30px;
+    background-position: left center;
+    padding-left: calc(1rem + 10px);
 }
 
 body.landing > main {
