@@ -16,7 +16,7 @@
     <div>
         <nav>
             <a class="icon bet active" href="bet.html">Ставки</a>
-            <a class="icon profile" href="profile.html">Личный кабинет</a>
+            <a class="icon profile" href="profile.html">Личный кабинет<span>1</span></a>
             <a class="icon about" href="#about">Инструкция</a>
             <a class="icon logout" href="index.html">Выход</a>
         </nav>
@@ -82,7 +82,7 @@
         </ul>
     </section>
     <section>
-        <form class="bet-form">
+        <form class="bet-form" action="#successBet" method="post">
             <div class="horizontal">
                 <div>
                     <label for="coin">Выбранная монета</label>
@@ -189,6 +189,14 @@
                 (цена криптовалюты Bitcoin через 1 день возрастет), то вы получите свою ставку 1000 ₽ – 31% от своей
                 ставки (30% роста монеты + 1% комиссия) = 1000 ₽ – 310 ₽ = 690 ₽.</p>
         </blockquote>
+        <a class="close" href="#">Закрыть</a>
+    </div>
+</div>
+<div id="successBet" class="modal">
+    <div class="content center-text">
+        <img src="assets/images/success.svg">
+        <h3 class="title">Успешная ставка</h3>
+        <p>Вы получите уведомление на почту и в своем личном кабинете, по окончанию срока ставки.</p>
         <a class="close" href="#">Закрыть</a>
     </div>
 </div>

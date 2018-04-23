@@ -31,19 +31,19 @@
         <ul class="profile-data table">
             <li>
                 <div>Логин</div>
-                <div><span>Alexander</span><a href="">Изменить</a></div>
+                <div><span>Alexander</span><a href="#editLogin">Изменить</a></div>
             </li>
             <li>
                 <div>Email</div>
-                <div><span>alexander@rambler.ru</span><a href="">Изменить</a></div>
+                <div><span>alexander@rambler.ru</span><a href="#editEmail">Изменить</a></div>
             </li>
             <li>
                 <div>Кошелек</div>
-                <div><span>Не привязан</span><a href="">Изменить</a></div>
+                <div><span>Не привязан</span><a href="#editWallet">Изменить</a></div>
             </li>
             <li>
                 <div>Пароль</div>
-                <div><span>Обновлен 10 месяцев назад</span><a href="">Изменить</a></div>
+                <div><span>Обновлен 10 месяцев назад</span><a href="#editPassword">Изменить</a></div>
             </li>
         </ul>
     </section>
@@ -197,6 +197,51 @@
                 (цена криптовалюты Bitcoin через 1 день возрастет), то вы получите свою ставку 1000 ₽ – 31% от своей
                 ставки (30% роста монеты + 1% комиссия) = 1000 ₽ – 310 ₽ = 690 ₽.</p>
         </blockquote>
+        <a class="close" href="#">Закрыть</a>
+    </div>
+</div>
+<div id="editLogin" class="modal">
+    <form action="#" class="content" method="post">
+        <h3 class="title">Изменение логина</h3>
+        <input id="login" name="login" value="wewfwef" placeholder="Логин" type="text">
+        <button type="submit">Сохранить</button>
+        <a class="close" href="#">Закрыть</a>
+    </form>
+</div>
+<div id="editEmail" class="modal">
+    <form action="#" class="content" method="post">
+        <h3 class="title">Изменение Email</h3>
+        <input id="email" name="email" value="alexander@rambler.ru" placeholder="Email" type="text">
+        <button type="submit">Сохранить</button>
+        <a class="close" href="#">Закрыть</a>
+    </form>
+</div>
+<div id="editWallet" class="modal">
+    <form action="#" class="content" method="post">
+        <h3 class="title">Изменение кошелька</h3>
+        <input id="wallet" name="wallet" value="1L23324jj3h24kjhkjh234kbjjkwef" placeholder="Адрес кошелька"
+               type="text">
+        <button type="submit">Сохранить</button>
+        <a class="close" href="#">Закрыть</a>
+    </form>
+</div>
+<div id="editPassword" class="modal">
+    <form action="#confirmPassword" class="content" method="post">
+        <h3 class="title">Изменение пароля</h3>
+        <input id="oldPassword" name="oldPassword" value="" placeholder="Старый пароль" type="password">
+        <input id="newPassword" name="newPassword" value="" placeholder="Новый пароль" type="password">
+        <button type="submit">Изменить пароль</button>
+        <a class="close" href="#">Закрыть</a>
+    </form>
+</div>
+<div id="confirmPassword" class="modal">
+    <div class="content">
+        <h3 class="title">Изменение пароля</h3>
+        <div class="highlight-section green">
+            <span>Письмо с новым паролем выслано на вашу электронную почту</span>
+            <span class="icon email">hey@cute.wtf</span>
+            <a href="#editPassword" class="button transparent">Отправить еще раз</a>
+        </div>
         <a class="close" href="#">Закрыть</a>
     </div>
 </div>
