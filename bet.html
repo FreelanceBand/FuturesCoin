@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile - FuturesCoin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link href="assets/css/base.css" rel="stylesheet">
+    <link href="assets/css/desktop.css" media="(min-width: 1024px)" rel="stylesheet">
+</head>
+<body class="panel">
+<header>
+    <div>
+        <figure class="logo">Futures<span>Coin</span></figure>
+    </div>
+    <div>
+        <nav>
+            <a class="icon bet active" href="bet.html">Ставки</a>
+            <a class="icon profile" href="profile.html">Личный кабинет</a>
+            <a class="icon about" href="#about">Инструкция</a>
+            <a class="icon logout" href="index.html">Выход</a>
+        </nav>
+    </div>
+</header>
+<main>
+    <section>
+        <ul class="coins-info table">
+            <li>
+                <div>Валюта</div>
+                <div>Рыночная капитализация</div>
+                <div>Цена</div>
+                <div>Изменения за 24 часа</div>
+            </li>
+            <li>
+                <div><img src="assets/images/neo.svg"><span>Bitcoin</span></div>
+                <div>1000000 $</div>
+                <div>2342.5 $</div>
+                <div class="green">+5%</div>
+            </li>
+            <li>
+                <div><img src="assets/images/monero.svg"><span>Monero</span></div>
+                <div>34000 $</div>
+                <div>2342 $</div>
+                <div class="red">–1.5%</div>
+            </li>
+            <li>
+                <div><img src="assets/images/neo.svg"><span>Monero</span></div>
+                <div>300 $</div>
+                <div>342.53 $</div>
+                <div class="green">+5%</div>
+            </li>
+            <li>
+                <div><img src="assets/images/monero.svg"><span>Litecoin</span></div>
+                <div>980 $</div>
+                <div>12 $</div>
+                <div class="green">+5%</div>
+            </li>
+            <li>
+                <div><img src="assets/images/neo.svg"><span>Litecoin</span></div>
+                <div>980 $</div>
+                <div>12 $</div>
+                <div class="green">+5%</div>
+            </li>
+            <li>
+                <div><img src="assets/images/monero.svg"><span>Monero</span></div>
+                <div>300 $</div>
+                <div>342.53 $</div>
+                <div class="green">+5%</div>
+            </li>
+            <li>
+                <div><img src="assets/images/neo.svg"><span>Litecoin</span></div>
+                <div>980 $</div>
+                <div>12 $</div>
+                <div class="green">+5%</div>
+            </li>
+            <li>
+                <div><img src="assets/images/monero.svg"><span>Monero</span></div>
+                <div>300 $</div>
+                <div>342.53 $</div>
+                <div class="green">+5%</div>
+            </li>
+        </ul>
+    </section>
+    <section>
+        <form class="bet-form">
+            <div class="horizontal">
+                <div>
+                    <label for="coin">Выбранная монета</label>
+                    <select id="coin" name="coin">
+                        <option>Neo</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="time">Срок ставки</label>
+                    <input id="time" value="1" min="1" name="time" type="number">
+                </div>
+            </div>
+            <div class="strategy horizontal">
+                <input placeholder="Повышение" id="rise" value="rise" name="strategy" type="radio">
+                <input placeholder="Понижение" id="fall" value="fall" name="strategy" type="radio">
+            </div>
+            <div class="amount">
+                <label for="amount">Размер ставки</label>
+                <input id="amount" name="amount" value="10000" type="number">
+            </div>
+            <div>
+                <label for="returnProfit">Возврат прибыли</label>
+                <select id="returnProfit" name="returnProfit">
+                    <option>USDT на кошелек</option>
+                </select>
+            </div>
+            <div>
+                <label for="wallet">Кошелек для перевода ставки в USDT</label>
+                <input id="wallet" name="wallet" value="1L23324jj3h24kjhkjh234kbjjkwef" type="text">
+            </div>
+            <div class="horizontal">
+                <input id="agreement" name="agreement" type="checkbox">
+                <label for="agreement">Я соглашаюсь с условиями сервиса по ставкам на криптовалюту</label>
+            </div>
+            <div>
+                <button class="green" type="submit">Сделать ставку</button>
+            </div>
+        </form>
+    </section>
+</main>
+<div id="about" class="modal full-screen">
+    <div class="content">
+        <h2 class="title">Инструкция</h2>
+        <p>Сервис FUTURESCOIN предоставляет возможность совершать ставки на повышение или понижение курса криптовалют.
+            Ставки принимаются как в российских рублях, так и в криптовалюте Tether USDT. Изменения курса отслеживаются
+            по данным COINMARKETCUP.</p>
+        <h2>Определения</h2>
+        <ul class="grid">
+            <li><h3>Участник</h3>Пользователь приложения, совершающий ставку</li>
+            <li><h3>Сумма ставки</h3>Денежные средства, передаваемые участником организатору для осуществления ставки
+            </li>
+            <li><h3>Организатор</h3>Администратор сервиса FUTURESCOIN</li>
+            <li><h3>Срок ставки</h3>Количество дней, на которое участником делается прогноз изменения курса криптовалют
+                (от 1 до 30 дней)
+            </li>
+            <li><h3>Комиссия</h3>Вознаграждение организатора за предоставление сервиса ставок (фиксированная комиссия и
+                составляет 1% от суммы ставки)
+            </li>
+            <li><h3>Монета</h3>Криптовалюта, на повышение или понижение курса которой осуществляется ставка</li>
+        </ul>
+        <h2>Как сделать ставку</h2>
+        <p>На главном экране приложения выберите монету, укажите срок ставки и нажмите на кнопку «повышение» или
+            «понижение» (в зависимости от выбранной вами стратегии).</p>
+        <p>После этого вы будете перенаправлены на экран для заполнения дополнительных параметров где нужно указать:</p>
+        <ul>
+            <li>Валюту ставки</li>
+            <li>Сумма ставки</li>
+            <li>Кошелек для возврата</li>
+        </ul>
+        <p>Для завершения нажмите на кнопку «Сделать ставку». </p>
+        <p>Далее нужно самостоятельно произвести перевод суммы ставки. Для ставок в российских рублях – через платежные
+            системы, для ставок в криптовалюте Tether USDT – путем перевода на криптовалютный кошелек. После обработки
+            платежа вам поступит письмо с информацией о ставке на электронную почту, указанную в личном кабинете. </p>
+        <blockquote>
+            <p>Письмо будет содержать следующие данные:</p>
+            <ul>
+                <li>Дата и время начала ставки</li>
+                <li>Дата и время завершения ставки</li>
+                <li>Монета ставки</li>
+                <li>Стратегия ставки</li>
+                <li>Валюта ставки</li>
+                <li>Сумма ставки</li>
+            </ul>
+            <p>По истечению срока ставки вам автоматически будет отправлена сумма ставки с учетом прибыли или убытка на
+                указанный вами кошелек для возврата и письмо на электронную почту с результатами ставки.</p>
+        </blockquote>
+        <h2>Как это работает</h2>
+        <ul class="grid">
+            <li><h3>Ставка сыграла</h3>Участнику возвращается сумма ставки, а также процент от суммы ставки, на который
+                изменится курс криптовалюты по истечению срока ставки.
+            </li>
+            <li><h3>Ставка не сыграла</h3>Участнику возвращается сумма ставки за вычетом процента от суммы ставки, на
+                который изменится курс криптовалюты по истечению срока ставки.
+            </li>
+        </ul>
+        <p>В обоих лучаях дополнительно при расчете вашего вознаграждения участнику учитывается комиссия
+            FUTURESCOIN.</p>
+        <blockquote>
+            <p>Допустим, вы предполагаете что цена криптовалюты Bitcoin (BTC) через 1 день упадет. Вы делаете ставку
+                1000 ₽. на понижение курса, при этом цена Bitcoin на момент ставки составляет 16000 $. Через 1 день
+                после выставления ставки цена Bitcoin упала на 30% и составила 11200 $. Таким образом, вы получаете
+                прибыль = 29% от своей ставки: (30% падения монеты – 1% комиссия) = 1000 ₽ * 29% = 290 ₽. Т.е. через 1
+                день вам вернется ваша ставка 1000 ₽ и 290 ₽ прибыли, а именно 1290 ₽. Если прогноз будет ошибочным
+                (цена криптовалюты Bitcoin через 1 день возрастет), то вы получите свою ставку 1000 ₽ – 31% от своей
+                ставки (30% роста монеты + 1% комиссия) = 1000 ₽ – 310 ₽ = 690 ₽.</p>
+        </blockquote>
+        <a class="close" href="#">Закрыть</a>
+    </div>
+</div>
+<footer>
+    <div>Все права защищены, 2017–2018.</div>
+    <div>
+        <span class="transparent">Актуальность данных</span>
+        <img src="assets/images/heart.svg">
+        <a class="transparent" href="https://coinmarketcup.com" target="_blank">coinmarketcup.com</a>
+    </div>
+</footer>
+</body>
+</html>

@@ -3,9 +3,12 @@
     --controls-width: 300px;
 }
 
-input, button, .button {
-    width: 300px;
+input, select, button, .button {
     font-size: 14px;
+}
+
+input[type="text"], input[type="email"], input[type="password"], select, button, .button {
+    width: 300px;
 }
 
 button:hover, .button:hover {
@@ -16,11 +19,11 @@ button:active, button:focus, .button:active, .button:focus {
     background-color: var(--second-accent-color);
 }
 
-input:hover {
+input:hover, select:hover {
     border-color: var(--second-accent-color);
 }
 
-input:active, input:focus {
+input:active, input:focus, select:active, select:focus {
     border-color: var(--main-accent-color);
 }
 
@@ -299,11 +302,6 @@ body.panel .bet-history.detailed {
     --info-icon-size: 10px;
 }
 
-body.panel .bet-history.detailed.grid .transparent {
-    color: #A6CDF1;
-    opacity: .9;
-}
-
 body.panel .bet-history .fall {
     color: #ff1a00;
 }
@@ -331,11 +329,11 @@ body.panel .bet-history.detailed.grid .fall:before, body.panel .bet-history.deta
     margin-right: calc(var(--info-icon-size) / 3);
 }
 
-body.panel .bet-history .green {
+body.panel .bet-history .green, body.panel .coins-info .green {
     color: #74bc2a;
 }
 
-body.panel .bet-history .red {
+body.panel .bet-history .red, body.panel .coins-info .red {
     color: #ff1a00;
 }
 
@@ -365,6 +363,199 @@ body.panel .bet-history.table > li > * img {
     margin-right: 10px;
     width: var(--coin-icon-size);
     height: var(--coin-icon-size);
+}
+
+body.panel .coins-info.table {
+    margin: 0;
+    padding: 0;
+    width: 950px;
+}
+
+body.panel .coins-info.table > li {
+    padding: .7rem 1rem;
+}
+
+body.panel .coins-info.table > li:not(:first-child) {
+    background-color: var(--background-color);
+    margin-top: 5px;
+}
+
+body.panel .coins-info.table > li > * {
+    width: 100%;
+    line-height: 32px;
+}
+
+body.panel .coins-info.table > li > *:not(:first-child) {
+    text-align: right;
+}
+
+body.panel .coins-info.table > li img {
+    margin: -10px 10px -11px 0;
+    height: 32px;
+    width: 32px;
+}
+
+body.panel .bet-form {
+    display: flex;
+    flex-direction: column;
+    width: 320px;
+    margin-top: 1.2rem;
+}
+
+body.panel .bet-form > div {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 25px;
+}
+
+body.panel .bet-form label {
+    display: inline-block;
+    margin-bottom: 1rem;
+}
+
+body.panel .bet-form > *.horizontal label {
+    margin-bottom: unset;
+}
+
+body.panel .bet-form .horizontal > * > label {
+    margin-bottom: 1.5rem;
+}
+
+body.panel .bet-form input, body.panel .bet-form select {
+    margin-top: 0;
+    width: 100%;
+}
+
+body.panel .bet-form > div > div:not(:first-child) {
+    margin-left: 20px;
+}
+
+body.panel .bet-form #coin {
+    width: 180px;
+}
+
+body.panel .bet-form #time {
+    width: 110px;
+}
+
+body.panel .bet-form .strategy > input {
+    position: relative;
+    height: 50px;
+    width: 50%;
+}
+
+body.panel .bet-form .strategy > input:checked {
+    background-color: var(--second-accent-color);
+    border-color: transparent;
+}
+
+body.panel .bet-form .strategy > input:first-of-type {
+    /*border-right-color: transparent;*/
+    border-top-right-radius: unset;
+    border-bottom-right-radius: unset;
+}
+
+body.panel .bet-form .strategy > input:last-of-type {
+    /*border-left-color: transparent;*/
+    border-top-left-radius: unset;
+    border-bottom-left-radius: unset;
+}
+
+body.panel .bet-form .strategy > input#fall:before {
+    background-image: url("../images/down-icon-active.png");
+}
+
+body.panel .bet-form .strategy > input#fall:checked:before {
+    background-image: url("../images/down-icon.png");
+}
+
+body.panel .bet-form .strategy > input#fall:after {
+    content: 'Понижение';
+}
+
+body.panel .bet-form .strategy > input#rise:before {
+    background-image: url("../images/up-icon-active.png");
+}
+
+body.panel .bet-form .strategy > input#rise:checked:before {
+    background-image: url("../images/up-icon.png");
+}
+
+body.panel .bet-form .strategy > input#rise:after {
+    content: 'Повышение';
+}
+
+body.panel .bet-form .strategy > input:before, body.panel .bet-form .strategy > input:after {
+    content: '';
+    color: white;
+    position: absolute;
+    left: unset;
+    right: 1rem;
+    margin: auto 0;
+    text-transform: uppercase;
+}
+
+body.panel .bet-form .strategy > input:before {
+    left: 1rem;
+    right: unset;
+    width: 24px;
+    height: 24px;
+    top: calc((50px - 24px) / 2);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+body.panel .bet-form .amount {
+    position: relative;
+}
+
+body.panel .bet-form .amount:after {
+    content: 'Tether USDT';
+    position: absolute;
+    right: 2rem;
+    bottom: 1rem;
+}
+
+body.panel .bet-form #agreement {
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+    margin-right: 1rem;
+    width: 25px;
+    height: 25px;
+}
+
+body.panel .bet-form #agreement:checked {
+    border-color: #335877;
+    background: #335877 url("../images/check.svg") no-repeat center;
+    background-size: 20px;
+}
+
+body.panel .bet-form button {
+    margin-top: unset;
+}
+
+body.panel > footer {
+    position: relative;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    padding: 1rem var(--root-section-padding);
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--background-color);
+}
+
+body.panel > footer img {
+    height: 1rem;
+    width: 1rem;
+    object-fit: contain;
+    margin: 0 .3rem -.2rem .3rem;
+}
+
+body.panel .transparent {
+    color: #A6CDF1;
+    opacity: .9;
 }
 
 button.green:hover, .button.green:hover {
