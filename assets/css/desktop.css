@@ -399,6 +399,10 @@ body.panel .coins-info.table > li:not(:first-child) {
     margin-top: 5px;
 }
 
+body.panel .coins-info.table > li:not(:first-child):hover {
+    background: linear-gradient(to right, #0084ff, rgba(0, 132, 255, 0)), linear-gradient(#001e37, #001e37);
+}
+
 body.panel .coins-info.table > li > * {
     width: 100%;
     line-height: 32px;
@@ -442,6 +446,9 @@ body.panel .bet-form .horizontal > * > label {
 
 body.panel .bet-form input, body.panel .bet-form select {
     margin-top: 0;
+}
+
+body.panel .bet-form input[type="text"], body.panel .bet-form input[type="number"], body.panel .bet-form select {
     width: 100%;
 }
 
@@ -534,20 +541,6 @@ body.panel .bet-form .amount:after {
     position: absolute;
     right: 2rem;
     bottom: 1rem;
-}
-
-body.panel .bet-form #agreement {
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 3px;
-    margin-right: 1rem;
-    width: 25px;
-    height: 25px;
-}
-
-body.panel .bet-form #agreement:checked {
-    border-color: #335877;
-    background: #335877 url("../images/check.svg") no-repeat center;
-    background-size: 20px;
 }
 
 body.panel .bet-form button {

@@ -75,6 +75,20 @@ input[type="text"], input[type="email"], input[type="password"], select {
     width: calc(var(--controls-width) - 2px);
 }
 
+input[type="checkbox"] {
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+    margin-right: 1rem;
+    width: 25px;
+    height: 25px;
+}
+
+input[type="checkbox"]:checked {
+    border-color: #335877;
+    background: #335877 url("../images/check.svg") no-repeat center;
+    background-size: 20px;
+}
+
 #login.icon, .icon.login {
     background-image: url("../images/login-icon.svg");
 }
