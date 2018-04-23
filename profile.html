@@ -2,42 +2,135 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Registration - FuturesCoin</title>
+    <title>Profile - FuturesCoin</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link href="assets/css/base.css" rel="stylesheet">
     <link href="assets/css/desktop.css" media="(min-width: 1024px)" rel="stylesheet">
 </head>
-<body class="landing">
-<main class="slide cover center-content">
-    <section class="content center-content center-text">
-        <span>Мы предоставляем возможность совершать ставки на повышение или понижение курса криптовалют</span>
-        <a href="#about" class="button space-above transparent">Читать подробнее</a>
+<body class="panel">
+<header>
+    <div>
+        <figure class="logo">Futures<span>Coin</span></figure>
+    </div>
+    <div>
+        <nav>
+            <a class="icon bet" href="bet.html">Ставки</a>
+            <a class="icon profile active" href="profile.html">Личный кабинет</a>
+            <a class="icon about" href="#about">Инструкция</a>
+            <a class="icon logout" href="index.html">Выход</a>
+        </nav>
+    </div>
+</header>
+<main>
+    <section>
+        <div class="profile-image">
+            <label class="button transparent" for="profile-image-input">Загрузить фото</label>
+            <input id="profile-image-input" type="file">
+        </div>
+        <ul class="profile-data table">
+            <li>
+                <div>Логин</div>
+                <div><span>Alexander</span><a href="">Изменить</a></div>
+            </li>
+            <li>
+                <div>Email</div>
+                <div><span>alexander@rambler.ru</span><a href="">Изменить</a></div>
+            </li>
+            <li>
+                <div>Кошелек</div>
+                <div><span>Не привязан</span><a href="">Изменить</a></div>
+            </li>
+            <li>
+                <div>Пароль</div>
+                <div><span>Обновлен 10 месяцев назад</span><a href="">Изменить</a></div>
+            </li>
+        </ul>
+    </section>
+    <section class="vertical">
+        <h2 class="title">История ставок</h2>
+        <ul class="bet-history detailed grid">
+            <li>
+                <div>
+                    <img src="assets/images/neo.svg">
+                    <span class="order">#1</span>
+                </div>
+                <ul>
+                    <li><span>NEO <span class="transparent">21.03.18 в 21:00</span></span></li>
+                    <li><span>Стратегия:</span><span class="fall">Понижение</span></li>
+                    <li><span>Ставка:</span><span>100400 ₽</span></li>
+                    <li><span>Срок:</span><span>30 дней</span></li>
+                    <li><span>Результат:</span><span class="green">+200800 ₽</span></li>
+                </ul>
+            </li>
+            <li>
+                <div>
+                    <img src="assets/images/monero.svg">
+                    <span class="order">#2</span>
+                </div>
+                <ul>
+                    <li><span>Monero <span class="transparent">21.03.18 в 21:00</span></span></li>
+                    <li><span>Стратегия:</span><span class="rise">Повышение</span></li>
+                    <li><span>Ставка:</span><span>100 ₽</span></li>
+                    <li><span>Срок:</span><span>1 день</span></li>
+                    <li><span>Результат:</span><span class="red">-100 ₽</span></li>
+                </ul>
+            </li>
+            <li>
+                <div>
+                    <img src="assets/images/monero.svg">
+                    <span class="order">#3</span>
+                </div>
+                <ul>
+                    <li><span>Monero <span class="transparent">21.03.18 в 21:00</span></span></li>
+                    <li><span>Стратегия:</span><span class="rise">Повышение</span></li>
+                    <li><span>Ставка:</span><span>100 ₽</span></li>
+                    <li><span>Срок:</span><span>1 день</span></li>
+                    <li><span>Результат:</span><span class="red">-100 ₽</span></li>
+                </ul>
+            </li>
+            <li>
+                <div>
+                    <img src="assets/images/monero.svg">
+                    <span class="order">#4</span>
+                </div>
+                <ul>
+                    <li><span>Monero <span class="transparent">21.03.18 в 21:00</span></span></li>
+                    <li><span>Стратегия:</span><span class="rise">Повышение</span></li>
+                    <li><span>Ставка:</span><span>100 ₽</span></li>
+                    <li><span>Срок:</span><span>1 день</span></li>
+                    <li><span>Результат:</span><span class="red">-100 ₽</span></li>
+                </ul>
+            </li>
+        </ul>
+        <ul class="bet-history table">
+            <li>
+                <div>Дата</div>
+                <div>Монета</div>
+                <div>Стратегия</div>
+                <div>Ставка</div>
+                <div>Срок</div>
+                <div>Результат</div>
+            </li>
+            <li>
+                <div>21.03.18</div>
+                <div><img src="assets/images/neo.svg"><span>Neo</span></div>
+                <div class="fall">Понижение</div>
+                <div>100400 ₽</div>
+                <div>30 дней</div>
+                <div class="green">+100400 ₽</div>
+            </li>
+            <li>
+                <div>20.03.18</div>
+                <div><img src="assets/images/neo.svg"><span>Neo</span></div>
+                <div class="rise">Повышение</div>
+                <div>100400 ₽</div>
+                <div>30 дней</div>
+                <div class="red">-100400 ₽</div>
+            </li>
+        </ul>
     </section>
 </main>
-<aside>
-    <div>
-        <div class="header">
-            <figure class="logo">Futures<span>Coin</span></figure>
-        </div>
-        <div class="interactive-section">
-            <h2 class="title">Регистрация</h2>
-            <form action="profile.html">
-                <span>Логин</span>
-                <input placeholder="Логин" class="icon" name="login" id="login" type="text">
-                <span>Пароль</span>
-                <input placeholder="Пароль" class="icon" name="password" id="password" type="password">
-                <span>Email</span>
-                <input placeholder="Электронная почта" class="icon" name="email" id="email" type="email">
-                <button class="green" type="submit">Зарегистрироваться</button>
-            </form>
-        </div>
-    </div>
-    <div>
-        <span>Уже есть аккаунт?</span>
-        <a href="index.html" class="button blue">Вход</a>
-    </div>
-</aside>
 <div id="about" class="modal full-screen">
     <div class="content">
         <h2 class="title">Инструкция</h2>

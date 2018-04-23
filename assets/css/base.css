@@ -1,3 +1,9 @@
+@font-face {
+    font-family: "Futura";
+    font-weight: bold;
+    src: url("../fonts/futur.ttf");
+}
+
 * {
     box-sizing: border-box;
 }
@@ -5,10 +11,13 @@
 :root {
     --main-accent-color: #0087FF;
     --second-accent-color: #3489D5;
+    --background-color: #001E37;
+    --foreground-color: #012F55;
     --root-section-padding: 20px;
     --controls-width: 100%;
 
-    font-family: sans-serif;
+    /*font-family: Roboto, sans-serif;*/
+    font-family: 'Roboto', sans-serif;
     font-weight: 500;
     color: white;
 
@@ -16,6 +25,7 @@
     -moz-font-feature-settings: 'kern';
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    background-color: var(--foreground-color);
 }
 
 body {
@@ -81,7 +91,8 @@ body.landing .slide .content {
 }
 
 body.landing .cover {
-    background-color: #02203a;
+    background: #00111F url("../images/background.png") no-repeat center;
+    background-size: cover;
 }
 
 body.landing > aside {
@@ -90,7 +101,7 @@ body.landing > aside {
     justify-content: space-between;
     min-height: 100vh;
     padding: var(--root-section-padding);
-    background-color: #001D38;
+    background-color: var(--background-color);
     font-size: 14px;
 }
 
@@ -119,7 +130,7 @@ body.landing > aside .interactive-section span:first-child {
 
 body.landing > aside .title {
     font-size: 2rem;
-    font-weight: 100;
+    font-weight: 300;
 }
 
 .highlight-section {
@@ -146,6 +157,10 @@ body.landing > aside .title {
     margin-top: 2rem;
 }
 
+.vertical {
+    flex-direction: column;
+}
+
 button.transparent, .button.transparent {
     background-color: rgba(255, 255, 255, 0.3);
 }
@@ -162,9 +177,11 @@ button.green, .button.green {
     margin: 0;
     padding: 0;
 
+    font-family: 'Futura', sans-serif;
+    /*font-size: 24px;*/
+    font-weight: bold;
     text-transform: uppercase;
     font-size: 1.6rem;
-    font-weight: 900;
 }
 
 .logo > span {

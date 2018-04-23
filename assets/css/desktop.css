@@ -24,6 +24,22 @@ input:active, input:focus {
     border-color: var(--main-accent-color);
 }
 
+.table {
+    display: flex;
+    flex-direction: column;
+}
+
+.table > li {
+    display: flex;
+    justify-content: space-between;
+}
+
+.grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
 body.landing {
     display: flex;
 }
@@ -56,6 +72,301 @@ body.landing > aside .title {
     margin-top: 3rem;
 }
 
+body.panel {
+    font-size: 14px;
+}
+
+body.panel > header {
+    --height: 100px;
+    display: flex;
+    justify-content: space-between;
+    height: var(--height);
+    padding: 0 var(--root-section-padding);
+    background-color: var(--background-color);
+}
+
+body.panel > header * {
+    height: 100%;
+}
+
+body.panel > header .logo {
+    line-height: var(--height);
+}
+
+body.panel > header nav {
+    --icon-size: 25px;
+    display: flex;
+}
+
+body.panel > header nav a {
+    position: relative;
+    padding: 0 1rem;
+    line-height: var(--height);
+    color: white;
+}
+
+body.panel > header nav a.active {
+    background: -moz-linear-gradient(top, rgba(5, 142, 255, 0) 0%, rgba(5, 142, 255, 0.2) 100%);
+    background: -webkit-linear-gradient(top, rgba(5, 142, 255, 0) 0%, rgba(5, 142, 255, 0.2) 100%);
+    background: linear-gradient(to bottom, rgba(5, 142, 255, 0) 0%, rgba(5, 142, 255, 0.2) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00058eff', endColorstr='#33058eff', GradientType=0);
+    border-bottom: 4px solid #0084FF;
+}
+
+body.panel > header nav a.icon {
+    --text-section-height: calc(var(--height) / 2);
+    padding-top: var(--text-section-height);
+    line-height: calc(var(--text-section-height) - 1rem);
+}
+
+body.panel > header nav a.icon:before {
+    content: '';
+    background: no-repeat center;
+    background-size: contain;
+    position: absolute;
+    bottom: calc(var(--height) / 2);
+    left: calc((100% - var(--icon-size)) / 2);
+    height: var(--icon-size);
+    width: var(--icon-size);
+}
+
+body.panel > header nav a.icon.profile:before {
+    background-image: url("../images/profile-icon.svg");
+}
+
+body.panel > header nav a.icon.profile.active:before, body.panel > header nav a.icon.profile:hover:before {
+    background-image: url("../images/profile-icon-active.svg");
+}
+
+body.panel > header nav a.icon.bet:before {
+    background-image: url("../images/bet-icon.svg");
+}
+
+body.panel > header nav a.icon.bet.active:before, body.panel > header nav a.icon.bet:hover:before {
+    background-image: url("../images/bet-icon-active.svg");
+}
+
+body.panel > header nav a.icon.about:before {
+    background-image: url("../images/help-icon.svg");
+}
+
+body.panel > header nav a.icon.about.active:before, body.panel > header nav a.icon.about:hover:before {
+    background-image: url("../images/help-icon-active.svg");
+}
+
+body.panel > header nav a.icon.logout:before {
+    background-image: url("../images/logout-icon.svg");
+}
+
+body.panel > header nav a.icon.logout.active:before, body.panel > header nav a.icon.logout:hover:before {
+    background-image: url("../images/logout-icon-active.svg");
+}
+
+body.panel > main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: var(--root-section-padding);
+    background-color: var(--foreground-color);
+}
+
+body.panel > main > section {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+body.panel > main li {
+    border-radius: 3px;
+}
+
+body.panel .profile-image {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    width: 170px;
+    height: 170px;
+    padding: 20px;
+    margin: 0 20px 20px 0;
+    background-color: var(--background-color);
+    border-radius: 3px;
+}
+
+body.panel .profile-image:before {
+    content: '';
+    background: url("../images/photo-icon.svg") no-repeat center;
+    background-size: contain;
+    width: 40px;
+    height: 40px;
+    margin: auto;
+}
+
+body.panel .profile-image label {
+    padding: .7rem 0;
+    font-size: 0.8rem;
+    text-transform: unset;
+}
+
+body.panel .profile-image input {
+    display: none;
+}
+
+body.panel .profile-data {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px 0;
+    width: 400px;
+}
+
+body.panel .profile-data > li {
+    padding: 1.5rem;
+}
+
+body.panel .profile-data > li:nth-child(odd) {
+    background-color: var(--background-color);
+}
+
+body.panel .profile-data > li > *:nth-child(2) > *:nth-child(1) {
+    text-align: right;
+    margin-right: 1rem;
+}
+
+body.panel > main > section > .title {
+    margin-top: 0;
+    font-weight: 400;
+}
+
+body.panel .bet-history.grid {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px 0;
+    width: 620px;
+}
+
+body.panel .bet-history.grid > li {
+    display: flex;
+    background-color: var(--background-color);
+    width: 300px;
+    margin-bottom: 20px;
+    padding: 1rem;
+}
+
+body.panel .bet-history.grid > li > * {
+    display: flex;
+    flex-direction: column;
+}
+
+body.panel .bet-history.detailed.grid > li .order {
+    --height: 20px;
+    background-color: #0084FF;
+    text-align: center;
+    height: var(--height);
+    line-height: var(--height);
+    border-radius: calc(var(--height) / 2);
+    margin-top: 1rem;
+}
+
+body.panel .bet-history.detailed.grid > li > ul {
+    list-style: none;
+    margin: 0 0 0 20px;
+    padding: 0;
+}
+
+body.panel .bet-history.detailed.grid > li > ul > li {
+    margin: .5rem 0;
+}
+
+body.panel .bet-history.detailed.grid > li > ul > li:first-child {
+    margin-top: 0;
+}
+
+body.panel .bet-history.detailed.grid > li > ul > li span {
+    display: inline-block;
+}
+
+body.panel .bet-history.detailed.grid > li > ul > li > *:first-child {
+    min-width: 100px;
+}
+
+body.panel .bet-history.detailed.grid > li > ul > li > span > span {
+    margin: 0 1rem;
+}
+
+body.panel .bet-history {
+    --coin-icon-size: 16px;
+}
+
+body.panel .bet-history.detailed {
+    --info-icon-size: 10px;
+}
+
+body.panel .bet-history.detailed.grid .transparent {
+    color: #A6CDF1;
+    opacity: .9;
+}
+
+body.panel .bet-history .fall {
+    color: #ff1a00;
+}
+
+body.panel .bet-history.detailed.grid .fall:before {
+    background: url("../images/fall.svg");
+}
+
+body.panel .bet-history .rise {
+    color: #0084ff;
+}
+
+body.panel .bet-history.detailed.grid .rise:before {
+    background: url("../images/rise.svg");
+}
+
+body.panel .bet-history.detailed.grid .fall:before, body.panel .bet-history.detailed.grid .rise:before {
+    content: '';
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-position: center left;
+    background-size: contain;
+    height: var(--info-icon-size);
+    width: var(--info-icon-size);
+    margin-right: calc(var(--info-icon-size) / 3);
+}
+
+body.panel .bet-history .green {
+    color: #74bc2a;
+}
+
+body.panel .bet-history .red {
+    color: #ff1a00;
+}
+
+body.panel .bet-history.table {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px 0;
+    width: 620px;
+}
+
+body.panel .bet-history.table > li {
+    line-height: 16px;
+    padding: 1rem;
+}
+
+body.panel .bet-history.table > li:nth-child(even) {
+    background-color: var(--background-color);
+}
+
+body.panel .bet-history.table > li > * {
+    display: inline-block;
+    min-width: 100px;
+}
+
+body.panel .bet-history.table > li > * img {
+    margin-bottom: -.15rem;
+    margin-right: 10px;
+    width: var(--coin-icon-size);
+    height: var(--coin-icon-size);
+}
+
 button.green:hover, .button.green:hover {
     background-color: #1fc05e;
 }
@@ -70,4 +381,64 @@ button.transparent:hover, .button.transparent:hover {
 
 button.transparent:active, .button.transparent:active, button.transparent:focus, .button.transparent:focus {
     background-color: rgba(255, 255, 255, 0.5);
+}
+
+body > .modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    -webkit-overflow-scrolling: touch;
+    outline: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+body > .modal:target {
+    display: block;
+}
+
+body > .modal > .content {
+    position: relative;
+    width: 680px;
+    margin: 30px auto;
+    padding: var(--root-section-padding);
+    background-color: var(--background-color);
+    -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
+    background-clip: padding-box;
+    outline: 0;
+}
+
+body > .modal .close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50px;
+    height: 50px;
+    border-radius: 2px;
+    color: transparent;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.2) url("../images/close-icon.svg") no-repeat center;
+    background-size: 25px;
+}
+
+body > .modal.full-screen > .content {
+    width: 100vw;
+    margin: auto;
+}
+
+body > .modal.full-screen .close {
+    position: fixed;
+    width: 100px;
+    height: 100px;
+}
+
+body > #about.modal > .content {
+    background: #00111F url("../images/background.png") no-repeat top;
+    background-size: contain;
 }

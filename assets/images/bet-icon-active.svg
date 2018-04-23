@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="20px" viewBox="0 0 24 20" version="1.1"
+     xmlns="http://www.w3.org/2000/svg">
+    <!-- Generator: Sketch 49.3 (51167) - http://www.bohemiancoding.com/sketch -->
+    <title>bet-icon-active</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="futurescoin" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="icons" transform="translate(-23.000000, -67.000000)">
+            <g id="bet-icon-active" transform="translate(20.000000, 62.000000)">
+                <rect id="bg" x="0" y="0" width="30" height="30"></rect>
+                <polygon id="Path" fill="#0084FF"
+                         points="8.484375 5 3 10.5 4.5 12 7.5 9 7.5 25 9.5 25 9.5 9 12.5 12 14 10.5"></polygon>
+                <polygon id="Path" fill="#E92330"
+                         points="20.5 5 20.5 21 17.5 18 16 19.5 21.515625 25 27 19.5 25.5 18 22.5 21 22.5 5"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>

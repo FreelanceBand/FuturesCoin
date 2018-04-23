@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="32px" height="32px" viewBox="0 0 32 32" version="1.1"
+     xmlns="http://www.w3.org/2000/svg">
+    <!-- Generator: Sketch 49.3 (51167) - http://www.bohemiancoding.com/sketch -->
+    <title>neo</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="futurescoin" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="profile" transform="translate(-770.000000, -216.000000)">
+            <g id="Group" transform="translate(750.000000, 145.000000)">
+                <g id="1" transform="translate(0.000000, 51.000000)">
+                    <g id="neo" transform="translate(20.000000, 20.000000)">
+                        <path d="M16,0 C7.16348899,0 0,7.16348899 0,16 C0,24.836511 7.16348899,32 16,32 C24.836511,32 32,24.836511 32,16 C32,7.16348899 24.836511,0 16,0 Z"
+                              id="Shape" fill="#74BC2A" fill-rule="nonzero"></path>
+                        <polygon id="Path" fill="#FFFFFF"
+                                 points="14.6028546 24.9515419 8.59911894 22.1115771 8.59911894 11.2559648 14.6028546 14.1025551"></polygon>
+                        <polygon id="Path" fill="#FFFFFF"
+                                 points="14.7553833 12.9969339 8.84694273 10.1954537 17.5381145 7.04845815 23.4465551 9.8500793 14.7553833 12.9969339"></polygon>
+                        <polygon id="Path" fill="#FFFFFF"
+                                 points="23.5418502 21.9005463 17.3855859 18.9838943 17.3855859 13.1790661 23.5418502 10.9500617 23.5418502 21.9005463"></polygon>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
