@@ -15,7 +15,7 @@
                         <mask id="mask-2" fill="white">
                             <use xlink:href="#path-1"></use>
                         </mask>
-                        <use id="Oval" fill="#FFFFFF" xlink:href="#path-1"></use>
+                        <use id="Oval" fill="#FFFFFF" xlink:href="#path-1" mask="url(#mask-2)"></use>
                         <polygon id="Shape" fill="#4C4C4C" mask="url(#mask-2)"
                                  points="23.5157729 24.9794953 23.5157729 16.2981073 16.5 23.3138801 9.48422713 16.2981073 9.48422713 24.9794953 1.97318612 24.9794953 1.97318612 32.9556227 30.0268139 32.9556227 30.0268139 24.9794953"></polygon>
                         <polygon id="Shape" fill="#FF6B01" mask="url(#mask-2)"

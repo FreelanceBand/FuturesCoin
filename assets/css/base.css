@@ -45,7 +45,7 @@ input, select, button, .button {
 
     margin: 1rem 0 0;
 
-    padding: 1rem;
+    padding: 17px 15px; /*1rem*/
 
     color: white;
     font-size: 1rem;
@@ -78,9 +78,12 @@ input[type="text"], input[type="email"], input[type="password"], select {
 input[type="checkbox"] {
     border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 3px;
-    margin-right: 1rem;
-    width: 25px;
-    height: 25px;
+    margin-right: 15px;
+    min-width: 25px;
+    max-width: 25px;
+    min-height: 25px;
+    max-height: 25px;
+    padding: 0;
 }
 
 input[type="checkbox"]:checked {

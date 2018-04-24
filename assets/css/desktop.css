@@ -3,8 +3,27 @@
     --controls-width: 300px;
 }
 
+body:after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    position: fixed;
+    top: -10000px;
+    left: -10000px;
+    background: url("../images/profile-icon-active.svg"), url("../images/bet-icon-active.svg"),
+    url("../images/help-icon-active.svg"), url("../images/logout-icon-active.svg"), url("../images/background.png"),
+    url("../images/close-icon.svg"), url("../images/up-icon.png"), url("../images/down-icon.png"), url("../images/success.svg");
+}
+
 input, select, button, .button {
     font-size: 14px;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 input[type="text"], input[type="email"], input[type="password"], select, button, .button {
@@ -43,6 +62,19 @@ input:active, input:focus, select:active, select:focus {
     justify-content: space-between;
 }
 
+.custom-select {
+    display: inline-block;
+}
+
+.custom-select input {
+    display: none;
+}
+
+.custom-select input + label {
+    display: none;
+    cursor: pointer;
+}
+
 body.landing {
     display: flex;
 }
@@ -77,6 +109,7 @@ body.landing > aside .title {
 
 body.panel {
     font-size: 14px;
+    line-height: 21px;
 }
 
 body.panel > header {
@@ -173,12 +206,12 @@ body.panel > header nav a > span {
     text-align: center;
     font-size: .9rem;
     font-weight: 500;
-    line-height: 1.5rem;
+    line-height: 20px;
     color: white;
     bottom: calc((var(--calculated-height) / 2) + (var(--icon-size) / 2));
     right: calc(((100% - var(--icon-size)) / 2) - (var(--icon-size) / 2));
-    width: 1.5rem;
-    height: 1.5rem;
+    width: 20px;
+    height: 20px;
     background-color: red;
     border-radius: 50%;
 }
@@ -387,7 +420,7 @@ body.panel .bet-history.table > li > * img {
 body.panel .coins-info.table {
     margin: 0;
     padding: 0;
-    width: 950px;
+    width: calc(100% - 370px);
 }
 
 body.panel .coins-info.table > li {
@@ -464,6 +497,10 @@ body.panel .bet-form #time {
     width: 110px;
 }
 
+body.panel .bet-form .strategy {
+    position: relative;
+}
+
 body.panel .bet-form .strategy > input {
     position: relative;
     height: 50px;
@@ -476,13 +513,13 @@ body.panel .bet-form .strategy > input:checked {
 }
 
 body.panel .bet-form .strategy > input:first-of-type {
-    /*border-right-color: transparent;*/
+    border-right: none;
     border-top-right-radius: unset;
     border-bottom-right-radius: unset;
 }
 
 body.panel .bet-form .strategy > input:last-of-type {
-    /*border-left-color: transparent;*/
+    border-left: none;
     border-top-left-radius: unset;
     border-bottom-left-radius: unset;
 }
@@ -532,15 +569,55 @@ body.panel .bet-form .strategy > input:before {
     background-size: contain;
 }
 
+body.panel .bet-form .strategy:after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    width: 0;
+    height: 100%;
+    border-right: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+body.panel .bet-form .strategy:hover:after {
+    border-color: var(--second-accent-color);
+}
+
 body.panel .bet-form .amount {
     position: relative;
 }
 
-body.panel .bet-form .amount:after {
-    content: 'Tether USDT';
+body.panel .bet-form .amount .custom-select {
     position: absolute;
-    right: 2rem;
-    bottom: 1rem;
+    right: 10px;
+    top: 2.85rem;
+    width: 120px;
+}
+
+body.panel .bet-form .amount .custom-select:after {
+    content: '';
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: url("../images/dropdown.svg") no-repeat center;
+    background-size: contain;
+    width: 10px;
+    height: 10px;
+}
+
+body.panel .bet-form .amount .custom-select label {
+    display: none;
+    margin: 0;
+    background: #335877;
+    padding: 7px 29px 7px 10px;
+    width: 100%;
+}
+
+body.panel .bet-form .amount .custom-select label:hover {
+    background: #6d92b3;
+}
+
+body.panel .bet-form #agreement {
+    margin-top: 4px;
 }
 
 body.panel .bet-form button {
@@ -565,7 +642,7 @@ body.panel > footer img {
     margin: 0 .3rem -.2rem .3rem;
 }
 
-body.panel span.transparent {
+body.panel span.transparent, body.panel footer a.transparent {
     color: #A6CDF1;
     opacity: .9;
 }
@@ -584,6 +661,14 @@ button.transparent:hover, .button.transparent:hover {
 
 button.transparent:active, .button.transparent:active, button.transparent:focus, .button.transparent:focus {
     background-color: rgba(255, 255, 255, 0.5);
+}
+
+.custom-select input:checked + label {
+    display: inline-block !important;
+}
+
+.custom-select:hover label {
+    display: inline-block !important;
 }
 
 body > .modal {
@@ -775,5 +860,15 @@ body > #about.modal > .content blockquote > *:last-child {
     body.panel > main {
         max-width: calc(1366px + (var(--root-section-padding) * 2));
         margin: 0 auto;
+    }
+}
+
+/* TODO: Remove this GovnoCode and make true responsive */
+
+@media (max-width: 1365px) {
+    body.panel main {
+        flex-direction: column;
+        flex-wrap: unset;
+        align-items: center;
     }
 }

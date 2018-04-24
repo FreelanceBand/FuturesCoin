@@ -23,105 +23,111 @@
     </div>
 </header>
 <main>
-    <section>
-        <ul class="coins-info table">
-            <li>
-                <div>Валюта</div>
-                <div>Рыночная капитализация</div>
-                <div>Цена</div>
-                <div>Изменения за 24 часа</div>
-            </li>
-            <li>
-                <div><img src="assets/images/neo.svg"><span>Bitcoin</span></div>
-                <div>1000000 $</div>
-                <div>2342.5 $</div>
-                <div class="green">+5%</div>
-            </li>
-            <li>
-                <div><img src="assets/images/monero.svg"><span>Monero</span></div>
-                <div>34000 $</div>
-                <div>2342 $</div>
-                <div class="red">–1.5%</div>
-            </li>
-            <li>
-                <div><img src="assets/images/neo.svg"><span>Monero</span></div>
-                <div>300 $</div>
-                <div>342.53 $</div>
-                <div class="green">+5%</div>
-            </li>
-            <li>
-                <div><img src="assets/images/monero.svg"><span>Litecoin</span></div>
-                <div>980 $</div>
-                <div>12 $</div>
-                <div class="green">+5%</div>
-            </li>
-            <li>
-                <div><img src="assets/images/neo.svg"><span>Litecoin</span></div>
-                <div>980 $</div>
-                <div>12 $</div>
-                <div class="green">+5%</div>
-            </li>
-            <li>
-                <div><img src="assets/images/monero.svg"><span>Monero</span></div>
-                <div>300 $</div>
-                <div>342.53 $</div>
-                <div class="green">+5%</div>
-            </li>
-            <li>
-                <div><img src="assets/images/neo.svg"><span>Litecoin</span></div>
-                <div>980 $</div>
-                <div>12 $</div>
-                <div class="green">+5%</div>
-            </li>
-            <li>
-                <div><img src="assets/images/monero.svg"><span>Monero</span></div>
-                <div>300 $</div>
-                <div>342.53 $</div>
-                <div class="green">+5%</div>
-            </li>
-        </ul>
-    </section>
-    <section>
-        <form class="bet-form" action="#successBet" method="get">
-            <div class="horizontal">
-                <div>
-                    <label for="coin">Выбранная монета</label>
-                    <select id="coin" name="coin">
-                        <option>Neo</option>
-                    </select>
-                </div>
-                <div>
-                    <label for="time">Срок ставки</label>
-                    <input id="time" value="1" min="1" name="time" type="number">
-                </div>
-            </div>
-            <div class="strategy horizontal">
-                <input placeholder="Повышение" id="rise" value="rise" name="strategy" type="radio">
-                <input placeholder="Понижение" id="fall" value="fall" name="strategy" type="radio">
-            </div>
-            <div class="amount">
-                <label for="amount">Размер ставки</label>
-                <input id="amount" name="amount" value="10000" type="number">
-            </div>
+    <ul class="coins-info table">
+        <li>
+            <div>Валюта</div>
+            <div>Рыночная капитализация</div>
+            <div>Цена</div>
+            <div>Изменения за 24 часа</div>
+        </li>
+        <li>
+            <div><img src="assets/images/neo.svg"><span>Bitcoin</span></div>
+            <div>1000000 $</div>
+            <div>2342.5 $</div>
+            <div class="green">+5%</div>
+        </li>
+        <li>
+            <div><img src="assets/images/monero.svg"><span>Monero</span></div>
+            <div>34000 $</div>
+            <div>2342 $</div>
+            <div class="red">–1.5%</div>
+        </li>
+        <li>
+            <div><img src="assets/images/neo.svg"><span>Monero</span></div>
+            <div>300 $</div>
+            <div>342.53 $</div>
+            <div class="green">+5%</div>
+        </li>
+        <li>
+            <div><img src="assets/images/monero.svg"><span>Litecoin</span></div>
+            <div>980 $</div>
+            <div>12 $</div>
+            <div class="green">+5%</div>
+        </li>
+        <li>
+            <div><img src="assets/images/neo.svg"><span>Litecoin</span></div>
+            <div>980 $</div>
+            <div>12 $</div>
+            <div class="green">+5%</div>
+        </li>
+        <li>
+            <div><img src="assets/images/monero.svg"><span>Monero</span></div>
+            <div>300 $</div>
+            <div>342.53 $</div>
+            <div class="green">+5%</div>
+        </li>
+        <li>
+            <div><img src="assets/images/neo.svg"><span>Litecoin</span></div>
+            <div>980 $</div>
+            <div>12 $</div>
+            <div class="green">+5%</div>
+        </li>
+        <li>
+            <div><img src="assets/images/monero.svg"><span>Monero</span></div>
+            <div>300 $</div>
+            <div>342.53 $</div>
+            <div class="green">+5%</div>
+        </li>
+    </ul>
+    <form class="bet-form" action="#successBet" method="get">
+        <div class="horizontal">
             <div>
-                <label for="returnProfit">Возврат прибыли</label>
-                <select id="returnProfit" name="returnProfit">
-                    <option>USDT на кошелек</option>
+                <label for="coin">Выбранная монета</label>
+                <select id="coin" name="coin">
+                    <option>Neo</option>
                 </select>
             </div>
             <div>
-                <label for="wallet">Кошелек для перевода ставки в USDT</label>
-                <input id="wallet" name="wallet" value="1L23324jj3h24kjhkjh234kbjjkwef" type="text">
+                <label for="time">Срок ставки</label>
+                <input id="time" value="1" min="1" name="time" type="number">
             </div>
-            <div class="horizontal">
-                <input id="agreement" name="agreement" type="checkbox">
-                <label for="agreement">Я соглашаюсь с условиями сервиса по ставкам на криптовалюту</label>
+        </div>
+        <div class="strategy horizontal">
+            <input placeholder="Повышение" id="rise" value="rise" name="strategy" type="radio">
+            <input placeholder="Понижение" id="fall" value="fall" name="strategy" type="radio">
+        </div>
+        <div class="amount">
+            <label for="amount">Размер ставки</label>
+            <input id="amount" name="amount" value="10000" data-input-mask="true" type="text">
+            <div class="custom-select">
+                <div>
+                    <input checked id="amount-usdt" value="usdt" name="amount-type" type="radio">
+                    <label for="amount-usdt">Tether USDT</label>
+                </div>
+                <div>
+                    <input id="amount-neo" value="neo" name="amount-type" type="radio">
+                    <label for="amount-neo">Neo</label>
+                </div>
             </div>
-            <div>
-                <button class="green" type="submit">Сделать ставку</button>
-            </div>
-        </form>
-    </section>
+        </div>
+        <div>
+            <label for="returnProfit">Возврат прибыли</label>
+            <select id="returnProfit" name="returnProfit">
+                <option>USDT на кошелек</option>
+            </select>
+        </div>
+        <div>
+            <label for="wallet">Кошелек для перевода ставки в USDT</label>
+            <input id="wallet" name="wallet" value="1L23324jj3h24kjhkjh234kbjjkwef" type="text">
+        </div>
+        <div class="horizontal">
+            <input id="agreement" name="agreement" type="checkbox">
+            <label for="agreement">Я соглашаюсь с условиями сервиса по ставкам на криптовалюту</label>
+        </div>
+        <div>
+            <button class="green" type="submit">Сделать ставку</button>
+        </div>
+    </form>
 </main>
 <div id="about" class="modal full-screen">
     <div class="content">
@@ -210,4 +216,5 @@
     </div>
 </footer>
 </body>
+<script src="assets/js/puremask.js"></script>
 </html>
