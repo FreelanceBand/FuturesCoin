@@ -67,6 +67,11 @@ button, .button {
     background-color: var(--main-accent-color);
 }
 
+button:disabled, .button:disabled {
+    background-color: #6d92b3;
+
+}
+
 input, select {
     border: 1px solid rgba(255, 255, 255, 0.3);
 }
