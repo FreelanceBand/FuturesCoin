@@ -145,12 +145,13 @@ body.panel > header .logo {
 body.panel > header nav {
     --icon-size: 25px;
     display: flex;
+    margin-right: -25px;
 }
 
 body.panel > header nav a {
     --calculated-height: var(--height);
     position: relative;
-    padding: 0 1rem;
+    padding: 0 25px;
     line-height: var(--height);
     color: white;
 }
@@ -419,7 +420,7 @@ body.panel .bet-history.table {
 
 body.panel .bet-history.table > li {
     line-height: 16px;
-    padding: 1rem;
+    padding: 12px 20px;
 }
 
 body.panel .bet-history.table > li:nth-child(even) {
@@ -495,7 +496,7 @@ body.panel .bet-form > *.horizontal label {
 }
 
 body.panel .bet-form .horizontal > * > label {
-    margin-bottom: 13px;
+    margin-bottom: 20px;
 }
 
 body.panel .bet-form input, body.panel .bet-form select {
