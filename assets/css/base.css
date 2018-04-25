@@ -73,11 +73,12 @@ button, .button {
     text-transform: uppercase;
     text-align: center;
     background-color: var(--main-accent-color);
+    cursor: pointer;
 }
 
 button:disabled, .button:disabled {
     background-color: #6d92b3;
-
+    cursor: default;
 }
 
 input, select {
