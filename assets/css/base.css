@@ -15,6 +15,7 @@
     --foreground-color: #012F55;
     --root-section-padding: 20px;
     --controls-width: 100%;
+    --border-radius: 2px;
 
     font-family: 'Roboto', sans-serif;
     color: white;
@@ -24,6 +25,7 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background-color: var(--foreground-color);
+    /*min-width: 1024px;*/
 }
 
 body {
@@ -32,6 +34,7 @@ body {
 }
 
 input, select, button, .button {
+    --height: 50px;
     display: inline-block;
 
     -webkit-appearance: none;
@@ -41,11 +44,16 @@ input, select, button, .button {
 
     background: transparent;
     border: none;
-    border-radius: 3px;
+    border-radius: var(--border-radius);
 
     margin: 1rem 0 0;
 
-    padding: 17px 15px; /*1rem*/
+    padding: 0 15px; /*1rem*/
+
+    height: var(--height);
+    /*padding-top: 0;*/
+    /*padding-bottom: 0;*/
+    line-height: var(--height);
 
     color: white;
     font-size: 1rem;
@@ -74,6 +82,7 @@ button:disabled, .button:disabled {
 
 input, select {
     border: 1px solid rgba(255, 255, 255, 0.3);
+    line-height: calc(var(--height) - 2px);
 }
 
 input[type="text"], input[type="email"], input[type="password"], select {
@@ -82,7 +91,7 @@ input[type="text"], input[type="email"], input[type="password"], select {
 
 input[type="checkbox"] {
     border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 3px;
+    border-radius: var(--border-radius);
     margin-right: 15px;
     min-width: 25px;
     max-width: 25px;
@@ -192,7 +201,7 @@ body.landing > aside .title {
     flex-direction: column;
     border: 1px solid white;
     padding: 20px;
-    border-radius: 3px;
+    border-radius: var(--border-radius);
     margin-bottom: 1rem;
 }
 

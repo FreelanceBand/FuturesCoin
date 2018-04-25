@@ -225,7 +225,7 @@ body.panel > main {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    padding: var(--root-section-padding);
+    padding: calc(50px - 1.35rem);
     background-color: var(--foreground-color);
     min-height: calc(100vh - 100px - 3rem);
 }
@@ -236,7 +236,7 @@ body.panel > main > section {
 }
 
 body.panel > main li {
-    border-radius: 3px;
+    border-radius: var(--border-radius);
 }
 
 body.panel .profile-image {
@@ -248,7 +248,7 @@ body.panel .profile-image {
     padding: 20px;
     margin: 0 20px 20px 0;
     background-color: var(--background-color);
-    border-radius: 3px;
+    border-radius: var(--border-radius);
 }
 
 body.panel .profile-image:before {
@@ -466,12 +466,12 @@ body.panel .bet-form {
 body.panel .bet-form > div {
     display: flex;
     flex-direction: column;
-    margin-bottom: 25px;
+    margin-bottom: 23.5px;
 }
 
 body.panel .bet-form label {
     display: inline-block;
-    margin-bottom: 1rem;
+    margin-bottom: 12px;
 }
 
 body.panel .bet-form > *.horizontal label {
@@ -479,7 +479,7 @@ body.panel .bet-form > *.horizontal label {
 }
 
 body.panel .bet-form .horizontal > * > label {
-    margin-bottom: 1.5rem;
+    margin-bottom: 13px;
 }
 
 body.panel .bet-form input, body.panel .bet-form select {
@@ -495,7 +495,7 @@ body.panel .bet-form > div > div:not(:first-child) {
 }
 
 body.panel .bet-form #coin {
-    width: 180px;
+    width: 185px;
 }
 
 body.panel .bet-form .time {
@@ -505,6 +505,7 @@ body.panel .bet-form .time {
 body.panel .bet-form #time {
     text-align: center;
     width: 100%;
+    font-size: 16px;
 }
 
 body.panel .bet-form .change-time {
@@ -513,10 +514,11 @@ body.panel .bet-form .change-time {
     position: absolute;
     left: 0;
     bottom: 0;
-    height: 53px;
+    /*height: 53px;*/
     text-align: center;
     padding-left: 0;
     padding-right: 0;
+    font-size: 16px;
 }
 
 body.panel .bet-form .change-time:last-of-type {
@@ -533,6 +535,7 @@ body.panel .bet-form .change-time:first-of-type {
 
 body.panel .bet-form .strategy {
     position: relative;
+    margin-top: 10px;
 }
 
 body.panel .bet-form .strategy > input {
@@ -593,13 +596,13 @@ body.panel .bet-form .strategy > input:before, body.panel .bet-form .strategy > 
 }
 
 body.panel .bet-form .strategy > input:before {
-    left: 1rem;
+    left: 15px;
     right: unset;
     width: 24px;
     height: 24px;
     top: calc((50px - 24px) / 2);
     background-repeat: no-repeat;
-    background-position: center;
+    background-position: left center;
     background-size: contain;
 }
 
@@ -623,14 +626,14 @@ body.panel .bet-form .amount {
 body.panel .bet-form .amount .custom-select {
     position: absolute;
     right: 10px;
-    top: 2.85rem;
+    top: 2.7rem;
     width: 120px;
 }
 
 body.panel .bet-form .amount .custom-select:after {
     content: '';
     position: absolute;
-    top: 13px;
+    top: 11px;
     right: 10px;
     background: url("../images/dropdown.svg") no-repeat center;
     background-size: contain;
@@ -642,7 +645,9 @@ body.panel .bet-form .amount .custom-select label {
     display: none;
     margin: 0;
     background: #335877;
-    padding: 7px 29px 7px 10px;
+    padding: 0 29px 0 10px;
+    height: 30px;
+    line-height: 30px;
     width: 100%;
 }
 
@@ -652,6 +657,10 @@ body.panel .bet-form .amount .custom-select label:hover {
 
 body.panel .bet-form #agreement {
     margin-top: 4px;
+}
+
+body.panel .bet-form .submit {
+    margin-top: 3px;
 }
 
 body.panel .bet-form button {
@@ -745,7 +754,7 @@ body > .modal > .content {
     /*-webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, .5);*/
     /*box-shadow: 0 5px 15px rgba(0, 0, 0, .5);*/
     background-clip: padding-box;
-    border-radius: 3px;
+    border-radius: var(--border-radius);
     outline: 0;
     z-index: 1100;
 }
