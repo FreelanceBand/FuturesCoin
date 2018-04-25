@@ -649,6 +649,7 @@ body.panel .bet-form .amount .custom-select {
 
 body.panel .bet-form .amount .custom-select:after {
     content: '';
+    pointer-events: none;
     position: absolute;
     top: 11px;
     right: 10px;
@@ -670,6 +671,11 @@ body.panel .bet-form .amount .custom-select label {
 
 body.panel .bet-form .amount .custom-select label:hover {
     background: #6d92b3;
+}
+
+body.panel .bet-form .amount .custom-select:hover input:checked + label {
+    background: #7dacd5 !important;
+    cursor: default;
 }
 
 body.panel .bet-form #agreement {
