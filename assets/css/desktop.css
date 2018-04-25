@@ -837,6 +837,17 @@ body > .modal > .content > img {
     margin-bottom: 1rem;
 }
 
+body > #editLogin.modal > .content .indicator {
+    position: absolute;
+    right: 50px;
+    top: 95px;
+    pointer-events: none;
+}
+
+body > #editLogin.modal > .content .indicator.green {
+    color: #1fd05f;
+}
+
 body > #about.modal > .content {
     background: #00111F url("../images/background.png") no-repeat top;
     background-size: contain;
