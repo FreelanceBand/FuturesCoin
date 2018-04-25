@@ -13,7 +13,8 @@ body:after {
     left: -10000px;
     background: url("../images/profile-icon-active.svg"), url("../images/bet-icon-active.svg"),
     url("../images/help-icon-active.svg"), url("../images/logout-icon-active.svg"), url("../images/background.png"),
-    url("../images/close-icon.svg"), url("../images/up-icon.png"), url("../images/down-icon.png"), url("../images/success.svg");
+    url("../images/close-icon.svg"), url("../images/up-icon.png"), url("../images/down-icon.png"),
+    url("../images/success.svg"), url("../images/check.svg");
 }
 
 input, select, button, .button {
@@ -78,6 +79,13 @@ select {
 .custom-select input + label {
     display: none;
     cursor: pointer;
+}
+
+label {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 body.landing {
@@ -225,9 +233,14 @@ body.panel > main {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    padding: calc(50px - 1.35rem);
+    padding: 50px;
+    padding-bottom: 0;
     background-color: var(--foreground-color);
-    min-height: calc(100vh - 100px - 3rem);
+    min-height: calc(100vh - 100px - 50px);
+}
+
+body.panel > main.bet {
+    padding-top: calc(50px - 1.35rem);
 }
 
 body.panel > main > section {
@@ -261,7 +274,8 @@ body.panel .profile-image:before {
 }
 
 body.panel .profile-image label {
-    padding: .7rem 0;
+    /*padding: .7rem 0;*/
+    --height: 36px;
     font-size: 0.8rem;
     text-transform: unset;
 }
@@ -278,7 +292,8 @@ body.panel .profile-data {
 }
 
 body.panel .profile-data > li {
-    padding: 1.5rem;
+    padding: 18px;
+    /*height: ;*/
 }
 
 body.panel .profile-data > li:nth-child(odd) {
@@ -332,7 +347,8 @@ body.panel .bet-history.detailed.grid > li > ul {
 }
 
 body.panel .bet-history.detailed.grid > li > ul > li {
-    margin: .5rem 0;
+    /*margin: .5rem 0;*/
+    margin-top: 10px;
 }
 
 body.panel .bet-history.detailed.grid > li > ul > li:first-child {
@@ -429,7 +445,7 @@ body.panel .coins-info.table {
 }
 
 body.panel .coins-info.table > li {
-    padding: .7rem 1rem;
+    padding: .75rem 1rem;
 }
 
 body.panel .coins-info.table > li:not(:first-child) {
@@ -519,6 +535,7 @@ body.panel .bet-form .change-time {
     padding-left: 0;
     padding-right: 0;
     font-size: 16px;
+    line-height: var(--height);
 }
 
 body.panel .bet-form .change-time:last-of-type {
@@ -672,7 +689,9 @@ body.panel > footer {
     bottom: 0;
     left: 0;
     width: 100vw;
-    padding: 1rem var(--root-section-padding);
+    height: 50px;
+    padding: 0 var(--root-section-padding);
+    line-height: 50px;
     display: flex;
     justify-content: space-between;
     background-color: var(--background-color);

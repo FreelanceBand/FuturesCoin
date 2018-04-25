@@ -22,7 +22,7 @@
         </nav>
     </div>
 </header>
-<main>
+<main class="bet">
     <ul class="coins-info table">
         <li>
             <div>Валюта</div>
@@ -89,9 +89,9 @@
             </div>
             <div class="time">
                 <label for="time">Срок ставки</label>
-                <button class="change-time" type="button" disabled>-</button>
+                <button id="timeFall" class="change-time" type="button">-</button>
                 <input id="time" value="1" min="1" name="time" type="number">
-                <button class="change-time" type="button">+</button>
+                <button id="timeRise" class="change-time" type="button">+</button>
             </div>
         </div>
         <div class="strategy horizontal">
@@ -222,5 +222,5 @@
     </div>
 </footer>
 </body>
-<script src="assets/js/mask.js"></script>
+<script src="assets/js/bet.js"></script>
 </html>
