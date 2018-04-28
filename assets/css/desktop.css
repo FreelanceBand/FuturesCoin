@@ -508,7 +508,7 @@ body.panel .bet-form input[type="text"], body.panel .bet-form input[type="number
     width: 100%;
 }
 
-body.panel .bet-form > div > div:not(:first-child) {
+body.panel .bet-form > div:not(.select-wrapper) > div:not(:first-child) {
     margin-left: 20px;
 }
 
@@ -644,7 +644,7 @@ body.panel .bet-form .amount {
 
 body.panel .bet-form .select-wrapper {
     position: relative;
-    padding-bottom: 50px;
+    /*padding-bottom: 50px;*/
 }
 
 body.panel .bet-form .narrow {
@@ -659,7 +659,61 @@ body.panel .bet-form .custom-select {
     width: 100%;
 }
 
-body.panel .bet-form .amount .custom-select {
+.choices {
+    background: #335877;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 50px;
+    border: none;
+}
+
+.choices[data-type*=select-one]:after {
+    border-color: #fff transparent transparent transparent;
+}
+
+.choices[data-type*=select-one].is-open:after {
+    border-color: transparent transparent #fff transparent;
+}
+
+body.panel .bet-form .choices__inner {
+    margin: 0;
+    background: #335877;
+    width: 100%;
+    /*padding: 0;*/
+    padding: 0 29px 0 10px;
+    /*height: 50px;*/
+    /*line-height: 50px;*/
+    border: none;
+}
+
+.choices__list {
+    background: #335877;
+    margin: 0;
+    padding: 0;
+    /*width: 100%;*/
+    /*padding: 0 29px 0 10px;*/
+    /*height: 50px;*/
+    line-height: 50px;
+    border: none;
+}
+
+.choices__item {
+    background: #335877;
+    margin: 0;
+    padding: 0 29px 0 10px !important;
+    /*height: 50px;*/
+    line-height: 50px;
+    border: none;
+}
+
+.is-highlighted {
+    background-color: #6d92b3 !important;
+}
+
+body.panel .bet-form .amount .choices {
+    position: absolute;
+    z-index: 10000;
     right: 10px;
     top: 2.7rem;
     width: 120px;
@@ -677,7 +731,6 @@ body.panel .bet-form .custom-select:after {
     height: 10px;
 }
 
-
 body.panel .bet-form .amount .custom-select:after {
     top: 11px;
 }
@@ -693,14 +746,30 @@ body.panel .bet-form .custom-select label {
 
 }
 
-body.panel .bet-form .amount .custom-select label {
-    padding: 0 29px 0 10px;
+body.panel .bet-form .amount .choices {
+    /*padding: 0 29px 0 10px;*/
     height: 30px;
+    /*line-height: 30px;*/
+}
+
+body.panel .bet-form .amount .choices__inner {
+    padding: 0 29px 0 10px;
+    min-height: unset;
+}
+
+body.panel .bet-form .amount .choices__list {
     line-height: 30px;
 }
 
+body.panel .bet-form .amount .choices__item {
+    padding: 0 29px 0 10px;
+    line-height: 30px;
+}
+
+
+
 body.panel .bet-form .custom-select label:hover {
-    background: #6d92b3;
+    background-color: #6d92b3 !important;
 }
 
 body.panel .bet-form .custom-select:hover input:checked + label {
@@ -766,7 +835,7 @@ button.transparent:active, .button.transparent:active, button.transparent:focus,
     display: inline-block !important;
 }
 
-.custom-select:hover label {
+.custom-select:not(.hide):hover label {
     display: inline-block !important;
 }
 

@@ -5,6 +5,7 @@
     <title>Profile - FuturesCoin</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/choices.min.css">
     <link href="assets/css/base.css" rel="stylesheet">
     <link href="assets/css/desktop.css" media="(min-width: 1024px)" rel="stylesheet">
 </head>
@@ -82,21 +83,12 @@
     <form class="bet-form" action="#successBet" method="get">
         <div class="horizontal">
             <div class="select-wrapper narrow">
-                <label>Выбранная монета</label>
-                <div class="custom-select">
-                    <div>
-                        <input checked id="coin-usdt" value="usdt" name="coin" type="radio">
-                        <label for="coin-usdt">Tether USDT</label>
-                    </div>
-                    <div>
-                        <input id="coin-neo" value="neo" name="coin" type="radio">
-                        <label for="coin-neo">Neo</label>
-                    </div>
-                    <div>
-                        <input id="coin-monero" value="monero" name="coin" type="radio">
-                        <label for="coin-monero">Monero</label>
-                    </div>
-                </div>
+                <label for="coin">Выбранная монета</label>
+                <select id="coin" name="coin">
+                    <option value="usdt">Tether USDT</option>
+                    <option value="neo">Neo</option>
+                    <option value="monero">Monero</option>
+                </select>
             </div>
             <div class="time">
                 <label for="time">Срок ставки</label>
@@ -109,40 +101,22 @@
             <input placeholder="Повышение" id="rise" value="rise" name="strategy" type="radio">
             <input placeholder="Понижение" id="fall" value="fall" name="strategy" type="radio">
         </div>
-        <div class="amount">
+        <div class="select-wrapper amount">
             <label for="amount">Размер ставки</label>
             <input id="amount" name="amount" value="100000" data-input-mask="true" type="text">
-            <div class="custom-select">
-                <div>
-                    <input checked id="amount-usdt" value="usdt" name="amount-type" type="radio">
-                    <label for="amount-usdt">Tether USDT</label>
-                </div>
-                <div>
-                    <input id="amount-neo" value="neo" name="amount-type" type="radio">
-                    <label for="amount-neo">Neo</label>
-                </div>
-                <div>
-                    <input id="amount-monero" value="monero" name="amount-type" type="radio">
-                    <label for="amount-monero">Monero</label>
-                </div>
-            </div>
+            <select title="Тип ставки" id="amount-type" name="amount-type">
+                <option value="usdt">USDT</option>
+                <option value="neo">Neo</option>
+                <option value="monero">Monero</option>
+            </select>
         </div>
         <div class="select-wrapper">
-            <label>Возврат прибыли</label>
-            <div class="custom-select">
-                <div>
-                    <input checked id="return-usdt" value="usdt" name="returnProfit" type="radio">
-                    <label for="return-usdt">USDT на кошелек</label>
-                </div>
-                <div>
-                    <input id="return-neo" value="neo" name="returnProfit" type="radio">
-                    <label for="return-neo">Neo на кошелек</label>
-                </div>
-                <div>
-                    <input id="return-monero" value="monero" name="returnProfit" type="radio">
-                    <label for="return-monero">Monero на кошелек</label>
-                </div>
-            </div>
+            <label for="returnProfit">Возврат прибыли</label>
+            <select id="returnProfit" name="returnProfit">
+                <option value="usdt">USDT на кошелек</option>
+                <option value="neo">Neo на кошелек</option>
+                <option value="monero">Monero на кошелек</option>
+            </select>
         </div>
         <div>
             <label for="wallet">Кошелек для перевода ставки в USDT</label>
@@ -244,5 +218,6 @@
     </div>
 </footer>
 </body>
+<script src="/assets/js/choices.min.js"></script>
 <script src="assets/js/bet.js"></script>
 </html>
