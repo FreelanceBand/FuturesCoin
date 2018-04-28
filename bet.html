@@ -81,11 +81,22 @@
     </ul>
     <form class="bet-form" action="#successBet" method="get">
         <div class="horizontal">
-            <div>
-                <label for="coin">Выбранная монета</label>
-                <select id="coin" name="coin">
-                    <option>Neo</option>
-                </select>
+            <div class="select-wrapper narrow">
+                <label>Выбранная монета</label>
+                <div class="custom-select">
+                    <div>
+                        <input checked id="coin-usdt" value="usdt" name="coin" type="radio">
+                        <label for="coin-usdt">Tether USDT</label>
+                    </div>
+                    <div>
+                        <input id="coin-neo" value="neo" name="coin" type="radio">
+                        <label for="coin-neo">Neo</label>
+                    </div>
+                    <div>
+                        <input id="coin-monero" value="monero" name="coin" type="radio">
+                        <label for="coin-monero">Monero</label>
+                    </div>
+                </div>
             </div>
             <div class="time">
                 <label for="time">Срок ставки</label>
@@ -116,11 +127,22 @@
                 </div>
             </div>
         </div>
-        <div>
-            <label for="returnProfit">Возврат прибыли</label>
-            <select id="returnProfit" name="returnProfit">
-                <option>USDT на кошелек</option>
-            </select>
+        <div class="select-wrapper">
+            <label>Возврат прибыли</label>
+            <div class="custom-select">
+                <div>
+                    <input checked id="return-usdt" value="usdt" name="returnProfit" type="radio">
+                    <label for="return-usdt">USDT на кошелек</label>
+                </div>
+                <div>
+                    <input id="return-neo" value="neo" name="returnProfit" type="radio">
+                    <label for="return-neo">Neo на кошелек</label>
+                </div>
+                <div>
+                    <input id="return-monero" value="monero" name="returnProfit" type="radio">
+                    <label for="return-monero">Monero на кошелек</label>
+                </div>
+            </div>
         </div>
         <div>
             <label for="wallet">Кошелек для перевода ставки в USDT</label>
