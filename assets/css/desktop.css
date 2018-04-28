@@ -496,7 +496,7 @@ body.panel .bet-form > *.horizontal label {
 }
 
 body.panel .bet-form .horizontal > * > label {
-    margin-bottom: 20px;
+    margin-bottom: 12px;
 }
 
 body.panel .bet-form input, body.panel .bet-form select {
@@ -553,7 +553,7 @@ body.panel .bet-form .change-time:first-of-type {
 
 body.panel .bet-form .strategy {
     position: relative;
-    margin-top: 10px;
+    margin-top: 12px;
 }
 
 body.panel .bet-form .strategy > input {
@@ -689,6 +689,7 @@ body.panel .bet-form .submit {
 
 body.panel .bet-form button {
     margin-top: unset;
+    width: 100%;
 }
 
 body.panel > footer {
