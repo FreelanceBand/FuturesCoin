@@ -136,9 +136,9 @@ input[type="checkbox"]:checked {
 }
 
 input.icon, select.icon, span.icon {
-    padding-left: calc(2rem + 10px);
+    padding-left: calc(2rem + 12px);
     background-repeat: no-repeat;
-    background-position: left 1rem center;
+    background-position: left 19px center;
 }
 
 span.icon {
@@ -190,7 +190,9 @@ body.landing > aside .interactive-section form {
 }
 
 body.landing > aside .interactive-section form input, body.landing > aside .interactive-section form button, body.landing > aside .interactive-section form .button {
-    margin-bottom: .5rem;
+    /*margin-bottom: .5rem;*/
+    margin-top: 15px;
+    margin-bottom: 8px;
 }
 
 body.landing > aside .interactive-section span, body.landing > aside .interactive-section a {
@@ -208,6 +210,10 @@ body.landing > aside .title {
 
 body.landing > aside .interactive-section form input {
     width: 319px;
+}
+
+body.landing > aside button, body.landing > aside .button {
+    width: 320px;
 }
 
 .highlight-section {
@@ -231,7 +237,7 @@ body.landing > aside .interactive-section form input {
 }
 
 .space-above {
-    margin-top: 2rem;
+    margin-top: 36px !important;
 }
 
 .vertical {
