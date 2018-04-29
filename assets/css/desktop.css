@@ -106,7 +106,8 @@ body.landing > aside {
     left: 0;
     top: 0;
     height: 100vh;
-    width: 400px;
+    /*width: 400px;*/
+    width: 420px;
     overflow-y: scroll;
 }
 
@@ -117,7 +118,7 @@ body.landing aside .header {
 }
 
 body.landing > aside .title {
-    margin-top: 3rem;
+    margin-top: 4rem;
 }
 
 body.panel {
@@ -713,7 +714,7 @@ body.panel .bet-form .choices__inner {
 
 body.panel .bet-form .amount .choices {
     position: absolute;
-    z-index: 10000;
+    z-index: 1000;
     right: 10px;
     top: 2.7rem;
     width: 120px;
@@ -950,37 +951,46 @@ body > #editLogin.modal > .content .indicator.green {
 body > #about.modal > .content {
     background: #00111F url("../images/background.png") no-repeat top;
     background-size: contain;
+    padding: 77px 0 77px 110px;
 }
 
 body > #about.modal > .content h2 {
     font-size: 2rem;
     font-weight: 300;
-    margin: 2.5rem 0;
+    /*margin: 2.5rem 0;*/
+    /*margin: 64px 0 42px 0;*/
+    margin: 64px 0 44px 0;
 }
 
 body > #about.modal > .content .title {
     margin-top: 0;
+    margin-bottom: 42px;
 }
 
 body > #about.modal > .content p {
     line-height: 1.5;
+    max-width: 800px;
 }
 
 body > #about.modal > .content ul {
     list-style: none;
     margin-top: unset;
+    padding-left: 17px;
+    padding-top: 1px;
+    padding-bottom: 1px;
 }
 
 body > #about.modal > .content ul > li {
     position: relative;
-    line-height: 1.5rem;
+    /*line-height: 1.5rem;*/
+    line-height: 21px;
 }
 
 body > #about.modal > .content ul > li:before {
     content: '';
     position: absolute;
-    left: -1rem;
-    top: calc((1.5rem - 5px) / 2);
+    left: -15px;
+    top: calc((21px - 5px) / 2);
     background: #a6cdf1;
     width: 5px;
     height: 5px;
@@ -996,11 +1006,14 @@ body > #about.modal > .content ul.grid {
     justify-content: flex-start;
     margin-left: -30px;
     margin-right: -30px;
+    margin-bottom: -36px;
 }
 
 body > #about.modal > .content ul.grid > li {
-    margin-bottom: 2rem;
-    width: 350px;
+    /*margin-bottom: 2rem;*/
+    margin-bottom: 36px;
+    /*width: 350px;*/
+    width: 370px;
     margin-left: 30px;
     margin-right: 30px;
     line-height: 1.5;
@@ -1012,7 +1025,10 @@ body > #about.modal > .content ul.grid > li:before {
 
 body > #about.modal > .content ul.grid > li > h3 {
     margin-top: 0;
-    margin-bottom: 1rem;
+    font-size: 21px;
+    line-height: 1.52;
+    /*margin-bottom: 1rem;*/
+    margin-bottom: 9px;
 }
 
 body > #about.modal > .content h3 {
@@ -1025,6 +1041,8 @@ body > #about.modal > .content blockquote {
     background-color: #1a2935;
     padding: 20px;
     margin-left: 0;
+    margin-top: 26px;
+    max-width: 840px;
 }
 
 body > #about.modal > .content blockquote > *:first-child {

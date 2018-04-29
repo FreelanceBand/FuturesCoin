@@ -182,6 +182,11 @@ body.landing aside .header {
 body.landing > aside .interactive-section, body.landing > aside .interactive-section form {
     display: flex;
     flex-direction: column;
+
+}
+
+body.landing > aside .interactive-section form {
+    margin-top: 9px;
 }
 
 body.landing > aside .interactive-section form input, body.landing > aside .interactive-section form button, body.landing > aside .interactive-section form .button {
@@ -199,6 +204,10 @@ body.landing > aside .interactive-section span:first-child {
 body.landing > aside .title {
     font-size: 2rem;
     font-weight: 300;
+}
+
+body.landing > aside .interactive-section form input {
+    width: 319px;
 }
 
 .highlight-section {
@@ -251,9 +260,11 @@ button.green, .button.green {
 
     font-family: 'Futura', sans-serif;
     /*font-size: 24px;*/
+    font-size: 24px;
+    letter-spacing: 0.5px;
     font-weight: bold;
     text-transform: uppercase;
-    font-size: 1.6rem;
+    /*font-size: 1.6rem;*/
 }
 
 .logo > span {
