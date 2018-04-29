@@ -155,7 +155,9 @@ body.landing .slide {
 }
 
 body.landing .slide .content {
-    font-size: 1.4rem;
+    /*font-size: 1.4rem;*/
+    font-size: 21px;
+    line-height: 1.5;
 }
 
 body.landing .cover {
@@ -237,7 +239,7 @@ body.landing > aside button, body.landing > aside .button {
 }
 
 .space-above {
-    margin-top: 36px !important;
+    margin-top: 35px !important;
 }
 
 .vertical {

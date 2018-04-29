@@ -99,6 +99,12 @@ body.landing > main {
 
 body.landing .slide .content {
     width: 500px;
+    justify-content: flex-end;
+    min-height: 215px;
+}
+
+body.landing .slide .content .button {
+    width: 320px;
 }
 
 body.landing > aside {
