@@ -1,3 +1,9 @@
 window.localisation = new L10n();
-let changeLangButton = document.querySelector('.change-language');
-if (changeLangButton) changeLangButton.addEventListener('click', event => localisation.changeLanguage(event.target.dataset.targetLanguage));
+let enLangButton = document.querySelector('#lang-en');
+let ruLangButton = document.querySelector('#lang-ru');
+if (enLangButton) enLangButton.addEventListener('click', changeLanguage);
+if (ruLangButton) ruLangButton.addEventListener('click', changeLanguage);
+
+function changeLanguage(event) {
+    return localisation.changeLanguage(event.target.value);
+}

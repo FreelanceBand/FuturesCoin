@@ -131,7 +131,7 @@ body.landing > aside.with-footer .body {
     min-height: calc(100vh - 50px);
 }
 
-body.landing aside > footer {
+body aside > footer {
     position: relative;
     bottom: 0;
     left: 0;
@@ -143,6 +143,40 @@ body.landing aside > footer {
     justify-content: space-between;
     background-color: var(--foreground-color);
     color: rgba(166, 205, 241, 0.9);
+}
+
+body footer .select-wrapper {
+    position: relative;
+    min-width: 50px;
+    margin-right: 20px;
+}
+
+body footer .change-language.custom-select {
+    position: absolute;
+    /*right: 0;*/
+    bottom: 0;
+    z-index: 10000;
+    width: 100%;
+}
+
+body footer .change-language.custom-select label {
+    display: none;
+    margin: 0;
+    /*background: #335877;*/
+    width: 100%;
+    padding: 0;
+    height: 50px;
+    line-height: 50px;
+
+}
+
+body footer .change-language.custom-select label:hover {
+    /*background: #6d92b3;*/
+}
+
+body footer .change-language.custom-select:hover input:checked + label {
+    /*background: #7dacd5 !important;*/
+    cursor: default;
 }
 
 body.panel {
