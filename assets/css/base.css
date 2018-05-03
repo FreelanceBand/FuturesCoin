@@ -166,13 +166,16 @@ body.landing .cover {
 }
 
 body.landing > aside {
+    background-color: var(--background-color);
+    font-size: 14px;
+}
+
+body.landing > aside > .body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    min-height: 100vh;
     padding: var(--root-section-padding);
-    background-color: var(--background-color);
-    font-size: 14px;
+    min-height: 100vh;
 }
 
 body.landing aside .header {

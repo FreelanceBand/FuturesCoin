@@ -15,10 +15,10 @@
     </div>
     <div>
         <nav>
-            <a class="icon bet" href="bet.html">Ставки</a>
-            <a class="icon profile active" href="profile.html">Личный кабинет</a>
-            <a class="icon about" href="#about">Инструкция</a>
-            <a class="icon logout" href="index.html">Выход</a>
+            <a class="icon bet" href="bet.html" data-l10n-content="text_finance">Ставки</a>
+            <a class="icon profile active" href="profile.html" data-l10n-content="text_personal_area">Личный кабинет</a>
+            <a class="icon about" href="#about" data-l10n-content="text_instruction">Инструкция</a>
+            <a class="icon logout" href="index.html" data-l10n-content="exit">Выход</a>
         </nav>
     </div>
 </header>
@@ -31,20 +31,21 @@
         <ul class="profile-data table">
             <li>
                 <div>Логин</div>
-                <div><span>Alexander</span><a href="#editLogin">Изменить</a></div>
+                <div><span>Alexander</span><a href="#editLogin" data-l10n-content="change">Изменить</a></div>
             </li>
             <li>
                 <div>Email</div>
-                <div><span>alexander@rambler.ru</span><a href="#editEmail">Изменить</a></div>
+                <div><span>alexander@rambler.ru</span><a href="#editEmail" data-l10n-content="change">Изменить</a></div>
             </li>
             <li>
                 <div>Пароль</div>
-                <div><span>Обновлен 10 месяцев назад</span><a href="#editPassword">Изменить</a></div>
+                <div><span>Обновлен 10 месяцев назад</span><a href="#editPassword"
+                                                              data-l10n-content="change">Изменить</a></div>
             </li>
         </ul>
     </section>
     <section class="vertical">
-        <h2 class="title">История ставок</h2>
+        <h2 class="title" data-l10n-content="rate_history">История ставок</h2>
         <ul class="bet-history detailed grid">
             <li>
                 <div>
@@ -53,9 +54,11 @@
                 </div>
                 <ul>
                     <li><span>NEO <span class="transparent">21.03.18 в 21:00</span></span></li>
-                    <li><span>Стратегия:</span><span class="fall">Понижение</span></li>
-                    <li><span>Ставка:</span><span>100400 ₽</span></li>
-                    <li><span>Срок:</span><span>30 дней</span></li>
+                    <li><span data-l10n-content="strategy">Стратегия:</span><span class="fall"
+                                                                                  data-l10n-content="strategy_fall">Понижение</span>
+                    </li>
+                    <li><span data-l10n-content="bet_amount_and_type">Ставка:</span><span>100400 ₽</span></li>
+                    <li><span data-l10n-content="bet_actuality">Срок:</span><span>30 дней</span></li>
                     <li><span>Результат:</span><span class="green">+200800 ₽</span></li>
                 </ul>
             </li>
@@ -66,9 +69,11 @@
                 </div>
                 <ul>
                     <li><span>Monero <span class="transparent">21.03.18 в 21:00</span></span></li>
-                    <li><span>Стратегия:</span><span class="rise">Повышение</span></li>
-                    <li><span>Ставка:</span><span>100 ₽</span></li>
-                    <li><span>Срок:</span><span>1 день</span></li>
+                    <li><span data-l10n-content="strategy">Стратегия:</span><span class="rise"
+                                                                                  data-l10n-content="strategy_rise">Повышение</span>
+                    </li>
+                    <li><span data-l10n-content="bet_amount_and_type">Ставка:</span><span>100 ₽</span></li>
+                    <li><span data-l10n-content="bet_actuality">Срок:</span><span>1 день</span></li>
                     <li><span>Результат:</span><span class="red">-100 ₽</span></li>
                 </ul>
             </li>
@@ -129,12 +134,14 @@
 </main>
 <div id="about" class="modal full-screen">
     <div class="content">
-        <h2 class="title">Инструкция</h2>
-        <p>Сервис FUTURESCOIN предоставляет возможность совершать ставки на повышение или понижение курса криптовалют.
+        <h2 class="title" data-l10n-content="instruction">Инструкция</h2>
+        <p data-l10n-content="instruction_main_description_first">Сервис FUTURESCOIN предоставляет возможность совершать
+            ставки на повышение или понижение курса криптовалют.
             Ставки принимаются как в российских рублях, так и в криптовалюте Tether USDT. Изменения курса отслеживаются
             по данным COINMARKETCUP.</p>
-        <h2>Определения</h2>
-        <ul class="grid">
+        <h2 data-l10n-content="instruction_definition">Определения</h2>
+        <ul class="grid" data-l10n-content="instruction_definition_description_array" data-l10n-item-container="li"
+            data-l10n-item-title="h3">
             <li><h3>Участник</h3>Пользователь приложения, совершающий ставку</li>
             <li><h3>Сумма ставки</h3>Денежные средства, передаваемые участником организатору для осуществления ставки
             </li>
@@ -147,8 +154,9 @@
             </li>
             <li><h3>Монета</h3>Криптовалюта, на повышение или понижение курса которой осуществляется ставка</li>
         </ul>
-        <h2>Как сделать ставку</h2>
-        <p>На главном экране приложения выберите монету, укажите срок ставки и нажмите на кнопку «повышение» или
+        <h2 data-l10n-content="instruction_how_make_bet">Как сделать ставку</h2>
+        <p data-l10n-content="instruction_how_make_bet_description">На главном экране приложения выберите монету,
+            укажите срок ставки и нажмите на кнопку «повышение» или
             «понижение» (в зависимости от выбранной вами стратегии).</p>
         <p>После этого вы будете перенаправлены на экран для заполнения дополнительных параметров где нужно указать:</p>
         <ul>
@@ -173,7 +181,7 @@
             <p>По истечению срока ставки вам автоматически будет отправлена сумма ставки с учетом прибыли или убытка на
                 указанный вами кошелек для возврата и письмо на электронную почту с результатами ставки.</p>
         </blockquote>
-        <h2>Как это работает</h2>
+        <h2 data-l10n-content="instruction_how_it_works">Как это работает</h2>
         <ul class="grid">
             <li><h3>Ставка сыграла</h3>Участнику возвращается сумма ставки, а также процент от суммы ставки, на который
                 изменится курс криптовалюты по истечению срока ставки.
@@ -194,27 +202,28 @@
                 (цена криптовалюты Bitcoin через 1 день возрастет), то вы получите свою ставку 1000 ₽ – 31% от своей
                 ставки (30% роста монеты + 1% комиссия) = 1000 ₽ – 310 ₽ = 690 ₽.</p>
         </blockquote>
-        <a class="close" href="#">Закрыть</a>
+        <a class="close" href="#" data-l10n-content="close">Закрыть</a>
     </div>
 </div>
 <div id="editLogin" class="modal">
     <form action="#" class="content" method="get">
-        <h3 class="title">Изменение логина</h3>
-        <input class="icon login-blue" id="login" name="login" value="wewfwef" placeholder="Логин" type="text">
+        <h3 class="title" data-l10n-content="change_password_title">Изменение логина</h3>
+        <input class="icon login-blue" id="login" name="login" value="wewfwef" placeholder="Логин" type="text"
+               data-l10n-placeholder="login">
         <span class="indicator green">Не занят</span>
-        <button type="submit">Сохранить</button>
-        <a class="close" href="#">Закрыть</a>
+        <button type="submit" data-l10n-content="save">Сохранить</button>
+        <a class="close" href="#" data-l10n-content="close">Закрыть</a>
     </form>
-    <a class="backdrop-close" href="#">Закрыть</a>
+    <a class="backdrop-close" href="#" data-l10n-content="close">Закрыть</a>
 </div>
 <div id="editEmail" class="modal">
     <form action="#" class="content" method="get">
-        <h3 class="title">Изменение Email</h3>
+        <h3 class="title" data-l10n-content="change_email_title">Изменение Email</h3>
         <input class="icon" id="email" name="email" value="alexander@rambler.ru" placeholder="Email" type="text">
-        <button type="submit">Сохранить</button>
-        <a class="close" href="#">Закрыть</a>
+        <button type="submit" data-l10n-content="save">Сохранить</button>
+        <a class="close" href="#" data-l10n-content="close">Закрыть</a>
     </form>
-    <a class="backdrop-close" href="#">Закрыть</a>
+    <a class="backdrop-close" href="#" data-l10n-content="close">Закрыть</a>
 </div>
 <div id="editWallet" class="modal">
     <form action="#" class="content" method="get">
@@ -252,4 +261,6 @@
     <a class="backdrop-close" href="#">Закрыть</a>
 </div>
 </body>
+<script src="assets/js/l10n.js"></script>
+<script src="assets/js/base.js"></script>
 </html>

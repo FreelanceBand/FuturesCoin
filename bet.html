@@ -16,10 +16,10 @@
     </div>
     <div>
         <nav>
-            <a class="icon bet active" href="bet.html">Ставки</a>
-            <a class="icon profile" href="profile.html">Личный кабинет<span>1</span></a>
-            <a class="icon about" href="#about">Инструкция</a>
-            <a class="icon logout" href="index.html">Выход</a>
+            <a class="icon bet active" href="bet.html" data-l10n-content="text_finance">Ставки</a>
+            <a class="icon profile" href="profile.html" data-l10n-content="text_personal_area">Личный кабинет</a>
+            <a class="icon about" href="#about" data-l10n-content="text_instruction">Инструкция</a>
+            <a class="icon logout" href="index.html" data-l10n-content="exit">Выход</a>
         </nav>
     </div>
 </header>
@@ -83,7 +83,7 @@
     <form class="bet-form" action="#successBet" method="get">
         <div class="horizontal">
             <div class="select-wrapper narrow">
-                <label for="coin">Выбранная монета</label>
+                <label for="coin" data-l10n-content="selected_coin">Выбранная монета</label>
                 <select id="coin" name="coin">
                     <option value="usdt">Tether USDT</option>
                     <option value="neo">Neo</option>
@@ -91,18 +91,20 @@
                 </select>
             </div>
             <div class="time">
-                <label for="time">Срок ставки</label>
+                <label for="time" data-l10n-content="bet_actuality">Срок ставки</label>
                 <button id="timeFall" class="change-time" type="button">-</button>
                 <input id="time" value="1" min="1" name="time" type="number">
                 <button id="timeRise" class="change-time" type="button">+</button>
             </div>
         </div>
         <div class="strategy horizontal">
-            <input placeholder="Повышение" id="rise" value="rise" name="strategy" type="radio">
-            <input placeholder="Понижение" id="fall" value="fall" name="strategy" type="radio">
+            <input placeholder="Повышение" id="rise" value="rise" name="strategy" type="radio"
+                   data-l10n-placeholder="strategy_rise">
+            <input placeholder="Понижение" id="fall" value="fall" name="strategy" type="radio"
+                   data-l10n-placeholder="strategy_fall">
         </div>
         <div class="select-wrapper amount">
-            <label for="amount">Размер ставки</label>
+            <label for="amount" data-l10n-content="bet_amount">Размер ставки</label>
             <input id="amount" name="amount" value="100000" data-input-mask="true" type="text">
             <select title="Тип ставки" id="amount-type" name="amount-type">
                 <option value="usdt">USDT</option>
@@ -111,7 +113,7 @@
             </select>
         </div>
         <div class="select-wrapper">
-            <label for="returnProfit">Возврат прибыли</label>
+            <label for="returnProfit" data-l10n-content="return_profit_to">Возврат прибыли</label>
             <select id="returnProfit" name="returnProfit">
                 <option value="usdt">USDT на кошелек</option>
                 <option value="neo">Neo на кошелек</option>
@@ -119,7 +121,7 @@
             </select>
         </div>
         <div>
-            <label for="wallet">Кошелек для перевода ставки в USDT</label>
+            <label for="wallet" data-l10n-content="return_wallet_in_wsdt">Кошелек для перевода ставки в USDT</label>
             <input id="wallet" name="wallet" value="1L23324jj3h24kjhkjh234kbjjkwef" type="text">
         </div>
         <div class="horizontal">
@@ -127,7 +129,7 @@
             <label for="agreement">Я соглашаюсь с условиями сервиса по ставкам на криптовалюту</label>
         </div>
         <div class="submit">
-            <button class="green" type="submit">Сделать ставку</button>
+            <button class="green" type="submit" data-l10n-content="make_bet">Сделать ставку</button>
         </div>
     </form>
 </main>
@@ -211,14 +213,19 @@
     <a class="backdrop-close" href="#">Закрыть</a>
 </div>
 <footer>
-    <div>Все права защищены, 2017–2018.</div>
     <div>
-        <span class="transparent">Актуальность данных</span>
+        <a class="change-language" data-target-language="en" href="#"><img src="assets/images/eng-icon.svg">EN</a>
+        <span>Все права защищены, 2017–2018.</span>
+    </div>
+    <div>
+        <span>Актуальность данных</span>
         <img src="assets/images/heart.svg">
-        <a class="transparent" href="https://coinmarketcup.com" target="_blank">coinmarketcup.com</a>
+        <a href="https://coinmarketcup.com" target="_blank">coinmarketcup.com</a>
     </div>
 </footer>
 </body>
 <script src="/assets/js/choices.min.js"></script>
+<script src="assets/js/l10n.js"></script>
+<script src="assets/js/base.js"></script>
 <script src="assets/js/bet.js"></script>
 </html>

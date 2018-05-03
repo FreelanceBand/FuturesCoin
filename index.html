@@ -15,27 +15,35 @@
         <a href="#about" class="button space-above transparent">Читать подробнее</a>
     </section>
 </main>
-<aside>
-    <div>
-        <div class="header">
-            <figure class="logo">Futures<span>Coin</span></figure>
+<aside class="with-footer">
+    <div class="body">
+        <div>
+            <div class="header">
+                <figure class="logo">Futures<span>Coin</span></figure>
+            </div>
+            <div class="interactive-section">
+                <h2 class="title">Вход</h2>
+                <form action="profile.html" method="get">
+                    <span data-l10n-content="login_hint">Логин</span>
+                    <input placeholder="Логин" class="icon" name="login" id="login" type="text"
+                           data-l10n-placeholder="login_hint">
+                    <span data-l10n-content="password_hint">Пароль</span>
+                    <input placeholder="Пароль" class="icon" name="password" id="password" type="password"
+                           data-l10n-placeholder="password_hint">
+                    <a href="recovery.html" data-l10n-content="forgot_password">Забыли пароль?</a>
+                    <button class="blue space-above" type="submit" data-l10n-content="login_button_text">Войти</button>
+                </form>
+            </div>
         </div>
-        <div class="interactive-section">
-            <h2 class="title">Вход</h2>
-            <form action="profile.html" method="get">
-                <span>Логин</span>
-                <input placeholder="Логин" class="icon" name="login" id="login" type="text">
-                <span>Пароль</span>
-                <input placeholder="Пароль" class="icon" name="password" id="password" type="password">
-                <a href="recovery.html">Забыли пароль?</a>
-                <button class="blue space-above" type="submit">Войти</button>
-            </form>
+        <div>
+            <span>Еще нет аккаунта?</span>
+            <a href="registration.html" class="button green">Регистрация</a>
         </div>
     </div>
-    <div>
-        <span>Еще нет аккаунта?</span>
-        <a href="registration.html" class="button green">Регистрация</a>
-    </div>
+    <footer>
+        <a class="change-language" data-target-language="en"><img src="assets/images/eng-icon.svg">EN</a>
+        <span>Все права защищены, 2017–2018.</span>
+    </footer>
 </aside>
 <div id="about" class="modal full-screen">
     <div class="content">
@@ -108,4 +116,6 @@
     </div>
 </div>
 </body>
+<script src="assets/js/l10n.js"></script>
+<script src="assets/js/base.js"></script>
 </html>

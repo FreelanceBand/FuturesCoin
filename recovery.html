@@ -16,22 +16,24 @@
     </section>
 </main>
 <aside>
-    <div>
-        <div class="header">
-            <figure class="logo">Futures<span>Coin</span></figure>
+    <div class="body">
+        <div>
+            <div class="header">
+                <figure class="logo">Futures<span>Coin</span></figure>
+            </div>
+            <div class="interactive-section">
+                <h2 class="title">Восстановление пароля</h2>
+                <form action="recovery-process.html" method="get">
+                    <span>Введите почту, которую вы использовали при регистрации</span>
+                    <input placeholder="Электронная почта" class="icon" name="email" id="email" type="email">
+                    <button class="blue" type="submit">Продолжить</button>
+                </form>
+            </div>
         </div>
-        <div class="interactive-section">
-            <h2 class="title">Восстановление пароля</h2>
-            <form action="recovery-process.html" method="get">
-                <span>Введите почту, которую вы использовали при регистрации</span>
-                <input placeholder="Электронная почта" class="icon" name="email" id="email" type="email">
-                <button class="blue" type="submit">Продолжить</button>
-            </form>
+        <div>
+            <span>Еще нет аккаунта?</span>
+            <a href="registration.html" class="button green">Регистрация</a>
         </div>
-    </div>
-    <div>
-        <span>Еще нет аккаунта?</span>
-        <a href="registration.html" class="button green">Регистрация</a>
     </div>
 </aside>
 <div id="about" class="modal full-screen">
@@ -105,4 +107,6 @@
     </div>
 </div>
 </body>
+<script src="assets/js/l10n.js"></script>
+<script src="assets/js/base.js"></script>
 </html>
