@@ -30,15 +30,15 @@
         </div>
         <ul class="profile-data table">
             <li>
-                <div>Логин</div>
+                <div data-l10n-content="login_hint">Логин</div>
                 <div><span>Alexander</span><a href="#editLogin" data-l10n-content="change">Изменить</a></div>
             </li>
             <li>
-                <div>Email</div>
+                <div data-l10n-content="email_hint">Email</div>
                 <div><span>alexander@rambler.ru</span><a href="#editEmail" data-l10n-content="change">Изменить</a></div>
             </li>
             <li>
-                <div>Пароль</div>
+                <div data-l10n-content="password_hint">Пароль</div>
                 <div><span>Обновлен 10 месяцев назад</span><a href="#editPassword"
                                                               data-l10n-content="change">Изменить</a></div>
             </li>
@@ -59,7 +59,7 @@
                     </li>
                     <li><span data-l10n-content="bet_amount_and_type">Ставка:</span><span>100400 ₽</span></li>
                     <li><span data-l10n-content="bet_actuality">Срок:</span><span>30 дней</span></li>
-                    <li><span>Результат:</span><span class="green">+200800 ₽</span></li>
+                    <li><span data-l10n-content="result">Результат:</span><span class="green">+200800 ₽</span></li>
                 </ul>
             </li>
             <li>
@@ -74,7 +74,7 @@
                     </li>
                     <li><span data-l10n-content="bet_amount_and_type">Ставка:</span><span>100 ₽</span></li>
                     <li><span data-l10n-content="bet_actuality">Срок:</span><span>1 день</span></li>
-                    <li><span>Результат:</span><span class="red">-100 ₽</span></li>
+                    <li><span data-l10n-content="result">Результат:</span><span class="red">-100 ₽</span></li>
                 </ul>
             </li>
             <li>
@@ -84,10 +84,12 @@
                 </div>
                 <ul>
                     <li><span>Monero <span class="transparent">21.03.18 в 21:00</span></span></li>
-                    <li><span>Стратегия:</span><span class="rise">Повышение</span></li>
-                    <li><span>Ставка:</span><span>100 ₽</span></li>
-                    <li><span>Срок:</span><span>1 день</span></li>
-                    <li><span>Результат:</span><span class="red">-100 ₽</span></li>
+                    <li><span data-l10n-content="strategy">Стратегия:</span><span class="rise"
+                                                                                  data-l10n-content="strategy_rise">Повышение</span>
+                    </li>
+                    <li><span data-l10n-content="bet_amount_and_type">Ставка:</span><span>100 ₽</span></li>
+                    <li><span data-l10n-content="bet_actuality">Срок:</span><span>1 день</span></li>
+                    <li><span data-l10n-content="result">Результат:</span><span class="red">-100 ₽</span></li>
                 </ul>
             </li>
             <li>
@@ -97,26 +99,28 @@
                 </div>
                 <ul>
                     <li><span>Monero <span class="transparent">21.03.18 в 21:00</span></span></li>
-                    <li><span>Стратегия:</span><span class="rise">Повышение</span></li>
-                    <li><span>Ставка:</span><span>100 ₽</span></li>
-                    <li><span>Срок:</span><span>1 день</span></li>
-                    <li><span>Результат:</span><span class="red">-100 ₽</span></li>
+                    <li><span data-l10n-content="strategy">Стратегия:</span><span class="rise"
+                                                                                  data-l10n-content="strategy_rise">Повышение</span>
+                    </li>
+                    <li><span data-l10n-content="bet_amount_and_type">Ставка:</span><span>100 ₽</span></li>
+                    <li><span data-l10n-content="bet_actuality">Срок:</span><span>1 день</span></li>
+                    <li><span data-l10n-content="result">Результат:</span><span class="red">-100 ₽</span></li>
                 </ul>
             </li>
         </ul>
         <ul class="bet-history table">
             <li>
-                <div>Дата</div>
-                <div>Монета</div>
-                <div>Стратегия</div>
-                <div>Ставка</div>
-                <div>Срок</div>
-                <div>Результат</div>
+                <div data-l10n-content="date">Дата</div>
+                <div data-l10n-content="coin">Монета</div>
+                <div data-l10n-content="strategy">Стратегия</div>
+                <div data-l10n-content="bet_amount_and_type">Ставка</div>
+                <div data-l10n-content="time">Срок</div>
+                <div data-l10n-content="result">Результат</div>
             </li>
             <li>
                 <div>21.03.18</div>
                 <div><img src="assets/images/neo.svg"><span>Neo</span></div>
-                <div class="fall">Понижение</div>
+                <div class="fall" data-l10n-content="strategy_fall">Понижение</div>
                 <div>100400 ₽</div>
                 <div>30 дней</div>
                 <div class="green">+100400 ₽</div>
@@ -124,7 +128,7 @@
             <li>
                 <div>20.03.18</div>
                 <div><img src="assets/images/neo.svg"><span>Neo</span></div>
-                <div class="rise">Повышение</div>
+                <div class="rise" data-l10n-content="strategy_rise">Повышение</div>
                 <div>100400 ₽</div>
                 <div>30 дней</div>
                 <div class="red">-100400 ₽</div>

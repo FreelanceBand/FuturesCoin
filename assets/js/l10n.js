@@ -14,7 +14,10 @@ class L10n {
     changeLanguage(language = this.defaultLanguage) {
         return new Promise(function (resolve, reject) {
             if (!this.languageData[language]) return resolve(this.loadDictionary(language));
-        }.bind(this)).then(this.replaceStrings.bind(this)).then(this.saveSelectedLanguage.bind(this));
+            return resolve(language);
+        }.bind(this)).then(this.replaceStrings.bind(this)).then(this.saveSelectedLanguage.bind(this)).then(function () {
+            document.body.dataset.language = language;
+        });
 
     }
 

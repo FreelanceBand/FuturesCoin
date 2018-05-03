@@ -132,6 +132,7 @@ body.landing > aside.with-footer .body {
 }
 
 body aside > footer {
+    --footer-background: var(--foreground-color);
     position: relative;
     bottom: 0;
     left: 0;
@@ -141,22 +142,38 @@ body aside > footer {
     line-height: 50px;
     display: flex;
     justify-content: space-between;
-    background-color: var(--foreground-color);
+    background-color: var(--footer-background);
     color: rgba(166, 205, 241, 0.9);
 }
 
 body footer .select-wrapper {
     position: relative;
-    min-width: 50px;
-    margin-right: 20px;
+    min-width: 75px;
+    margin-right: 10px;
 }
 
 body footer .change-language.custom-select {
     position: absolute;
     /*right: 0;*/
-    bottom: 0;
+    bottom: 8px;
     z-index: 10000;
     width: 100%;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    /*height: 32px;*/
+    line-height: 30px;
+    background: var(--footer-background);
+}
+
+body footer .change-language.custom-select:hover {
+    border: 1px solid #6d92b3;
+    /*height: auto;*/
+}
+
+body footer .change-language.custom-select div {
+    height: auto;
+    overflow: hidden;
+    position: relative;
 }
 
 body footer .change-language.custom-select label {
@@ -164,14 +181,16 @@ body footer .change-language.custom-select label {
     margin: 0;
     /*background: #335877;*/
     width: 100%;
-    padding: 0;
-    height: 50px;
-    line-height: 50px;
-
+    padding: 0px 10px;
+    height: 32px;
+    line-height: 30px;
+    /*position: absolute;*/
+    top: 0;
+    left: 0;
 }
 
 body footer .change-language.custom-select label:hover {
-    /*background: #6d92b3;*/
+    background: #6d92b3;
 }
 
 body footer .change-language.custom-select:hover input:checked + label {
@@ -666,6 +685,12 @@ body.panel .bet-form .strategy > input#fall:after {
     content: 'Понижение';
 }
 
+body.panel[data-language="en"] .bet-form .strategy > input#fall:after {
+    content: 'Fall';
+    right: unset;
+    left: 3rem;
+}
+
 body.panel .bet-form .strategy > input#rise:before {
     background-image: url("../images/up-icon-active.png");
 }
@@ -676,6 +701,12 @@ body.panel .bet-form .strategy > input#rise:checked:before {
 
 body.panel .bet-form .strategy > input#rise:after {
     content: 'Повышение';
+}
+
+body.panel[data-language="en"] .bet-form .strategy > input#rise:after {
+    content: 'Rise';
+    right: unset;
+    left: 3rem;
 }
 
 body.panel .bet-form .strategy > input:before, body.panel .bet-form .strategy > input:after {
@@ -863,6 +894,7 @@ body.panel .bet-form button {
 }
 
 body.panel > footer {
+    --footer-background: var(--background-color);
     position: relative;
     bottom: 0;
     left: 0;
@@ -872,7 +904,7 @@ body.panel > footer {
     line-height: 50px;
     display: flex;
     justify-content: space-between;
-    background-color: var(--background-color);
+    background-color: var(--footer-background);
     color: rgba(166, 205, 241, 0.9);
 }
 
