@@ -25,7 +25,8 @@
 <main class="vertical-responsive">
     <section>
         <div class="profile-image">
-            <label class="button transparent" for="profile-image-input">Загрузить фото</label>
+            <label class="button transparent" for="profile-image-input" data-l10n-content="upload_photo">Загрузить
+                фото</label>
             <input id="profile-image-input" type="file">
         </div>
         <ul class="profile-data table">
@@ -39,8 +40,8 @@
             </li>
             <li>
                 <div data-l10n-content="password_hint">Пароль</div>
-                <div><span>Обновлен 10 месяцев назад</span><a href="#editPassword"
-                                                              data-l10n-content="change">Изменить</a></div>
+                <div><span data-l10n-content="updated_ago">Обновлен 10 месяцев назад</span><a href="#editPassword"
+                                                                                              data-l10n-content="change">Изменить</a></div>
             </li>
         </ul>
     </section>
@@ -53,12 +54,14 @@
                     <span class="order">#1</span>
                 </div>
                 <ul>
-                    <li><span>NEO <span class="transparent">21.03.18 в 21:00</span></span></li>
+                    <li><span>NEO <span class="transparent">21.03.18 <span data-l10n-content="at">в</span> 21:00</span></span>
+                    </li>
                     <li><span data-l10n-content="strategy">Стратегия:</span><span class="fall"
                                                                                   data-l10n-content="strategy_fall">Понижение</span>
                     </li>
                     <li><span data-l10n-content="bet_amount_and_type">Ставка:</span><span>100400 ₽</span></li>
-                    <li><span data-l10n-content="bet_actuality">Срок:</span><span>30 дней</span></li>
+                    <li><span data-l10n-content="bet_actuality">Срок:</span><span
+                            data-l10n-content="30_days">30 дней</span></li>
                     <li><span data-l10n-content="result">Результат:</span><span class="green">+200800 ₽</span></li>
                 </ul>
             </li>
@@ -68,12 +71,14 @@
                     <span class="order">#2</span>
                 </div>
                 <ul>
-                    <li><span>Monero <span class="transparent">21.03.18 в 21:00</span></span></li>
+                    <li><span>Monero <span class="transparent">21.03.18 <span
+                            data-l10n-content="at">в</span> 21:00</span></span></li>
                     <li><span data-l10n-content="strategy">Стратегия:</span><span class="rise"
                                                                                   data-l10n-content="strategy_rise">Повышение</span>
                     </li>
                     <li><span data-l10n-content="bet_amount_and_type">Ставка:</span><span>100 ₽</span></li>
-                    <li><span data-l10n-content="bet_actuality">Срок:</span><span>1 день</span></li>
+                    <li><span data-l10n-content="bet_actuality">Срок:</span><span data-l10n-content="day">1 день</span>
+                    </li>
                     <li><span data-l10n-content="result">Результат:</span><span class="red">-100 ₽</span></li>
                 </ul>
             </li>
@@ -83,12 +88,14 @@
                     <span class="order">#3</span>
                 </div>
                 <ul>
-                    <li><span>Monero <span class="transparent">21.03.18 в 21:00</span></span></li>
+                    <li><span>Monero <span class="transparent">21.03.18 <span
+                            data-l10n-content="at">в</span> 21:00</span></span></li>
                     <li><span data-l10n-content="strategy">Стратегия:</span><span class="rise"
                                                                                   data-l10n-content="strategy_rise">Повышение</span>
                     </li>
                     <li><span data-l10n-content="bet_amount_and_type">Ставка:</span><span>100 ₽</span></li>
-                    <li><span data-l10n-content="bet_actuality">Срок:</span><span>1 день</span></li>
+                    <li><span data-l10n-content="bet_actuality">Срок:</span><span data-l10n-content="day">1 день</span>
+                    </li>
                     <li><span data-l10n-content="result">Результат:</span><span class="red">-100 ₽</span></li>
                 </ul>
             </li>
@@ -98,12 +105,14 @@
                     <span class="order">#4</span>
                 </div>
                 <ul>
-                    <li><span>Monero <span class="transparent">21.03.18 в 21:00</span></span></li>
+                    <li><span>Monero <span class="transparent">21.03.18 <span
+                            data-l10n-content="at">в</span> 21:00</span></span></li>
                     <li><span data-l10n-content="strategy">Стратегия:</span><span class="rise"
                                                                                   data-l10n-content="strategy_rise">Повышение</span>
                     </li>
                     <li><span data-l10n-content="bet_amount_and_type">Ставка:</span><span>100 ₽</span></li>
-                    <li><span data-l10n-content="bet_actuality">Срок:</span><span>1 день</span></li>
+                    <li><span data-l10n-content="bet_actuality">Срок:</span><span data-l10n-content="day">1 день</span>
+                    </li>
                     <li><span data-l10n-content="result">Результат:</span><span class="red">-100 ₽</span></li>
                 </ul>
             </li>
@@ -122,7 +131,7 @@
                 <div><img src="assets/images/neo.svg"><span>Neo</span></div>
                 <div class="fall" data-l10n-content="strategy_fall">Понижение</div>
                 <div>100400 ₽</div>
-                <div>30 дней</div>
+                <div data-l10n-content="30_days">30 дней</div>
                 <div class="green">+100400 ₽</div>
             </li>
             <li>
@@ -130,7 +139,7 @@
                 <div><img src="assets/images/neo.svg"><span>Neo</span></div>
                 <div class="rise" data-l10n-content="strategy_rise">Повышение</div>
                 <div>100400 ₽</div>
-                <div>30 дней</div>
+                <div data-l10n-content="30_days">30 дней</div>
                 <div class="red">-100400 ₽</div>
             </li>
         </ul>
@@ -242,23 +251,23 @@
 </div>
 <div id="editPassword" class="modal">
     <form action="#confirmPassword" class="content" method="get">
-        <h3 class="title">Изменение пароля</h3>
+        <h3 class="title" data-l10n-content="change_password_title">Изменение пароля</h3>
         <input class="icon password" id="oldPassword" name="oldPassword" value="" placeholder="Старый пароль"
-               type="password">
+               type="password" data-l10n-placeholder="old_password">
         <input class="icon password" id="newPassword" name="newPassword" value="" placeholder="Новый пароль"
-               type="password">
-        <button type="submit">Изменить пароль</button>
+               type="password" data-l10n-placeholder="new_password">
+        <button type="submit" data-l10n-content="change_password">Изменить пароль</button>
         <a class="close" href="#">Закрыть</a>
     </form>
     <a class="backdrop-close" href="#">Закрыть</a>
 </div>
 <div id="confirmPassword" class="modal">
     <div class="content">
-        <h3 class="title">Изменение пароля</h3>
+        <h3 class="title" data-l10n-content="change_password_title">Изменение пароля</h3>
         <div class="highlight-section green">
-            <span>Письмо с новым паролем выслано на вашу электронную почту</span>
+            <span data-l10n-content="new_password_sent">Письмо с новым паролем выслано на вашу электронную почту</span>
             <span class="icon email">hey@cute.wtf</span>
-            <a href="#editPassword" class="button transparent">Отправить еще раз</a>
+            <a href="#editPassword" class="button transparent" data-l10n-content="retry">Отправить еще раз</a>
         </div>
         <a class="close" href="#">Закрыть</a>
     </div>

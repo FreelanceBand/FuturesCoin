@@ -1,6 +1,21 @@
 {
   "locale": "en",
   "strings": {
+    "cover_text": "We provide the opportunity to bid on raising or lowering the rate of the Crypto-currency",
+    "read_more": "Read more",
+    "login_title": "Login",
+    "rights_reserved": "All rights reserved",
+    "no_account": "No account yet?",
+    "have_account": "Already have an account?",
+    "registration_title": "Registration",
+    "recovery_title": "Password recovery",
+    "recovery_description": "Enter the email you used when registering",
+    "continue": "Continue",
+    "i_agree": "I agree with the terms of service for the rates for crypto currency",
+    "relevance_data": "Relevance of data",
+    "upload_photo": "Upload photo",
+    "successful_bid": "Successful bid",
+    "notification_at_the_end_of_bet": "You will receive a notification to the post office and in your personal account at the end of the bet period.",
     "unknown_error": "Unknown error",
     "error": "Error",
     "login_hint": "Login",
@@ -13,6 +28,9 @@
     "password_confirm_hint": "Repeat your password",
     "email_hint": "Email",
     "change_password": "Change password",
+    "old_password": "Old password",
+    "new_password": "New password",
+    "new_password_sent": "A letter with a new password has been sent to your email",
     "rate_history": "Bet history",
     "strategy": "Strategy",
     "strategy_rise": "rise",
@@ -121,6 +139,14 @@
     "passwords_not_match": "Пароли не совпадают",
     "bitcoin_cash_30": "Вы осуществляете ставку на повышение Bitcoin Cash через 30 дней",
     "language": "Language",
-    "error_inputed_value": "Wrong info"
+    "error_inputed_value": "Wrong info",
+    "close": "Close",
+    "usdt_on_wallet": "USDT on wallet",
+    "neo_on_wallet": "Neo on wallet",
+    "monero_on_wallet": "Monero on wallet",
+    "updated_ago": "Updated 10 months ago",
+    "at": "at",
+    "30_days": "30 days",
+    "day": "1 day"
   }
 }

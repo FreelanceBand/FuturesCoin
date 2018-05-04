@@ -115,9 +115,9 @@
         <div class="select-wrapper">
             <label for="returnProfit" data-l10n-content="return_profit_to">Возврат прибыли</label>
             <select id="returnProfit" name="returnProfit">
-                <option value="usdt">USDT на кошелек</option>
-                <option value="neo">Neo на кошелек</option>
-                <option value="monero">Monero на кошелек</option>
+                <option value="usdt" data-l10n-content="usdt_on_wallet">USDT на кошелек</option>
+                <option value="neo" data-l10n-content="neo_on_wallet">Neo на кошелек</option>
+                <option value="monero" data-l10n-content="monero_on_wallet">Monero на кошелек</option>
             </select>
         </div>
         <div>
@@ -126,7 +126,8 @@
         </div>
         <div class="horizontal">
             <input id="agreement" name="agreement" type="checkbox">
-            <label for="agreement">Я соглашаюсь с условиями сервиса по ставкам на криптовалюту</label>
+            <label for="agreement" data-l10n-content="i_agree">Я соглашаюсь с условиями сервиса по ставкам на
+                криптовалюту</label>
         </div>
         <div class="submit">
             <button class="green" type="submit" data-l10n-content="make_bet">Сделать ставку</button>
@@ -206,8 +207,9 @@
 <div id="successBet" class="modal">
     <div class="content center-text">
         <img src="assets/images/success.svg">
-        <h3 class="title">Успешная ставка</h3>
-        <p>Вы получите уведомление на почту и в своем личном кабинете, по окончанию срока ставки.</p>
+        <h3 class="title" data-l10n-content="successful_bid">Успешная ставка</h3>
+        <p data-l10n-content="notification_at_the_end_of_bet">Вы получите уведомление на почту и в своем личном
+            кабинете, по окончанию срока ставки.</p>
         <a class="close" href="#">Закрыть</a>
     </div>
     <a class="backdrop-close" href="#">Закрыть</a>
@@ -227,10 +229,10 @@
                 </div>
             </div>
         </div>
-        <span>Все права защищены, 2017–2018.</span>
+        <span><span data-l10n-content="rights_reserved"></span>, 2017–2018.</span>
     </div>
     <div>
-        <span>Актуальность данных</span>
+        <span data-l10n-content="relevance_data">Актуальность данных</span>
         <img src="assets/images/heart.svg">
         <a href="https://coinmarketcup.com" target="_blank">coinmarketcup.com</a>
     </div>
