@@ -12,8 +12,6 @@ document.addEventListener('changedLanguage', function () {
             select.choices.setChoices(variants, 'value', 'label', true);
         });
         window.selections.forEach(select => select.choices.init());
-        // window.choices.init();
-        // window.choices = new Choices('.select-wrapper select', {searchEnabled: false, itemSelectText: ''});
     } else {
         window.selections = [];
         document.querySelectorAll('.select-wrapper select').forEach(function (node) {
@@ -28,7 +26,7 @@ document.addEventListener('changedLanguage', function () {
                 }(), choices: new Choices(node, {searchEnabled: false, itemSelectText: ''})
             });
         }, this)
-    }//window.choices = new Choices('#returnProfit'/*'.select-wrapper select'*/, );
+    }
 });
 
 checkTimeValue();
