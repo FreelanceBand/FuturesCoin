@@ -15,10 +15,14 @@ class L10n {
         return new Promise(function (resolve, reject) {
             if (!this.languageData[language]) return resolve(this.loadDictionary(language));
             return resolve(language);
-        }.bind(this)).then(this.replaceStrings.bind(this)).then(this.saveSelectedLanguage.bind(this)).then(function () {
-            document.body.dataset.language = language;
-        });
-
+        }.bind(this))
+            .then(this.replaceStrings.bind(this))
+            .then(this.saveSelectedLanguage.bind(this))
+            .then(function () {
+                document.body.dataset.language = language;
+                let event = new CustomEvent('changedLanguage', {detail: {language}});
+                document.dispatchEvent(event);
+            });
     }
 
     loadDictionary(language) {
@@ -66,5 +70,9 @@ class L10n {
 
     getSelectedLanguage() {
         return localStorage.getItem('l10n');
+    }
+
+    getDictonary(language = this.selectedLanguage) {
+        return this.languageData[language] ? this.languageData[language] : false;
     }
 }

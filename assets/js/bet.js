@@ -1,4 +1,35 @@
-const choices = new Choices('.select-wrapper select', {searchEnabled: false, itemSelectText: ''});
+document.addEventListener('changedLanguage', function () {
+    if (window.selections) {
+        window.selections.forEach(function (select) {
+            let variants = [];
+            let dictonary = window.localisation.getDictonary();
+            select.options.forEach((option, count) => variants.push({
+                value: option.value,
+                label: dictonary[option.l10nTitle] ? dictonary[option.l10nTitle] : `Error`,
+                selected: count === 0
+            }), this);
+
+            select.choices.setChoices(variants, 'value', 'label', true);
+        });
+        window.selections.forEach(select => select.choices.init());
+        // window.choices.init();
+        // window.choices = new Choices('.select-wrapper select', {searchEnabled: false, itemSelectText: ''});
+    } else {
+        window.selections = [];
+        document.querySelectorAll('.select-wrapper select').forEach(function (node) {
+            window.selections.push({
+                node, options: function () {
+                    let optionsList = [];
+                    node.querySelectorAll('option').forEach(option => optionsList.push({
+                        value: option.value,
+                        l10nTitle: option.dataset.l10nContent
+                    }));
+                    return optionsList;
+                }(), choices: new Choices(node, {searchEnabled: false, itemSelectText: ''})
+            });
+        }, this)
+    }//window.choices = new Choices('#returnProfit'/*'.select-wrapper select'*/, );
+});
 
 checkTimeValue();
 

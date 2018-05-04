@@ -160,7 +160,7 @@ body footer .change-language.custom-select {
     position: absolute;
     /*right: 0;*/
     bottom: 8px;
-    z-index: 10000;
+    z-index: 1000;
     width: 100%;
     border: 1px solid transparent;
     border-radius: 2px;
@@ -449,6 +449,10 @@ body.panel .bet-history.detailed.grid > li > ul > li > *:first-child {
     min-width: 92px;
 }
 
+body.panel .bet-history.detailed.grid > li > ul > li:not(:first-child) > *:first-child:after {
+    content: ':';
+}
+
 body.panel .bet-history.detailed.grid > li > ul > li > span > span {
     margin: 0 1rem;
 }
@@ -465,6 +469,7 @@ body.panel .bet-history.detailed {
 
 body.panel .bet-history .fall {
     color: #ff1a00;
+    text-transform: capitalize;
 }
 
 body.panel .bet-history.detailed.grid .fall:before {
@@ -473,6 +478,7 @@ body.panel .bet-history.detailed.grid .fall:before {
 
 body.panel .bet-history .rise {
     color: #0084ff;
+    text-transform: capitalize;
 }
 
 body.panel .bet-history.detailed.grid .rise:before {
