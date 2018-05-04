@@ -95,6 +95,32 @@
     "instruction_main_description_first": "The FUTURESCOIN service provides the opportunity to place bets on the rise or fall of cryptocurrency value. Bets are accepted in Russian roubles, as well as in Tether USDT cryptocurrency. Rate changes are monitored via the <font color=\"#3786FF\">coinmarketcap.com</font> service",
     "instruction_definition": "Definitions",
     "instruction_definition_description": "The participant is an app user placing a bet.        &lt;br /&gt;&lt;br /&gt;The organizer is a FUTURESCOIN service administrator.        &lt;br /&gt;&lt;br /&gt;Bet amount refers to funds transferred from the participant to the organizer to place a bet.        &lt;br /&gt;Bet period is the amount of days over which the participant predicts a change in cryptocurrecny value (from 1 to 30 days).        &lt;br /&gt;&lt;br /&gt;Coins are cryptocurrency that bets are made on for a rise or fall in value.        &lt;br /&gt;&lt;br /&gt;Commission is the platform’s fee for providing the service (the commission is fixed and amounts to 1% of the bet amount).",
+    "instruction_definition_description_array": [
+      {
+        "title": "Participant",
+        "content": "The participant is an app user placing a bet"
+      },
+      {
+        "title": "Organizer",
+        "content": "The organizer is a FUTURESCOIN service administrator"
+      },
+      {
+        "title": "Bet amount",
+        "content": "Bet amount refers to funds transferred from the participant to the organizer to place a bet"
+      },
+      {
+        "title": "Bet period",
+        "content": "Bet period is the amount of days over which the participant predicts a change in cryptocurrecny value (from 1 to 30 days)"
+      },
+      {
+        "title": "Coins",
+        "content": "Coins are cryptocurrency that bets are made on for a rise or fall in value"
+      },
+      {
+        "title": "Commission",
+        "content": "Commission is the platform’s fee for providing the service (the commission is fixed and amounts to 1% of the bet amount)."
+      }
+    ],
     "instruction_how_make_bet": "How to place a bet",
     "instruction_how_make_bet_description": "On the app’s main screen choose a coin, indicate the bet period and click <font color=\"#3786FF\">“Rise”</font> or <font color=\"#EB0F43\">“Fall”</font> (depending on your chosen strategy)Next you will be redirected to a page for filling out additional settings, where you will need to indicate:   &lt;br /&gt; a) Bet currency   &lt;br /&gt; b) Bet amount   &lt;br /&gt; c) Online wallet&lt;br /&gt;&lt;br /&gt;To finish, click the button <font color=\"#3786FF\">«Place a bet».</font>&lt;br /&gt;&lt;br /&gt;Next please transfer the bet amount yourself.If using Russian roubles, go through a payment system. For <font color=\"#3786FF\">Tether USDT</font>  cryptocurrency bets, transfer funds onto the cryptocurrency wallet.Once your payment has been processed, you will receive an email with information about the bet, on the address attached to your account.&lt;br /&gt;&lt;br /&gt;The letter will contain the following information:  &lt;br /&gt; &#160; a) Date and time the bet was placed  &lt;br /&gt; &#160;  b) Date and time the bet was closed  &lt;br /&gt; &#160; c) Bet coin  &lt;br /&gt; &#160; d) Bet strategy  &lt;br /&gt; &#160; e) Bet currency  &lt;br /&gt; &#160; f) Bet amount&lt;br /&gt;&lt;br /&gt;At the end of the bet period, you will automatically receive the bet amount, with the profit or loss already taken into account, on the indicated return wallet, as well as an email with the bet results.",
     "instruction_how_it_works": "How it works",

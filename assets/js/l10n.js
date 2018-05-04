@@ -37,7 +37,19 @@ class L10n {
         document.querySelectorAll(`[data-l10n-content]`).forEach(function (node) {
             let stringData = this.languageData[language][node.dataset.l10nContent];
             if (!stringData) return false;
-            node.innerHTML = stringData;
+            if (typeof stringData === "string") node.innerHTML = stringData;
+            else if (typeof stringData === "object") {
+                let source = '';
+                for (let i in stringData) {
+                    if (node.dataset.l10nItemContainer) source += `<${node.dataset.l10nItemContainer}>`;
+                    if (node.dataset.l10nItemTitle) source += `<${node.dataset.l10nItemTitle}>`;
+                    if (stringData[i].title) source += stringData[i].title;
+                    if (node.dataset.l10nItemTitle) source += `</${node.dataset.l10nItemTitle}>`;
+                    if (stringData[i].content) source += stringData[i].content;
+                    if (node.dataset.l10nItemContainer) source += `</${node.dataset.l10nItemContainer}>`;
+                }
+                node.innerHTML = source;
+            }
         }, this);
         document.querySelectorAll(`[data-l10n-placeholder]`).forEach(function (node) {
             let stringData = this.languageData[language][node.dataset.l10nPlaceholder];
