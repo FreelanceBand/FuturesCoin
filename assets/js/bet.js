@@ -2,10 +2,10 @@ document.addEventListener('changedLanguage', function () {
     if (window.selections) {
         window.selections.forEach(function (select) {
             let variants = [];
-            let dictonary = window.localisation.getDictonary();
+            // let dictonary = window.localisation.getDictonary();
             select.options.forEach((option, count) => variants.push({
                 value: option.value,
-                label: dictonary[option.l10nTitle] ? dictonary[option.l10nTitle] : `Error`,
+                label: option.l10nTitle && localisation.getField(option.l10nTitle) ? localisation.getField(option.l10nTitle) : (option.title ? option.title : `Error`),
                 selected: count === 0
             }), this);
 
@@ -19,8 +19,9 @@ document.addEventListener('changedLanguage', function () {
                 node, options: function () {
                     let optionsList = [];
                     node.querySelectorAll('option').forEach(option => optionsList.push({
+                        title: option.innerHTML,
                         value: option.value,
-                        l10nTitle: option.dataset.l10nContent
+                        l10nTitle: option.dataset.l10nContent ? option.dataset.l10nContent : false
                     }));
                     return optionsList;
                 }(), choices: new Choices(node, {searchEnabled: false, itemSelectText: ''})

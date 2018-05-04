@@ -1,17 +1,18 @@
 class L10n {
 
-    constructor({sourcesPath = 'l10n'} = {}) {
+    constructor({sourcesPath = 'l10n', localizeOnInit = false} = {}) {
         this.parameters = {sourcesPath};
         this.languageData = {};
         this.selectedLanguage = this.getSelectedLanguage();
-        if (this.selectedLanguage) this.changeLanguage(this.selectedLanguage);
+        this.changeLanguage(this.selectedLanguage);
     }
 
-    static get defaultLanguage() {
-        return 'en';
+    defaultLanguage() {
+        return 'ru';
     }
 
-    changeLanguage(language = this.defaultLanguage) {
+    changeLanguage(language) {
+        language = language ? language : 'ru';
         return new Promise(function (resolve, reject) {
             if (!this.languageData[language]) return resolve(this.loadDictionary(language));
             return resolve(language);
@@ -73,6 +74,11 @@ class L10n {
     }
 
     getDictonary(language = this.selectedLanguage) {
-        return this.languageData[language] ? this.languageData[language] : false;
+        return this.languageData[language];
+    }
+
+    getField(fieldId, language = this.selectedLanguage) {
+        if (!this.getDictonary(language)) return false;
+        return this.getDictonary(language)[fieldId];
     }
 }
