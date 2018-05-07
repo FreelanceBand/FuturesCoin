@@ -31,7 +31,10 @@
                     <input placeholder="&nbsp;" class="icon" name="password" id="password" type="password"
                            data-l10n-placeholder="password_hint">
                     <a href="recovery.html" data-l10n-content="forgot_password">&nbsp;</a>
-                    <button class="blue space-above" type="submit" data-l10n-content="login_button_text">&nbsp;</button>
+                    <button class="blue space-above" type="button" data-l10n-content="login_button_text"
+                            onclick="User.auth(document.querySelector('#login').value, document.querySelector('#password').value)">
+                        &nbsp;
+                    </button>
                 </form>
             </div>
         </div>
@@ -90,4 +93,5 @@
 </body>
 <script src="assets/js/l10n.js"></script>
 <script src="assets/js/base.js"></script>
+<script src="assets/js/publicUser.js"></script>
 </html>

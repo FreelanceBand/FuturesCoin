@@ -33,7 +33,10 @@
                     <span data-l10n-content="email_hint">&nbsp;</span>
                     <input placeholder="&nbsp;" class="icon" name="email" id="email" type="email"
                            data-l10n-placeholder="email_hint">
-                    <button class="green" type="submit" data-l10n-content="register_button_text">&nbsp;</button>
+                    <button class="green" type="button" data-l10n-content="register_button_text"
+                            onclick="User.reg(document.querySelector('#login').value, document.querySelector('#email_hint').value, document.querySelector('#password').value)">
+                        &nbsp;
+                    </button>
                 </form>
             </div>
         </div>
@@ -77,4 +80,5 @@
 </body>
 <script src="assets/js/l10n.js"></script>
 <script src="assets/js/base.js"></script>
+<script src="assets/js/publicUser.js"></script>
 </html>
