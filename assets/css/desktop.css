@@ -236,6 +236,7 @@ body.panel > header nav a {
     padding: 0 25px;
     line-height: var(--height);
     color: white;
+    cursor: pointer;
 }
 
 body.panel > header nav a.active {
@@ -465,6 +466,10 @@ body.panel .bet-history.detailed {
     --info-icon-size: 10px;
     padding-top: 8px;
     margin-bottom: 3px;
+}
+
+body.panel .bet-history.detailed.grid img {
+    width: 32px;
 }
 
 body.panel .bet-history .fall {

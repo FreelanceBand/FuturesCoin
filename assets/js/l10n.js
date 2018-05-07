@@ -1,6 +1,6 @@
 class L10n {
 
-    constructor({sourcesPath = 'l10n', localizeOnInit = false} = {}) {
+    constructor({sourcesPath = '/l10n', localizeOnInit = false} = {}) {
         this.parameters = {sourcesPath};
         this.languageData = {};
         this.selectedLanguage = this.getSelectedLanguage();
@@ -37,9 +37,10 @@ class L10n {
             }.bind(this));
     }
 
-    replaceStrings(language) {
+    replaceStrings(language, targetNode = document) {
+        language = language ? language : this.selectedLanguage;
         if (!this.languageData[language]) throw new Error('Language data loading error');
-        document.querySelectorAll(`[data-l10n-content]`).forEach(function (node) {
+        targetNode.querySelectorAll(`[data-l10n-content]`).forEach(function (node) {
             let stringData = this.languageData[language][node.dataset.l10nContent];
             if (!stringData) return false;
             if (typeof stringData === "string") node.innerHTML = stringData;
@@ -56,7 +57,7 @@ class L10n {
                 node.innerHTML = source;
             }
         }, this);
-        document.querySelectorAll(`[data-l10n-placeholder]`).forEach(function (node) {
+        targetNode.querySelectorAll(`[data-l10n-placeholder]`).forEach(function (node) {
             let stringData = this.languageData[language][node.dataset.l10nPlaceholder];
             if (!stringData) return false;
             node.placeholder = stringData;
