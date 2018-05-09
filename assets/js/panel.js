@@ -195,7 +195,7 @@ class Panel {
             }, this);
             tableSource += `</li><div class="scroll-section">`;
             data.forEach(function (item) {
-                tableSource += `<li>`;
+                tableSource += `<li onclick="return User.selectBaseCoin(this);" data-coin-symbol="${item.symbol}">`;
                 fields.forEach(function (field) {
                     switch (field.id) {
                         case 'name':

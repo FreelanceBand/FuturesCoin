@@ -29,7 +29,7 @@ class User {
         ];
 
         dataFields.forEach(function (field) {
-            if (!userData[field.id]) return false;
+            // if (!userData[field.id]) return false;
             let fieldNode = document.createElement('li');
             let fieldTitleNode = document.createElement('div');
 
@@ -46,9 +46,14 @@ class User {
 
             let fieldValueNode = document.createElement('div');
             let fieldValueContent = document.createElement('span');
-            fieldValueContent.innerHTML = userData[field.id];
+            if (userData[field.id]) fieldValueContent.innerHTML = userData[field.id];
 
             let fieldValueChange = document.createElement('a');
+
+            fieldValueChange.style.cursor = 'pointer';
+
+            if (field.id === 'password') fieldValueChange.addEventListener('click', User.showChangePassword);
+            if (field.id === 'email') fieldValueChange.addEventListener('click', User.showChangeEmail);
 
             let changeTitle = 'Change';
             fieldValueChange.dataset.l10nContent = 'change';
@@ -292,6 +297,7 @@ class User {
     static createBet(form) {
         if (!form.checkValidity()) return false;
         let data = new FormData(form);
+        data.set('bet_amount', parseFloat(data.get('bet_amount').split(' ').join('')));
         return fetch(apiURL + 'bids/create', {
             method: 'POST',
             body: data,
@@ -315,9 +321,9 @@ class User {
     static changeBetCoin(event) {
         let data = panel.getCryptoData();
         if (!data) return false;
-        let selectedCoin = event.target.value;
-        let walletNode = event.target.form.querySelector(`#wallet`);
-        let returnNode = event.target.form.querySelector(`#return`);
+        let selectedCoin = document.querySelector(`#coin`).value;
+        let walletNode = document.querySelector(`#wallet`);
+        let returnNode = document.querySelector(`#return`);
         let options = [];
         for (let i in data) {
             if (data[i].symbol !== selectedCoin) continue;
@@ -332,6 +338,7 @@ class User {
     }
 
     static processBet(form) {
+        if (!form.checkValidity()) return false;
         return User.showBetWalletModal(form);
     }
 
@@ -371,13 +378,134 @@ class User {
         modalNode.className = 'modal';
         modalNode.innerHTML = `<form class="content">
         <h3 class="title">ID транзакции</h3>
-        <input class="icon" id="transaction-id" name="wallet" value="" placeholder="ID транзакции" type="text">
+        <input id="bet-id" name="bet_id" value="${id}" type="hidden">
+        <input class="icon" id="transaction-id" name="external_txid" value="" placeholder="ID транзакции" type="text">
         <button type="submit">Продолжить</button>
         <a class="close" href="#">Закрыть</a>
     </form>
     <a class="backdrop-close" href="#">Закрыть</a>`;
         document.body.appendChild(modalNode);
         location.href = '#' + modalNode.id;
+        modalNode.querySelector(`button[type=submit]`).addEventListener(`click`, function (event) {
+            event.preventDefault();
+            event.stopPropagation();
+            User.setBetClarify(event.target.form);
+        });
+    }
+
+    static setBetClarify(form) {
+        if (!form.checkValidity()) return false;
+        let data = new FormData(form);
+        return fetch(apiURL + 'bids/clarify', {
+            method: 'POST',
+            body: data,
+            credentials: "same-origin"
+        }).then(function (response) {
+            return response.json();
+        }).then(function (result) {
+            if (!result.status || result.status !== 'ok') return User.showFormError(result.msg ? result.msg : `Error code: ${result.code}`);
+            let betWalletFormNode = document.querySelector(`#bet-wallet-clarify`);
+            betWalletFormNode.parentNode.removeChild(betWalletFormNode);
+            // User.showBetClarify(result.data.id);
+            alert(`Ставка принята, желаем удачи!`);
+            return false;
+        });
+    }
+
+    static showChangePassword() {
+        let modalNode = document.createElement('div');
+        modalNode.id = 'change-password-form';
+        modalNode.className = 'modal';
+        modalNode.innerHTML = `<form class="content">
+        <h3 class="title" data-l10n-content="change_password_title">${localisation.getField(`change_password_title`)}</h3>
+        <input class="icon password" id="newPassword" name="user_pass" value="" placeholder="${localisation.getField(`new_password`)}"
+               type="password" data-l10n-placeholder="new_password">
+        <input class="icon password" id="repeatPassword" name="repeatPassword" value="" placeholder="${localisation.getField(`repeat_password`)}"
+               type="password" data-l10n-placeholder="repeat_password">
+        <button type="submit" data-l10n-content="change_password">${localisation.getField(`change_password`)}</button>
+        <a class="close" href="#">&nbsp;</a>
+    </form>
+    <a class="backdrop-close" href="#">&nbsp;</a>`;
+        document.body.appendChild(modalNode);
+        location.href = '#' + modalNode.id;
+        modalNode.querySelector(`button[type=submit]`).addEventListener(`click`, function (event) {
+            event.preventDefault();
+            event.stopPropagation();
+            User.changePassword(event.target.form);
+        });
+    }
+
+    static showChangeEmail() {
+        let modalNode = document.createElement('div');
+        modalNode.id = 'change-email-form';
+        modalNode.className = 'modal';
+        modalNode.innerHTML = `<form class="content">
+        <h3 class="title" data-l10n-content="change_email_title">${localisation.getField('change_email_title')}</h3>
+        <input class="icon" id="email" name="email" value="" placeholder="Email" type="text">
+        <button type="submit" data-l10n-content="save">${localisation.getField('save')}</button>
+        <a class="close" href="#" data-l10n-content="close">${localisation.getField('close')}</a>
+    </form>
+    <a class="backdrop-close" href="#">&nbsp;</a>`;
+        document.body.appendChild(modalNode);
+        location.href = '#' + modalNode.id;
+        modalNode.querySelector(`button[type=submit]`).addEventListener(`click`, function (event) {
+            event.preventDefault();
+            event.stopPropagation();
+            User.changeEmail(event.target.form);
+        });
+    }
+
+    static selectBaseCoin(node) {
+        document.querySelectorAll(`.coins-info.table .scroll-section li`).forEach(node => node.classList.remove('active'));
+        node.classList.add('active');
+        let data = panel.getCryptoData();
+        let selectedCoin = node.dataset.coinSymbol;
+        let targetCoinData = false;
+        for (let i in data) {
+            if (data[i].symbol !== selectedCoin) continue;
+            targetCoinData = data[i];
+        }
+        if (!targetCoinData) return console.error('Coin data not found');
+        document.querySelector(`#coin`).choices.setValueByChoice(selectedCoin);
+        User.changeBetCoin();
+    }
+
+    static changePassword(form) {
+        if (!form.checkValidity()) return false;
+        let data = new FormData(form);
+        return fetch(apiURL + 'users/update', {
+            method: 'POST',
+            body: data,
+            credentials: "same-origin"
+        }).then(function (response) {
+            return response.json();
+        }).then(function (result) {
+            if (!result.status || result.status !== 'ok') return User.showFormError(result.msg ? result.msg : `Error code: ${result.code}`);
+            let betWalletFormNode = document.querySelector(`#change-password-form`);
+            betWalletFormNode.parentNode.removeChild(betWalletFormNode);
+            // User.showBetClarify(result.data.id);
+            return false;
+        });
+    }
+
+    static changeEmail(form) {
+        if (!form.checkValidity()) return false;
+        let data = new FormData(form);
+        return fetch(apiURL + 'users/update', {
+            method: 'POST',
+            body: data,
+            credentials: "same-origin"
+        }).then(function (response) {
+            return response.json();
+        }).then(function (result) {
+            if (!result.status || result.status !== 'ok') return User.showFormError(result.msg ? result.msg : `Error code: ${result.code}`);
+            localStorage.setItem('userData', JSON.stringify(result.data));
+            let betWalletFormNode = document.querySelector(`#change-email-form`);
+            betWalletFormNode.parentNode.removeChild(betWalletFormNode);
+            // User.showBetClarify(result.data.id);
+            panel.renderPage();
+            return false;
+        });
     }
 
 }

@@ -31,7 +31,7 @@ function rebuildSelects(selectId = false, customOptions = false) {
     } else {
         window.selections = [];
         document.querySelectorAll('.select-wrapper select').forEach(function (node) {
-            window.selections.push({
+            let itemData = {
                 node, options: function () {
                     let optionsList = [];
                     node.querySelectorAll('option').forEach(option => optionsList.push({
@@ -41,7 +41,9 @@ function rebuildSelects(selectId = false, customOptions = false) {
                     }));
                     return optionsList;
                 }(), choices: new Choices(node, {searchEnabled: false, itemSelectText: ''})
-            });
+            };
+            node.choices = itemData.choices;
+            window.selections.push(itemData);
         }, this)
     }
 }

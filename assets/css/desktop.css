@@ -389,6 +389,10 @@ body.panel .profile-data > li > *:nth-child(2) > *:nth-child(1) {
     margin-right: 1rem;
 }
 
+.profile-data.table a {
+    cursor: pointer !important;
+}
+
 body.panel > main > section > .title {
     margin-top: 0;
     font-weight: 400;
@@ -561,14 +565,16 @@ body.panel .coins-info.table li {
 body.panel .coins-info.table .scroll-section li {
     background-color: var(--background-color);
     margin-top: 5px;
+    cursor: pointer;
 }
 
 body.panel .coins-info.table > li {
     padding: 20px 20px 8px 20px;
     height: auto;
+
 }
 
-body.panel .coins-info.table .scroll-section li:hover {
+body.panel .coins-info.table .scroll-section li.active {
     background: linear-gradient(to right, #0084ff, rgba(0, 132, 255, 0)), linear-gradient(#001e37, #001e37);
 }
 
@@ -892,6 +898,13 @@ body.panel .bet-form .amount .choices__list {
 body.panel .bet-form .amount .choices__item {
     padding: 0 29px 0 10px;
     line-height: 30px;
+}
+
+body.panel .bet-form .amount .choices__inner .choices__item.choices__item--selectable[aria-selected="true"] {
+    padding: 0 !important;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 body.panel .bet-form .custom-select label:hover {
