@@ -23,19 +23,18 @@
             </div>
             <div class="interactive-section">
                 <h2 class="title" data-l10n-content="registration_title">&nbsp;</h2>
-                <form action="profile.html" method="get">
+                <form>
                     <span data-l10n-content="login_hint">&nbsp;</span>
-                    <input placeholder="&nbsp;" class="icon" name="login" id="login" type="text"
+                    <input placeholder="&nbsp;" class="icon" name="user_name" id="login" type="text"
                            data-l10n-placeholder="login_hint">
                     <span data-l10n-content="password_hint">&nbsp;</span>
-                    <input placeholder="&nbsp;" class="icon" name="password" id="password" type="password"
+                    <input placeholder="&nbsp;" class="icon" name="user_pass" id="password" type="password"
                            data-l10n-placeholder="password_hint">
                     <span data-l10n-content="email_hint">&nbsp;</span>
                     <input placeholder="&nbsp;" class="icon" name="email" id="email" type="email"
                            data-l10n-placeholder="email_hint">
-                    <button class="green" type="button" data-l10n-content="register_button_text"
-                            onclick="User.reg(document.querySelector('#login').value, document.querySelector('#email').value, document.querySelector('#password').value)">
-                        &nbsp;
+                    <button class="green" type="submit" data-l10n-content="register_button_text"
+                            onclick="User.reg(this.form);return false;">&nbsp;
                     </button>
                 </form>
             </div>

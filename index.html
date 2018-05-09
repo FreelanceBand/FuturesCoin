@@ -23,17 +23,16 @@
             </div>
             <div class="interactive-section">
                 <h2 class="title" data-l10n-content="login_title">&nbsp;</h2>
-                <form action="#" method="get">
+                <form>
                     <span data-l10n-content="login_hint">&nbsp;</span>
                     <input placeholder="&nbsp;" class="icon" name="user_name" id="login" type="text"
                            data-l10n-placeholder="login_hint">
                     <span data-l10n-content="password_hint">&nbsp;</span>
                     <input placeholder="&nbsp;" class="icon" name="user_pass" id="password" type="password"
                            data-l10n-placeholder="password_hint">
-                    <a href="recovery.html" data-l10n-content="forgot_password">&nbsp;</a>
-                    <button class="blue space-above" type="button" data-l10n-content="login_button_text"
-                            onclick="return User.auth(this.form)">
-                        &nbsp;
+                    <!--<a href="recovery.html" data-l10n-content="forgot_password">&nbsp;</a>-->
+                    <button class="blue space-above" type="submit" data-l10n-content="login_button_text"
+                            onclick="User.auth(this.form);return false;">&nbsp;
                     </button>
                 </form>
             </div>

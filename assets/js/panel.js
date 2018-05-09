@@ -9,7 +9,7 @@ class Panel {
         this.resetDocument();
         switch (page) {
             case 'profile':
-                this.prepareWrapper({header: true, modals: ['about']});
+                this.prepareWrapper({header: true, footer: true, modals: ['about']});
                 let profileInfo = null;
                 try {
                     profileInfo = User.genProfileInfo('section');
@@ -32,6 +32,27 @@ class Panel {
                 break;
             case 'bet':
                 this.prepareWrapper({header: true, footer: true, modals: ['about']});
+                let cryptoInfo = null;
+                try {
+                    cryptoInfo = this.genCryptoInfo('ul');
+                } catch (e) {
+                    console.error(e);
+                    cryptoInfo = document.createElement('ul');
+                    cryptoInfo.innerHTML = 'Error';
+                }
+                let betForm = null;
+                try {
+                    betForm = User.genBetForm('form');
+                } catch (e) {
+                    console.error(e);
+                    betForm = document.createElement('form');
+                    betForm.innerHTML = 'Error';
+                }
+                document.querySelector('main').className = 'bet';
+                document.querySelector('main').appendChild(cryptoInfo);
+                document.querySelector('main').appendChild(betForm);
+                User.renderSelectOptions();
+                rebuildSelects();
                 break;
         }
     }
@@ -107,7 +128,29 @@ class Panel {
     }
 
     genFooter() {
-        return document.createElement('footer');
+        let footerNode = document.createElement('footer');
+        footerNode.innerHTML = `<div style="display: flex;">
+        <div class="select-wrapper">
+            <div class="change-language custom-select">
+                <div>
+                    <input id="lang-en" value="en" name="lang" type="radio">
+                    <label for="lang-en"><img src="/assets/images/eng-icon.svg">EN</label>
+                </div>
+                <div>
+                    <input checked id="lang-ru" value="ru" name="lang" type="radio">
+                    <label for="lang-ru"><img src="/assets/images/ru-icon.svg">RU</label>
+                </div>
+            </div>
+        </div>
+        <span><span data-l10n-content="rights_reserved">${localisation.getField('rights_reserved')}</span>, 2017–2018.</span>
+    </div>
+    <div>
+        <span data-l10n-content="relevance_data">${localisation.getField('relevance_data')}</span>
+        <img src="/assets/images/heart.svg">
+        <a href="https://coinmarketcup.com" target="_blank">coinmarketcup.com</a>
+    </div>`;
+        bindLocalisationButtons(footerNode);
+        return footerNode;
     }
 
     loadModalSource(modal = null) {
@@ -132,5 +175,61 @@ class Panel {
         modalNode.appendChild(modalContentNode);
         document.body.appendChild(modalNode);
         localisation.replaceStrings(false, modalNode);
+    }
+
+    genCryptoInfo(tagName = 'div', data = false) {
+        let cryptoInfoNode = document.createElement(tagName);
+        cryptoInfoNode.className = 'coins-info table';
+        let tableSource = '';
+        data = data ? data : this.getCryptoData();
+        if (data) {
+            let fields = [
+                {id: 'name', l10nTitle: 'currency'},
+                {id: 'market_cap', l10nTitle: 'market_capitalization'},
+                {id: 'price_usd', l10nTitle: 'price'},
+                {id: 'h24_ratio_change', l10nTitle: 'changes_in_24_hours'}
+            ];
+            tableSource = `<li>`;
+            fields.forEach(function (field) {
+                tableSource += `<div data-l10n-content="${field.l10nTitle}">${localisation.getField(field.l10nTitle)}</div>`;
+            }, this);
+            tableSource += `</li><div class="scroll-section">`;
+            data.forEach(function (item) {
+                tableSource += `<li>`;
+                fields.forEach(function (field) {
+                    switch (field.id) {
+                        case 'name':
+                            tableSource += `<div><img src="/assets/images/coins/${item.symbol.toLowerCase()}.png"><span>${item[field.id]}</span></div>`;
+                            break;
+                        case 'h24_ratio_change':
+                            tableSource += `<div class="${item[field.id] < 0 ? `red` : (item[field.id] > 0 ? `green` : ``)}">${item[field.id]}%</div>`;
+                            break;
+                        default:
+                            tableSource += `<div>${item[field.id]} $</div>`;
+                            break;
+                    }
+                }, this);
+                tableSource += `</li>`;
+            }, this);
+            tableSource += `</div>`;
+        } else tableSource = 'Loading ...';
+        cryptoInfoNode.innerHTML = tableSource;
+        return cryptoInfoNode;
+    }
+
+    getCryptoData() {
+        if (localStorage.getItem('cryptoData')) return JSON.parse(localStorage.getItem('cryptoData'));
+        fetch(apiURL + 'tokens', {
+            method: 'GET',
+            credentials: "same-origin"
+        }).then(function (response) {
+            return response.json();
+        }).then(function (result) {
+            if (!result.status || result.status !== 'ok') return alert(result.msg ? result.msg : `Error code: ${result.code}`);
+            if (result.data) localStorage.setItem('cryptoData', JSON.stringify(result.data));
+            this.genCryptoInfo(false, result.data);
+            User.renderSelectOptions(result.data);
+        }.bind(this));
+        return false;
     }
 }

@@ -62,6 +62,7 @@
     "bet_amount": "Bet amount",
     "return_profit_to": "Profit return",
     "return_wallet_in_wsdt": "Online wallet for bet transfers in USDT",
+    "return_wallet_in": "Online wallet for bet transfers in ",
     "make_bet": "Place a bet",
     "bet_parameters": "Bet settings",
     "you_make_bet": "You are betting that",

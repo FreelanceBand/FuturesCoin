@@ -57,7 +57,7 @@ select {
     flex-direction: column;
 }
 
-.table > li {
+.table li {
     display: flex;
     justify-content: space-between;
 }
@@ -517,22 +517,22 @@ body.panel .bet-history.table {
     width: 640px;
 }
 
-body.panel .bet-history.table > li {
+body.panel .bet-history.table li {
     line-height: 16px;
     padding: 12px 20px;
     justify-content: flex-start;
 }
 
-body.panel .bet-history.table > li:nth-child(even) {
+body.panel .bet-history.table .scroll-section li:nth-child(odd) {
     background-color: var(--background-color);
 }
 
-body.panel .bet-history.table > li > * {
+body.panel .bet-history.table li > * {
     display: inline-block;
     min-width: 95px;
 }
 
-body.panel .bet-history.table > li > * img {
+body.panel .bet-history.table li > * img {
     margin-bottom: -.15rem;
     margin-right: 10px;
     width: var(--coin-icon-size);
@@ -543,39 +543,47 @@ body.panel .coins-info.table {
     margin: 0;
     padding: 0;
     width: calc(100% - 385px);
+    /*margin-bottom: 100px;*/
 }
 
-body.panel .coins-info.table > li {
+body.panel .coins-info.table .scroll-section {
+    max-height: calc(100vh - 250px);
+    min-height: 480px;
+    overflow-y: scroll;
+}
+
+body.panel .coins-info.table li {
     padding: 20px;
     height: 56px;
+    min-height: 56px;
 }
 
-body.panel .coins-info.table > li:not(:first-child) {
+body.panel .coins-info.table .scroll-section li {
     background-color: var(--background-color);
     margin-top: 5px;
 }
 
-body.panel .coins-info.table > li:first-child {
+body.panel .coins-info.table > li {
     padding: 20px 20px 8px 20px;
     height: auto;
 }
 
-body.panel .coins-info.table > li:not(:first-child):hover {
+body.panel .coins-info.table .scroll-section li:hover {
     background: linear-gradient(to right, #0084ff, rgba(0, 132, 255, 0)), linear-gradient(#001e37, #001e37);
 }
 
-body.panel .coins-info.table > li > * {
+body.panel .coins-info.table li > * {
     width: 100%;
     /*line-height: 32px;*/
     /*line-height: 26px;*/
 
 }
 
-body.panel .coins-info.table > li > *:not(:first-child) {
+body.panel .coins-info.table li > *:not(:first-child) {
     text-align: right;
 }
 
-body.panel .coins-info.table > li img {
+body.panel .coins-info.table li img {
     margin: -10px 15px -11px 0;
     height: 32px;
     width: 32px;
@@ -906,6 +914,11 @@ body.panel .bet-form .submit {
 body.panel .bet-form button {
     margin-top: unset;
     width: 100%;
+}
+
+body.panel .bet-form:invalid .submit button {
+    background: gray;
+    cursor: default;
 }
 
 body.panel > footer {

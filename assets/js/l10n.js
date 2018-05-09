@@ -8,11 +8,11 @@ class L10n {
     }
 
     defaultLanguage() {
-        return 'ru';
+        return 'en';
     }
 
     changeLanguage(language) {
-        language = language ? language : 'ru';
+        language = language ? language : 'en';
         return new Promise(function (resolve, reject) {
             if (!this.languageData[language]) return resolve(this.loadDictionary(language));
             return resolve(language);
@@ -79,7 +79,7 @@ class L10n {
     }
 
     getField(fieldId, language = this.selectedLanguage) {
-        if (!this.getDictonary(language)) return false;
+        if (!this.getDictonary(language)) return '';
         return this.getDictonary(language)[fieldId];
     }
 }

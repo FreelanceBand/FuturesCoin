@@ -62,6 +62,7 @@
     "bet_amount": "Размер ставки",
     "return_profit_to": "Возврат прибыли",
     "return_wallet_in_wsdt": "Кошелек для перевода ставки в USDT",
+    "return_wallet_in": "Кошелек для перевода ставки в ",
     "make_bet": "Сделать ставку",
     "bet_parameters": "Параметры ставки",
     "you_make_bet": "Вы осуществляете ставку на",
