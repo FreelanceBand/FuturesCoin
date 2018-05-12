@@ -135,6 +135,10 @@ input[type="checkbox"]:checked {
     background-image: url("../images/cash-icon.svg");
 }
 
+#transaction-id.icon, .icon.transaction {
+    background-image: url("../images/cash-icon.svg");
+}
+
 input.icon, select.icon, span.icon {
     padding-left: calc(2rem + 12px);
     background-repeat: no-repeat;

@@ -30,6 +30,7 @@
     "change_password": "Change password",
     "old_password": "Old password",
     "new_password": "New password",
+    "repeat_password": "Repeat password",
     "new_password_sent": "A letter with a new password has been sent to your email",
     "rate_history": "Bet history",
     "strategy": "Strategy",
@@ -47,7 +48,7 @@
     "text_instruction": "Instructions",
     "bets_on_crypto": "Bets on cryptocurrency",
     "selected_coin": "Chosen coin",
-    "bet_actuality": "Betting period",
+    "bet_actuality": "Betting period (days)",
     "reduction": "FALL",
     "increase": "RISE",
     "message_was_sended": "Your new password has been sent to your email",
@@ -75,6 +76,7 @@
     "change_wallet_title": "Wallet address",
     "change_wallet_address_hint": "Wallet address",
     "change_password_title": "Change password",
+    "transaction_id": "Transaction ID",
     "change_id_title": "Type transaction ID",
     "ok": "OK",
     "cancel": "Cancel",
@@ -224,6 +226,15 @@
     "at": "at",
     "30_days": "30 days",
     "day": "1 day",
-    "not_busy": "Not busy"
+    "not_busy": "Not busy",
+    "status": "Status",
+    "status_confirmed": "waiting",
+    "status_unconfirmed": "waiting",
+    "status_waiting": "waiting",
+    "status_created": "Accepted",
+    "status_closed": "completed",
+    "status_cleared": "completed",
+    "status_unclarified": "! Not confirmed",
+    "status_other": "unknown"
   }
 }

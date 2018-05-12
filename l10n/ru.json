@@ -30,6 +30,7 @@
     "change_password": "Изменить пароль",
     "old_password": "Старый пароль",
     "new_password": "Новый пароль",
+    "repeat_password": "Повторите пароль",
     "new_password_sent": "Письмо с новым паролем выслано на вашу электронную почту",
     "rate_history": "История ставок",
     "strategy": "Стратегия",
@@ -47,7 +48,7 @@
     "text_instruction": "Инструкция",
     "bets_on_crypto": "Ставки на криптовалюты",
     "selected_coin": "Выбранная монета",
-    "bet_actuality": "Срок ставки",
+    "bet_actuality": "Срок ставки (дни)",
     "reduction": "ПОНИЖЕНИЕ",
     "increase": "ПОВЫШЕНИЕ",
     "message_was_sended": "На вашу электронную почту выслана инструкция по смене пароля",
@@ -75,6 +76,7 @@
     "change_wallet_title": "Адрес кошелька",
     "change_wallet_address_hint": "Адрес кошелька",
     "change_password_title": "Изменение пароля",
+    "transaction_id": "ID транзакции",
     "change_id_title": "Введите ID транзакции",
     "ok": "Ок",
     "cancel": "Отмена",
@@ -222,6 +224,15 @@
     "at": "в",
     "30_days": "30 дней",
     "day": "1 день",
-    "not_busy": "Не занят"
+    "not_busy": "Не занят",
+    "status": "Статус",
+    "status_confirmed": "ожидание",
+    "status_unconfirmed": "ожидание",
+    "status_waiting": "ожидание",
+    "status_created": "ставка принята",
+    "status_closed": "завершена",
+    "status_cleared": "завершена",
+    "status_unclarified": "! не подтверждена",
+    "status_other": "не известно"
   }
 }

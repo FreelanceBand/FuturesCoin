@@ -26,13 +26,13 @@
                 <form>
                     <span data-l10n-content="login_hint">&nbsp;</span>
                     <input placeholder="&nbsp;" class="icon" name="user_name" id="login" type="text"
-                           data-l10n-placeholder="login_hint">
+                           data-l10n-placeholder="login_hint" required>
                     <span data-l10n-content="password_hint">&nbsp;</span>
                     <input placeholder="&nbsp;" class="icon" name="user_pass" id="password" type="password"
-                           data-l10n-placeholder="password_hint">
+                           data-l10n-placeholder="password_hint" required>
                     <!--<a href="recovery.html" data-l10n-content="forgot_password">&nbsp;</a>-->
                     <button class="blue space-above" type="submit" data-l10n-content="login_button_text"
-                            onclick="User.auth(this.form);return false;">&nbsp;
+                            onclick="return User.auth(this.form)">&nbsp;
                     </button>
                 </form>
             </div>
@@ -43,17 +43,7 @@
         </div>
     </div>
     <footer>
-        <div class="select-wrapper">
-            <div class="change-language custom-select">
-                <div>
-                    <input id="lang-en" value="en" name="lang" type="radio">
-                    <label for="lang-en"><img src="assets/images/eng-icon.svg">EN</label>
-                </div>
-                <div>
-                    <input checked id="lang-ru" value="ru" name="lang" type="radio">
-                    <label for="lang-ru"><img src="assets/images/ru-icon.svg">RU</label>
-                </div>
-            </div>
+        <div class="select-wrapper" id="l10n-indicator">
         </div>
         <span><span data-l10n-content="rights_reserved">&nbsp;</span>, 2017–2018.</span>
     </footer>

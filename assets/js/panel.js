@@ -2,10 +2,10 @@ class Panel {
 
     constructor() {
         if (!User.getUserData()) return User.logout();
-        this.renderPage.call(this);
+        // this.renderPage.call(this);
     }
 
-    renderPage(page = 'profile') {
+    renderPage(page = 'bet') {
         this.resetDocument();
         switch (page) {
             case 'profile':
@@ -52,7 +52,9 @@ class Panel {
                 document.querySelector('main').appendChild(cryptoInfo);
                 document.querySelector('main').appendChild(betForm);
                 User.renderSelectOptions();
+                User.changeBetCoin();
                 rebuildSelects();
+                User.getBetHistoryData();
                 break;
         }
     }
@@ -131,16 +133,7 @@ class Panel {
         let footerNode = document.createElement('footer');
         footerNode.innerHTML = `<div style="display: flex;">
         <div class="select-wrapper">
-            <div class="change-language custom-select">
-                <div>
-                    <input id="lang-en" value="en" name="lang" type="radio">
-                    <label for="lang-en"><img src="/assets/images/eng-icon.svg">EN</label>
-                </div>
-                <div>
-                    <input checked id="lang-ru" value="ru" name="lang" type="radio">
-                    <label for="lang-ru"><img src="/assets/images/ru-icon.svg">RU</label>
-                </div>
-            </div>
+            ${genL10nIndicator()}
         </div>
         <span><span data-l10n-content="rights_reserved">${localisation.getField('rights_reserved')}</span>, 2017–2018.</span>
     </div>
@@ -152,6 +145,7 @@ class Panel {
         bindLocalisationButtons(footerNode);
         return footerNode;
     }
+
 
     loadModalSource(modal = null) {
         return fetch('/modal/' + modal + '.html').then(function (response) {
@@ -171,15 +165,37 @@ class Panel {
         if (modalId === 'about') modalNode.classList.add('full-screen');
         let modalContentNode = document.createElement('div');
         modalContentNode.className = 'content';
-        modalContentNode.innerHTML = modalSource + `<a class="close" href="#" data-l10n-content="close">${localisation.getField('close')}</a>`;
-        modalNode.appendChild(modalContentNode);
-        document.body.appendChild(modalNode);
-        localisation.replaceStrings(false, modalNode);
+        modalContentNode.innerHTML = modalSource + `<
+    a
+    class = "close"
+    href = "#"
+    data
+-
+    l10n
+-
+    content = "close" > ${localisation.getField('close')} < /a>`;
+        modalNode
+            .appendChild(modalContentNode);
+
+        document
+            .body
+            .appendChild(modalNode);
+
+        localisation
+            .replaceStrings(
+                false
+                ,
+                modalNode
+            )
+        ;
     }
 
     genCryptoInfo(tagName = 'div', data = false) {
-        let cryptoInfoNode = document.createElement(tagName);
-        cryptoInfoNode.className = 'coins-info table';
+        let cryptoInfoNode = document.querySelector(`.coins-info.table`);
+        if (!cryptoInfoNode) {
+            cryptoInfoNode = document.createElement(tagName);
+            cryptoInfoNode.className = 'coins-info table';
+        }
         let tableSource = '';
         data = data ? data : this.getCryptoData();
         if (data) {
@@ -227,8 +243,9 @@ class Panel {
         }).then(function (result) {
             if (!result.status || result.status !== 'ok') return alert(result.msg ? result.msg : `Error code: ${result.code}`);
             if (result.data) localStorage.setItem('cryptoData', JSON.stringify(result.data));
-            this.genCryptoInfo(false, result.data);
-            User.renderSelectOptions(result.data);
+            // this.genCryptoInfo(false, result.data);
+            // User.renderSelectOptions(result.data);
+            panel.renderPage();
         }.bind(this));
         return false;
     }

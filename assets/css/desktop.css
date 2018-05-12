@@ -14,7 +14,8 @@ body:after {
     background: url("../images/profile-icon-active.svg"), url("../images/bet-icon-active.svg"),
     url("../images/help-icon-active.svg"), url("../images/logout-icon-active.svg"), url("../images/background.png"),
     url("../images/close-icon.svg"), url("../images/up-icon.png"), url("../images/down-icon.png"),
-    url("../images/success.svg"), url("../images/check.svg");
+    url("../images/success.svg"), url("../images/check.svg"), url("../images/email-icon.svg"),
+    url("../images/email-green-icon.svg"), url("../images/password-icon.svg"), url("../images/cash-icon.svg");
 }
 
 input, select, button, .button {
@@ -456,6 +457,7 @@ body.panel .bet-history.detailed.grid > li > ul > li > *:first-child {
 
 body.panel .bet-history.detailed.grid > li > ul > li:not(:first-child) > *:first-child:after {
     content: ':';
+    margin-right: 5px;
 }
 
 body.panel .bet-history.detailed.grid > li > ul > li > span > span {
@@ -782,7 +784,8 @@ body.panel .bet-form .select-wrapper {
 }
 
 body.panel .bet-form .narrow {
-    min-width: 60%;
+    /*min-width: 60%;*/
+    min-width: 50%;
 }
 
 body.panel .bet-form .custom-select {
@@ -900,7 +903,7 @@ body.panel .bet-form .amount .choices__item {
     line-height: 30px;
 }
 
-body.panel .bet-form .amount .choices__inner .choices__item.choices__item--selectable[aria-selected="true"] {
+body.panel .bet-form .choices__inner .choices__item.choices__item--selectable[aria-selected="true"] {
     padding: 0 !important;
     text-overflow: ellipsis;
     overflow: hidden;

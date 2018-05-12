@@ -5,6 +5,8 @@ window.localisation = new L10n({localizeOnInit: true});
 
 bindLocalisationButtons();
 
+if (document.querySelector(`#l10n-indicator`)) document.querySelector(`#l10n-indicator`).innerHTML = genL10nIndicator();
+
 function bindLocalisationButtons(targetNode = document) {
     let enLangButton = targetNode.querySelector('#lang-en');
     let ruLangButton = targetNode.querySelector('#lang-ru');
@@ -67,7 +69,12 @@ function serialize(obj, prefix) {
 
 function checkTimeValue(targetNode = document) {
     let value = parseInt(targetNode.querySelector('#time').value);
+    if (isNaN(value)) targetNode.querySelector('#time').value = 1;
+    else if (value > 30) targetNode.querySelector('#time').value = 30;
+    else if (value < 1) targetNode.querySelector('#time').value = 1;
+
     targetNode.querySelector('#timeFall').disabled = value <= 1;
+    targetNode.querySelector('#timeRise').disabled = value >= 30;
 }
 
 function mask(event, node) {
@@ -92,4 +99,35 @@ function enableSubmit(form) {
 
 function splitDate(dateString) {
     return dateString.split(' ');
+}
+
+function showFormError(message, inputNode) {
+    if (!inputNode) return alert(message);
+    inputNode.setCustomValidity(message);
+    simulateClick(inputNode.form.querySelector(`button[type="submit"]`));
+    inputNode.addEventListener('change', e => e.target.setCustomValidity(''));
+    return false;
+}
+
+var simulateClick = function (elem) {
+    // Create our event (with options)
+    var evt = new MouseEvent('click', {
+        bubbles: true,
+        cancelable: true,
+        view: window
+    });
+    // If cancelled, don't dispatch our event
+    var canceled = !elem.dispatchEvent(evt);
+};
+
+function genL10nIndicator() {
+    let source = `<div class="change-language custom-select">`;
+    let selectedLanguage = localisation.getSelectedLanguage();
+    let languagesList = [
+        {id: 'en', title: 'EN', icon: '/assets/images/eng-icon.svg'},
+        {id: 'ru', title: 'RU', icon: '/assets/images/ru-icon.svg'},
+    ];
+    languagesList.forEach(lang => source += `<div><input id="lang-${lang.id}" value="${lang.id}" name="lang" type="radio" ${selectedLanguage === lang.id ? `checked` : ``} onclick="return changeLanguage(event)"><label for="lang-${lang.id}"><img src="${lang.icon}">${lang.title}</label></div>`);
+    source += `</div>`;
+    return source;
 }

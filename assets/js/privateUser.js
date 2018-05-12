@@ -24,8 +24,8 @@ class User {
 
         let dataFields = [
             {id: 'user_name', title: 'Login', l10nTitle: 'login_hint'},
-            {id: 'email', title: 'Email', l10nTitle: 'email_hint'},
-            {id: 'password', title: 'Password', l10nTitle: 'password_hint'},
+            {id: 'email', title: 'Email', l10nTitle: 'email_hint', editable: true},
+            {id: 'password', title: 'Password', l10nTitle: 'password_hint', editable: true},
         ];
 
         dataFields.forEach(function (field) {
@@ -48,12 +48,20 @@ class User {
             let fieldValueContent = document.createElement('span');
             if (userData[field.id]) fieldValueContent.innerHTML = userData[field.id];
 
+            fieldValueNode.appendChild(fieldValueContent);
+
             let fieldValueChange = document.createElement('a');
 
-            fieldValueChange.style.cursor = 'pointer';
+            if (field.editable) {
 
-            if (field.id === 'password') fieldValueChange.addEventListener('click', User.showChangePassword);
-            if (field.id === 'email') fieldValueChange.addEventListener('click', User.showChangeEmail);
+                fieldValueChange.style.cursor = 'pointer';
+
+                if (field.id === 'password') fieldValueChange.addEventListener('click', User.showChangePassword);
+                if (field.id === 'email') fieldValueChange.addEventListener('click', User.showChangeEmail);
+            } else {
+                fieldValueChange.style.color = 'transparent';
+                fieldValueChange.style.userSelect = 'none';
+            }
 
             let changeTitle = 'Change';
             fieldValueChange.dataset.l10nContent = 'change';
@@ -64,8 +72,8 @@ class User {
             }
             fieldValueChange.innerHTML = changeTitle;
 
-            fieldValueNode.appendChild(fieldValueContent);
             fieldValueNode.appendChild(fieldValueChange);
+
 
             fieldNode.appendChild(fieldTitleNode);
             fieldNode.appendChild(fieldValueNode);
@@ -111,6 +119,7 @@ class User {
             if (!result.status || result.status !== 'ok') return alert(result.msg ? result.msg : `Error code: ${result.code}`);
             if (result.data) localStorage.setItem('betHistory', JSON.stringify(result.data));
             User.genBetHistoryList(result.data);
+            User.notifyAboutUnclarified(result.data);
         });
         return false;
     }
@@ -133,15 +142,29 @@ class User {
             leftItemSection.appendChild(itemOrder);
             let rightItemSection = document.createElement('ul');
 
+            let statusField = localisation.getField(`status_${item.status.toLowerCase()}`);
+            if (item.status === 'CLOSED' || item.status === 'CLEARED') {
+                statusField = '';
+                let amount = parseFloat(item.bet_amount);
+                if (amount && !isNaN(amount)) {
+                    if (amount < 0) itemSource += `<span class="red">-${item.bet_amount} ${item.bet_symbol}</span>`;
+                    else itemSource += `<span class="green">+${item.bet_amount} ${item.bet_symbol}</span>`;
+                } else statusField = localisation.getField(`status_${item.status.toLowerCase()}`);
+            }
+
             rightItemSection.innerHTML += `<li><span>${item.base_symbol}<span class="transparent">${splitDate(item.dt_inserted)[0]} <span data-l10n-content="at"> ${localisation.getField('at')} </span> ${splitDate(item.dt_inserted)[1]}</span></span></li>`;
             rightItemSection.innerHTML += `<li><span data-l10n-content="strategy">${localisation.getField('strategy')}</span>${item.strategy === 'RISE' ? `<span class="rise" data-l10n-content="strategy_rise">${localisation.getField('strategy_rise')}</span>` : `<span class="fall" data-l10n-content="strategy_fall">${localisation.getField('strategy_fall')}</span>`}</li>`;
             rightItemSection.innerHTML += `<li><span data-l10n-content="bet_amount_and_type">${localisation.getField('bet_amount_and_type')}</span><span>${item.bet_amount} ${item.bet_symbol}</span></li>`;
             rightItemSection.innerHTML += `<li><span data-l10n-content="bet_actuality">${localisation.getField('bet_actuality')}</span><span>${item.term_days} дней</span></li>`;
-            rightItemSection.innerHTML += `<li><span data-l10n-content="result">${localisation.getField('result')}</span><span class="green">+${item.bet_amount} ${item.bet_symbol}</span></li>`;
+            rightItemSection.innerHTML += `<li><span data-l10n-content="status">${localisation.getField('status')}</span>${statusField}</li>`;
 
             itemNode.appendChild(leftItemSection);
             itemNode.appendChild(rightItemSection);
             betHistoryListNode.appendChild(itemNode);
+            if (item.status === 'UNCLARIFIED') {
+                itemNode.style.cursor = 'pointer';
+                itemNode.addEventListener('click', () => User.showBetClarify(item.id))
+            }
         }, this);
         else betHistoryListNode.innerHTML = 'Loading ...';
         return betHistoryListNode;
@@ -157,7 +180,7 @@ class User {
             {id: 'strategy', l10nTitle: 'strategy'},
             {id: 'bet_amount', l10nTitle: 'bet_amount_and_type'},
             {id: 'term_days', l10nTitle: 'time'},
-            {id: 'result_amount', l10nTitle: 'result'}
+            {id: 'result_amount', l10nTitle: 'status'}
         ];
         let tableSource = `<li>`;
         fields.forEach(function (field) {
@@ -193,7 +216,7 @@ class User {
                     case 'result_amount':
                         let amount = parseFloat(item[field.id]);
                         if (!amount || isNaN(amount)) {
-                            itemSource += `<div></div>`;
+                            itemSource += `<div>${localisation.getField(`status_${item.status.toLowerCase()}`)}</div>`;
                             break;
                         }
                         if (amount < 0) itemSource += `<div class="red">-${amount} ${item.bet_symbol}</div>`;
@@ -208,6 +231,11 @@ class User {
             itemNode.innerHTML = itemSource;
 
             betHistoryTableSectionNode.appendChild(itemNode);
+
+            if (item.status === 'UNCLARIFIED') {
+                itemNode.style.cursor = 'pointer';
+                itemNode.addEventListener('click', () => User.showBetClarify(item.id))
+            }
         }, this);
         else betHistoryTableSectionNode.innerHTML = 'Loading ...';
         return betHistoryTableNode;
@@ -216,7 +244,7 @@ class User {
     static genBetForm(tagName = 'form') {
         let formNode = document.createElement(tagName);
         formNode.className = 'bet-form';
-        formNode.innerHTML = `<div class="horizontal">
+        formNode.innerHTML = `<div class="horizontal" onsubmit="return false;">
             <div class="select-wrapper narrow">
                 <label for="coin" data-l10n-content="selected_coin">${localisation.getField('selected_coin')}</label>
                 <select id="coin" name="base_symbol" required></select>
@@ -224,7 +252,7 @@ class User {
             <div class="time">
                 <label for="time" data-l10n-content="bet_actuality">${localisation.getField('bet_actuality')}</label>
                 <button id="timeFall" class="change-time" type="button">-</button>
-                <input id="time" value="1" min="1" name="term_days" type="number" required>
+                <input id="time" value="1" min="1" max="30" step="1" name="term_days" type="number" required>
                 <button id="timeRise" class="change-time" type="button">+</button>
             </div>
         </div>
@@ -236,8 +264,8 @@ class User {
         </div>
         <div class="select-wrapper amount">
             <label for="amount" data-l10n-content="bet_amount">${localisation.getField('bet_amount')}</label>
-            <input id="amount" name="bet_amount" value="" data-input-mask="true" type="text" placeholder="100" required>
-            <select title="Тип ставки" id="amount-type" name="bet_symbol" required></select>
+            <input id="amount" name="bet_amount" value="" data-input-mask="true" type="number" placeholder="${Math.PI}" step="0.00000001" required>
+            <select title="Тип ставки" id="amount-type" name="bet_symbol" required onchange="User.updateWallet(this);"></select>
         </div>
         <!--<div class="select-wrapper">
             <label for="returnProfit" data-l10n-content="return_profit_to">${localisation.getField('return_profit_to')}</label>
@@ -254,11 +282,11 @@ class User {
             <label for="agreement" data-l10n-content="i_agree">${localisation.getField('i_agree')}</label>
         </div>
         <div class="submit">
-            <button class="green" type="submit" data-l10n-content="make_bet" onclick="User.processBet(this.form);return false;">${localisation.getField('make_bet')}</button>
+            <button class="green" type="submit" data-l10n-content="make_bet" onclick="return User.processBet(this.form);">${localisation.getField('make_bet')}</button>
         </div>`;
         delete window.selections;
         checkTimeValue(formNode);
-        formNode.querySelector('#time').addEventListener('change', checkTimeValue);
+        formNode.querySelector('#time').addEventListener('change', e => checkTimeValue());
         formNode.querySelector('#timeFall').addEventListener('click', function () {
             let value = parseInt(formNode.querySelector('#time').value);
             formNode.querySelector('#time').value = --value;
@@ -269,12 +297,12 @@ class User {
             formNode.querySelector('#time').value = ++value;
             checkTimeValue();
         });
-        formNode.querySelectorAll('[data-input-mask]').forEach(function (node) {
+        /*formNode.querySelectorAll('[data-input-mask]').forEach(function (node) {
             node.addEventListener('keypress', mask);
             node.addEventListener('change', mask);
             node.addEventListener('blur', mask);
             mask(false, node);
-        });
+        });*/
         formNode.querySelector(`#coin`).addEventListener(`change`, User.changeBetCoin);
         return formNode;
     }
@@ -294,8 +322,12 @@ class User {
         rebuildSelects();
     }
 
-    static createBet(form) {
-        if (!form.checkValidity()) return false;
+    static createBet(form, event) {
+        if (!form.checkValidity()) return true;
+        event.preventDefault();
+        event.stopPropagation();
+        if (!confirm('Пожалуйста, учитывайте minig free при отправке транзакции. Т.е. данная сумма должна прийти в указанный кошелек целиком')) return true;
+        form.querySelector(`#user_wallet`).value = document.querySelector(`#user-wallet`).value;
         let data = new FormData(form);
         data.set('bet_amount', parseFloat(data.get('bet_amount').split(' ').join('')));
         return fetch(apiURL + 'bids/create', {
@@ -305,50 +337,77 @@ class User {
         }).then(function (response) {
             return response.json();
         }).then(function (result) {
-            if (!result.status || result.status !== 'ok') return User.showFormError(result.msg ? result.msg : `Error code: ${result.code}`);
+            if (!result.status || result.status !== 'ok') return User.errorWorker(result);
             let betWalletFormNode = document.querySelector(`#bet-wallet-form`);
             betWalletFormNode.parentNode.removeChild(betWalletFormNode);
+            User.pathWalletToProfileData(form);
+            User.pathBetHistory(result.data);
             User.showBetClarify(result.data.id);
             return false;
         });
     }
 
-    static showFormError(message) {
-        alert(message);
-        return false;
+    static pathWalletToProfileData(form) {
+        let data = User.getUserData();
+        let wallet = form.querySelector(`#user_wallet`).value;
+        let coin = form.querySelector(`#amount-type`).value;
+        if (!data.wallets) data.wallets = {};
+        data.wallets[coin] = wallet;
+        form = new FormData();
+        form.append('wallets', serialize(data.wallets));
+        return fetch(apiURL + 'users/update', {
+            method: 'POST',
+            body: form,
+            credentials: "same-origin"
+        }).then(function (response) {
+            return response.json();
+        }).then(function (result) {
+            if (!result.status || result.status !== 'ok') return User.errorWorker(result);
+            localStorage.setItem('userData', JSON.stringify(result.data));
+            // let betWalletFormNode = document.querySelector(`#bet-wallet-form`);
+            // betWalletFormNode.parentNode.removeChild(betWalletFormNode);
+            // User.pathWalletToProfileData(form);
+            // User.pathBetHistory(result.data);
+            // User.showBetClarify(result.data.id);
+            return true;
+        });
     }
 
     static changeBetCoin(event) {
         let data = panel.getCryptoData();
         if (!data) return false;
         let selectedCoin = document.querySelector(`#coin`).value;
+        User.selectTableCoin(selectedCoin);
         let walletNode = document.querySelector(`#wallet`);
         let returnNode = document.querySelector(`#return`);
         let options = [];
         for (let i in data) {
             if (data[i].symbol !== selectedCoin) continue;
             options.push({title: data[i].name, value: data[i].symbol, l10nTitle: false});
-            // amountTypeNode.innerHTML = `<option value="${data[i].symbol}">${data[i].name}</option><option value="DSDT">DSDT</option>`;
+            // amountTypeNode.innerHTML = `<option value="${data[i].symbol}">${data[i].name}</option><option value="USDT">USDT</option>`;
             walletNode.value = data[i].wallet;
             returnNode.innerHTML = data[i].name;
             break;
         }
-        options.push({title: `DSDT`, value: `DSDT`, l10nTitle: false});
+        options.push({title: `USDT`, value: `USDT`, l10nTitle: false});
         rebuildSelects(`amount-type`, options);
     }
 
     static processBet(form) {
-        if (!form.checkValidity()) return false;
+        if (!form.checkValidity()) return true;
         return User.showBetWalletModal(form);
     }
 
     static showBetWalletModal(form) {
+        let userData = User.getUserData();
+        let selectedCoin = form.querySelector(`#coin`).value;
+        let savedWallet = userData.wallets[selectedCoin] ? userData.wallets[selectedCoin] : '';
         let modalNode = document.createElement('div');
         modalNode.id = 'bet-wallet-form';
         modalNode.className = 'modal';
-        modalNode.innerHTML = `<form class="content">
+        modalNode.innerHTML = `<form class="content" onsubmit="return false">
         <h3 class="title">Адрес кошелька</h3>
-        <input class="icon" id="user-wallet" name="wallet" value="" placeholder="Адрес кошелька" type="text">
+        <input class="icon wallet" id="user-wallet" name="wallet" value="${savedWallet}" placeholder="Адрес кошелька" type="text" required>
         <button type="submit">Продолжить</button>
         <a class="close" href="#">Закрыть</a>
     </form>
@@ -356,13 +415,18 @@ class User {
         document.body.appendChild(modalNode);
         location.href = '#' + modalNode.id;
         modalNode.querySelector(`button[type=submit]`).addEventListener(`click`, function (event) {
-            event.preventDefault();
-            event.stopPropagation();
-            if (confirm('Пожалуйста, учитывайте minig free при отправке транзакции. Т.е. данная сумма должна прийти в указанный кошелек целиком')) {
-                form.querySelector(`#user_wallet`).value = document.querySelector(`#user-wallet`).value;
-                User.createBet(form);
-            } else return false;
+            if (!this.checkValidity()) return true;
+            return User.createBet(form, event);
         });
+        return false;
+    }
+
+    static pathBetHistory(betItemData = false) {
+        let data = JSON.parse(localStorage.getItem('betHistory'));
+        if (!data) return true;
+        data.push(betItemData);
+        localStorage.setItem('betHistory', JSON.stringify(data));
+        return true;
     }
 
     static showBetClarify(id) {
@@ -376,25 +440,25 @@ class User {
         let modalNode = document.createElement('div');
         modalNode.id = 'bet-wallet-clarify';
         modalNode.className = 'modal';
-        modalNode.innerHTML = `<form class="content">
-        <h3 class="title">ID транзакции</h3>
+        modalNode.innerHTML = `<form class="content" onsubmit="return false;">
+        <h3 class="title" data-l10n-content="transaction_id">${localisation.getField(`transaction_id`)}</h3>
         <input id="bet-id" name="bet_id" value="${id}" type="hidden">
-        <input class="icon" id="transaction-id" name="external_txid" value="" placeholder="ID транзакции" type="text">
-        <button type="submit">Продолжить</button>
+        <input class="icon" id="transaction-id" name="external_txid" value="" placeholder="${localisation.getField(`change_id_title`)}" type="text" data-l10n-placeholder="change_id_title">
+        <button type="submit" data-l10n-content="continue">${localisation.getField(`continue`)}</button>
         <a class="close" href="#">Закрыть</a>
     </form>
     <a class="backdrop-close" href="#">Закрыть</a>`;
         document.body.appendChild(modalNode);
         location.href = '#' + modalNode.id;
         modalNode.querySelector(`button[type=submit]`).addEventListener(`click`, function (event) {
-            event.preventDefault();
-            event.stopPropagation();
-            User.setBetClarify(event.target.form);
+            return User.setBetClarify(event.target.form, event);
         });
     }
 
-    static setBetClarify(form) {
-        if (!form.checkValidity()) return false;
+    static setBetClarify(form, event) {
+        if (!form.checkValidity()) return true;
+        event.preventDefault();
+        event.stopPropagation();
         let data = new FormData(form);
         return fetch(apiURL + 'bids/clarify', {
             method: 'POST',
@@ -403,12 +467,12 @@ class User {
         }).then(function (response) {
             return response.json();
         }).then(function (result) {
-            if (!result.status || result.status !== 'ok') return User.showFormError(result.msg ? result.msg : `Error code: ${result.code}`);
+            if (!result.status || result.status !== 'ok') return User.errorWorker(result);
             let betWalletFormNode = document.querySelector(`#bet-wallet-clarify`);
             betWalletFormNode.parentNode.removeChild(betWalletFormNode);
             // User.showBetClarify(result.data.id);
             alert(`Ставка принята, желаем удачи!`);
-            return false;
+            return true;
         });
     }
 
@@ -419,9 +483,9 @@ class User {
         modalNode.innerHTML = `<form class="content">
         <h3 class="title" data-l10n-content="change_password_title">${localisation.getField(`change_password_title`)}</h3>
         <input class="icon password" id="newPassword" name="user_pass" value="" placeholder="${localisation.getField(`new_password`)}"
-               type="password" data-l10n-placeholder="new_password">
+               type="password" data-l10n-placeholder="new_password" required>
         <input class="icon password" id="repeatPassword" name="repeatPassword" value="" placeholder="${localisation.getField(`repeat_password`)}"
-               type="password" data-l10n-placeholder="repeat_password">
+               type="password" data-l10n-placeholder="repeat_password" required>
         <button type="submit" data-l10n-content="change_password">${localisation.getField(`change_password`)}</button>
         <a class="close" href="#">&nbsp;</a>
     </form>
@@ -429,9 +493,7 @@ class User {
         document.body.appendChild(modalNode);
         location.href = '#' + modalNode.id;
         modalNode.querySelector(`button[type=submit]`).addEventListener(`click`, function (event) {
-            event.preventDefault();
-            event.stopPropagation();
-            User.changePassword(event.target.form);
+            return User.changePassword(event.target.form, event);
         });
     }
 
@@ -439,9 +501,9 @@ class User {
         let modalNode = document.createElement('div');
         modalNode.id = 'change-email-form';
         modalNode.className = 'modal';
-        modalNode.innerHTML = `<form class="content">
+        modalNode.innerHTML = `<form class="content" onsubmit="return false;">
         <h3 class="title" data-l10n-content="change_email_title">${localisation.getField('change_email_title')}</h3>
-        <input class="icon" id="email" name="email" value="" placeholder="Email" type="text">
+        <input class="icon" id="email" name="email" value="" placeholder="Email" type="email" required>
         <button type="submit" data-l10n-content="save">${localisation.getField('save')}</button>
         <a class="close" href="#" data-l10n-content="close">${localisation.getField('close')}</a>
     </form>
@@ -449,15 +511,13 @@ class User {
         document.body.appendChild(modalNode);
         location.href = '#' + modalNode.id;
         modalNode.querySelector(`button[type=submit]`).addEventListener(`click`, function (event) {
-            event.preventDefault();
-            event.stopPropagation();
-            User.changeEmail(event.target.form);
+            return User.changeEmail(event.target.form, event);
         });
     }
 
     static selectBaseCoin(node) {
-        document.querySelectorAll(`.coins-info.table .scroll-section li`).forEach(node => node.classList.remove('active'));
-        node.classList.add('active');
+        // document.querySelectorAll(`.coins-info.table .scroll-section li`).forEach(node => node.classList.remove('active'));
+        // node.classList.add('active');
         let data = panel.getCryptoData();
         let selectedCoin = node.dataset.coinSymbol;
         let targetCoinData = false;
@@ -470,8 +530,20 @@ class User {
         User.changeBetCoin();
     }
 
+    static selectTableCoin(symbol = false) {
+        document.querySelectorAll(`.coins-info.table .scroll-section li`).forEach(node => node.classList.remove('active'));
+        document.querySelector(`[data-coin-symbol="${symbol}"]`).classList.add('active');
+    }
+
     static changePassword(form) {
-        if (!form.checkValidity()) return false;
+        if (!form.checkValidity()) return true;
+        event.preventDefault();
+        event.stopPropagation();
+        if (form.querySelector(`#newPassword`).value !== form.querySelector(`#repeatPassword`).value) {
+            form.querySelector(`#repeatPassword`).setCustomValidity('Пароли не совпадают');
+            simulateClick(form.querySelector(`button[type="submit"]`));
+            return true;
+        }
         let data = new FormData(form);
         return fetch(apiURL + 'users/update', {
             method: 'POST',
@@ -480,7 +552,7 @@ class User {
         }).then(function (response) {
             return response.json();
         }).then(function (result) {
-            if (!result.status || result.status !== 'ok') return User.showFormError(result.msg ? result.msg : `Error code: ${result.code}`);
+            if (!result.status || result.status !== 'ok') return User.errorWorker(result);
             let betWalletFormNode = document.querySelector(`#change-password-form`);
             betWalletFormNode.parentNode.removeChild(betWalletFormNode);
             // User.showBetClarify(result.data.id);
@@ -488,8 +560,10 @@ class User {
         });
     }
 
-    static changeEmail(form) {
-        if (!form.checkValidity()) return false;
+    static changeEmail(form, event) {
+        if (!form.checkValidity()) return true;
+        event.preventDefault();
+        event.stopPropagation();
         let data = new FormData(form);
         return fetch(apiURL + 'users/update', {
             method: 'POST',
@@ -498,14 +572,147 @@ class User {
         }).then(function (response) {
             return response.json();
         }).then(function (result) {
-            if (!result.status || result.status !== 'ok') return User.showFormError(result.msg ? result.msg : `Error code: ${result.code}`);
+            if (!result.status || result.status !== 'ok') return User.errorWorker(result);
             localStorage.setItem('userData', JSON.stringify(result.data));
             let betWalletFormNode = document.querySelector(`#change-email-form`);
             betWalletFormNode.parentNode.removeChild(betWalletFormNode);
             // User.showBetClarify(result.data.id);
-            panel.renderPage();
-            return false;
+            panel.renderPage('profile');
+            return true;
         });
+    }
+
+    static updateWallet(node) {
+        let data = panel.getCryptoData();
+        if (!data) return true;
+        let walletAddresse = false;
+        if (node.value === 'USDT') {
+            walletAddresse = '1FsB42JeN43BVzKCcQc76hjM8Akyj467dq';
+        } else {
+            for (let i in data) {
+                if (data[i].symbol !== node.value) continue;
+                walletAddresse = data[i].wallet;
+                break;
+            }
+        }
+
+        document.querySelector(`#wallet`).value = walletAddresse;
+
+    }
+
+    static notifyAboutUnclarified(data = false) {
+        if (!data) return false;
+        let count = 0;
+        data.forEach(bet => bet.status === 'UNCLARIFIED' ? count++ : count);
+        if (count === 0) return true;
+        let linkNode = document.querySelector(`.icon.profile`);
+        let indicatorNode = linkNode.querySelector('span');
+        if (!indicatorNode) {
+            indicatorNode = document.createElement('span');
+            linkNode.appendChild(indicatorNode);
+        }
+        indicatorNode.innerHTML = count;
+    }
+
+    static errorWorker(responseData) {
+        if (!responseData || !responseData.code) return true;
+        if (window.panel && (responseData.code === '400.8' || responseData.code === '401.1')) return User.logout();
+        let errors = {
+            '400.6': [{
+                l10nMessages: {en: 'empty patch dict', ru: 'Запрос не содержит данных для изменения'},
+                node: `#time`
+            }],
+            '400.9': [{
+                l10nMessages: {en: 'term_days is empty', ru: 'не указан срок ставки'},
+                node: `#time`,
+                location: '#'
+            }],
+            '400.10': [{
+                l10nMessages: {en: 'term_days is not integer', ru: 'срок ставки не является целым числом'},
+                node: `#time`, location: '#'
+            }],
+            '400.11': [{
+                l10nMessages: {
+                    en: 'term_days is not from valid range [1,30]',
+                    ru: 'срок ставки находится за пределами диапазона [1,30]'
+                }, node: `#time`, location: '#'
+            }],
+            '400.12': [{l10nMessages: {en: 'empty symbol', ru: 'Монета не указана'}, node: `#coin`, location: '#'}],
+            '400.13': [{
+                l10nMessages: {en: 'invalid symbol', ru: 'Указана неверная монета'},
+                node: `#coin`,
+                location: '#'
+            }],
+            '400.14': [{l10nMessages: {en: 'bet_amount is empty', ru: 'Ставка пуста'}, node: `#amount`, location: '#'}],
+            '400.15': [{
+                l10nMessages: {
+                    en: 'bet_amount is not float',
+                    ru: 'Ставка не является числом с плавающей запятой'
+                }, node: `#amount`, location: '#'
+            }],
+            '400.16': [{l10nMessages: {en: 'bet_symbol is empty', ru: 'Монета ставки пуста'}, node: `#amount-type`}],
+            '400.17': [{
+                l10nMessages: {en: 'base_symbol is empty', ru: 'Монета не выбрана'},
+                node: `#coin`,
+                location: '#'
+            }],
+            '400.18': [{
+                l10nMessages: {en: 'quote_symbol is empty', ru: 'Монета не выбрана'},
+                node: `#coin`,
+                location: '#'
+            }],
+            '400.19': [{
+                l10nMessages: {en: 'bet_amount is invalid', ru: 'Неверная ставка'},
+                node: `#amount`,
+                location: '#'
+            }],
+            '400.20': [{l10nMessages: {en: 'wallet is empty', ru: 'Кошелек не указан'}, node: `#user-wallet`}],
+            '400.21': [{
+                l10nMessages: {en: 'wallet is not alphanumeric', ru: 'Кошелек не является буквенно-числовым'},
+                node: `#user-wallet`
+            }],
+            '400.22': [{
+                l10nMessages: {en: 'strategy is invalid', ru: 'Стратегия не указана'},
+                node: `#rise`,
+                location: '#'
+            }],
+            '400.23': [{
+                l10nMessages: {en: 'bet amount is too small', ru: 'Ставка слишком мала'},
+                node: `#amount`,
+                location: '#'
+            }],
+            '400.24': [{l10nMessages: {en: 'bet_id is invalid', ru: 'Неверный ID ставки'}, node: `#user-wallet`}],
+            '400.25': [{l10nMessages: {en: 'bet not found', ru: 'Ставка не найдена'}, node: `#user-wallet`}],
+            '400.26': [{
+                l10nMessages: {en: 'external_txid is empty', ru: 'ID транзакции пуст'},
+                node: `#transaction-id`
+            }],
+            '400.27': [{
+                l10nMessages: {en: 'external_txid already eq.set', ru: 'ID транзакции уже использован'},
+                node: `#transaction-id`
+            }],
+            '400.28': [{
+                l10nMessages: {en: 'external_txid duplicate', ru: 'ID транакции дублируется'},
+                node: `#transaction-id`
+            }],
+            '400.29': [{
+                l10nMessages: {en: 'payment already set', ru: 'Платеж уже установлен'},
+                node: `#transaction-id`
+            }],
+            '400.30': [{
+                l10nMessages: {en: 'external_txid already set', ru: 'ID транакции уже установлен'},
+                node: `#transaction-id`
+            }],
+            '400.31': [{
+                l10nMessages: {en: 'external_txid already used', ru: 'ID транакции уже используется'},
+                node: `#transaction-id`
+            }],
+        };
+        if (!errors[responseData.code]) return true;
+        let error = errors[responseData.code];
+        error.forEach(error => showFormError(error.l10nMessages[localisation.getSelectedLanguage()], document.querySelector(error.node)));
+        error.forEach(error => error.location ? location.href = error.location : false);
+        return true;
     }
 
 }

@@ -26,15 +26,15 @@
                 <form>
                     <span data-l10n-content="login_hint">&nbsp;</span>
                     <input placeholder="&nbsp;" class="icon" name="user_name" id="login" type="text"
-                           data-l10n-placeholder="login_hint">
+                           data-l10n-placeholder="login_hint" required>
                     <span data-l10n-content="password_hint">&nbsp;</span>
                     <input placeholder="&nbsp;" class="icon" name="user_pass" id="password" type="password"
-                           data-l10n-placeholder="password_hint">
+                           data-l10n-placeholder="password_hint" required>
                     <span data-l10n-content="email_hint">&nbsp;</span>
                     <input placeholder="&nbsp;" class="icon" name="email" id="email" type="email"
-                           data-l10n-placeholder="email_hint">
+                           data-l10n-placeholder="email_hint" required>
                     <button class="green" type="submit" data-l10n-content="register_button_text"
-                            onclick="User.reg(this.form);return false;">&nbsp;
+                            onclick="return User.reg(this.form);">&nbsp;
                     </button>
                 </form>
             </div>
