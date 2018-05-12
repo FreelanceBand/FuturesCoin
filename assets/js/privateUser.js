@@ -278,7 +278,7 @@ class User {
             <input id="wallet" name="payment-wallet" value="" type="text" placeholder="Выберите монету ставки" disabled>
         </div>
         <div class="horizontal">
-            <input id="agreement" name="agreement" type="checkbox" required>
+            <input id="agreement" name="agreement" type="checkbox" required checked>
             <label for="agreement" data-l10n-content="i_agree">${localisation.getField('i_agree')}</label>
         </div>
         <div class="submit">
