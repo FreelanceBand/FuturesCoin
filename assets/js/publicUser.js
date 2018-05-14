@@ -59,6 +59,10 @@ class User {
                 l10nMessages: {en: 'User with same name does not exists', ru: 'Пользователь не найден'},
                 node: `#login`
             }],
+            '409.2': [{
+                l10nMessages: {en: 'Email already taken', ru: 'Email уже используется'},
+                node: `#email`
+            }],
         };
         if (!errors[responseData.code]) return false;
         let error = errors[responseData.code];

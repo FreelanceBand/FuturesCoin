@@ -165,29 +165,12 @@ class Panel {
         if (modalId === 'about') modalNode.classList.add('full-screen');
         let modalContentNode = document.createElement('div');
         modalContentNode.className = 'content';
-        modalContentNode.innerHTML = modalSource + `<
-    a
-    class = "close"
-    href = "#"
-    data
--
-    l10n
--
-    content = "close" > ${localisation.getField('close')} < /a>`;
-        modalNode
-            .appendChild(modalContentNode);
+        modalContentNode.innerHTML = modalSource + `<a class="close" href="#" data-l10n-content="close" > ${localisation.getField('close')} </a>`;
+        modalNode.appendChild(modalContentNode);
 
-        document
-            .body
-            .appendChild(modalNode);
+        document.body.appendChild(modalNode);
 
-        localisation
-            .replaceStrings(
-                false
-                ,
-                modalNode
-            )
-        ;
+        localisation.replaceStrings(false, modalNode);
     }
 
     genCryptoInfo(tagName = 'div', data = false) {

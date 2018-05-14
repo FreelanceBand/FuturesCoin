@@ -908,6 +908,11 @@ body.panel .bet-form .choices__inner .choices__item.choices__item--selectable[ar
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
+    height: 44px;
+}
+
+body.panel .bet-form .amount .choices__inner .choices__item.choices__item--selectable[aria-selected="true"] {
+    height: 24px;
 }
 
 body.panel .bet-form .custom-select label:hover {
