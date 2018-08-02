@@ -241,12 +241,18 @@ body.panel > header nav a {
 }
 
 body.panel > header nav a.active {
-    background: -moz-linear-gradient(top, rgba(5, 142, 255, 0) 0%, rgba(5, 142, 255, 0.2) 100%);
-    background: -webkit-linear-gradient(top, rgba(5, 142, 255, 0) 0%, rgba(5, 142, 255, 0.2) 100%);
-    background: linear-gradient(to bottom, rgba(5, 142, 255, 0) 0%, rgba(5, 142, 255, 0.2) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00058eff', endColorstr='#33058eff', GradientType=0);
-    border-bottom: 4px solid #0084FF;
-    --calculated-height: calc(var(--height) - 8px);
+    /*    background: -moz-linear-gradient(top, rgba(5, 142, 255, 0) 0%, rgba(5, 142, 255, 0.2) 100%);
+        background: -webkit-linear-gradient(top, rgba(5, 142, 255, 0) 0%, rgba(5, 142, 255, 0.2) 100%);
+        background: linear-gradient(to bottom, rgba(5, 142, 255, 0) 0%, rgba(5, 142, 255, 0.2) 100%);*/
+    /*    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00058eff', endColorstr='#33058eff', GradientType=0);
+        border-bottom: 4px solid #0084FF;
+        --calculated-height: calc(var(--height) - 8px);*/
+    border-bottom: 4px solid #0087FF;
+    background: #00182D;
+}
+
+body.panel > header nav a:hover {
+    background: #00182D;
 }
 
 body.panel > header nav a.icon {
@@ -298,6 +304,10 @@ body.panel > header nav a.icon.logout.active:before, body.panel > header nav a.i
     background-image: url("../images/logout-icon-active.svg");
 }
 
+body.panel > header nav a > p {
+    margin: 0;
+}
+
 body.panel > header nav a > span {
     position: absolute;
     display: inline;
@@ -331,6 +341,7 @@ body.panel > main.bet {
 body.panel > main > section {
     display: flex;
     flex-wrap: wrap;
+    width: 675px;
 }
 
 body.panel > main li {
@@ -373,7 +384,7 @@ body.panel .profile-data {
     list-style: none;
     padding: 0;
     margin: 0 0 20px 0;
-    width: 445px;
+    width: 485px;
 }
 
 body.panel .profile-data > li {
@@ -451,6 +462,10 @@ body.panel .bet-history.detailed.grid > li > ul > li span {
     display: inline-block;
 }
 
+body.panel .bet-history.detailed.grid > li > ul > li span.non_confirm {
+    color: red;
+}
+
 body.panel .bet-history.detailed.grid > li > ul > li > *:first-child {
     min-width: 92px;
 }
@@ -515,27 +530,41 @@ body.panel .bet-history .red, body.panel .coins-info .red {
     color: #ff1a00;
 }
 
+body.panel .bet-history .green > span, body.panel .coins-info .green > span,
+body.panel .bet-history .red > span, body.panel .coins-info .red > span {
+    color: white;
+}
+    
 body.panel .bet-history.table {
     list-style: none;
     padding: 0;
     margin: 0 0 20px 0;
     /*width: 620px;*/
-    width: 640px;
+    width: 675px;
 }
 
 body.panel .bet-history.table li {
     line-height: 16px;
     padding: 12px 20px;
     justify-content: flex-start;
+    border-bottom: 1px solid transparent;
 }
 
 body.panel .bet-history.table .scroll-section li:nth-child(odd) {
     background-color: var(--background-color);
 }
 
+body.panel .bet-history.table .scroll-section li > div.non_confirm {
+    color: red;
+}
+
 body.panel .bet-history.table li > * {
     display: inline-block;
     min-width: 95px;
+}
+
+body.panel .bet-history.table li > div:first-child {
+    width: 127px;
 }
 
 body.panel .bet-history.table li > * img {
@@ -550,6 +579,7 @@ body.panel .coins-info.table {
     padding: 0;
     width: calc(100% - 385px);
     /*margin-bottom: 100px;*/
+    position: relative;
 }
 
 body.panel .coins-info.table .scroll-section {
@@ -568,6 +598,7 @@ body.panel .coins-info.table .scroll-section li {
     background-color: var(--background-color);
     margin-top: 5px;
     cursor: pointer;
+    border: 1px solid transparent;
 }
 
 body.panel .coins-info.table > li {
@@ -578,6 +609,12 @@ body.panel .coins-info.table > li {
 
 body.panel .coins-info.table .scroll-section li.active {
     background: linear-gradient(to right, #0084ff, rgba(0, 132, 255, 0)), linear-gradient(#001e37, #001e37);
+    border-right: 1px solid #001e37;
+}
+
+body.panel .coins-info.table .scroll-section li:not(.active):hover {
+    background: #00182D;
+    border: 1px solid #0087FF;
 }
 
 body.panel .coins-info.table li > * {
@@ -1213,6 +1250,18 @@ body > #about.modal > .content blockquote > *:first-child {
 
 body > #about.modal > .content blockquote > *:last-child {
     margin-bottom: 0;
+}
+
+.red_count_bet_unclarified {
+    background: red;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    /*padding: 5px 8px;*/
+    font-size: 22px;
+    /*left: 97%;*/
+    position: absolute;
+    margin-top: -16px;
 }
 
 @media (min-width: 1280px) {

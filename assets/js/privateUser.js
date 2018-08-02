@@ -101,16 +101,15 @@ class User {
         betHistoryNode.appendChild(betHistoryTitle);
 
         // let betHistoryData = User.getBetHistoryData();
-        let betHistoryListNode = User.genBetHistoryList(User.getBetHistoryData(), {limit: 4});
+//        let betHistoryListNode = User.genBetHistoryList(User.getBetHistoryData(), {limit: 4});
         let betHistoryTableNode = User.genBetHistoryTable(User.getBetHistoryData());
-        betHistoryNode.appendChild(betHistoryListNode);
+//        betHistoryNode.appendChild(betHistoryListNode);
         betHistoryNode.appendChild(betHistoryTableNode);
         return betHistoryNode;
     }
 
     static getBetHistoryData() {
-        if (localStorage.getItem('betHistory')) return JSON.parse(localStorage.getItem('betHistory'));
-        fetch(apiURL + 'bids', {
+        fetch("http://futurescoin.pro//core/apibids.php", {
             method: 'POST',
             credentials: "same-origin"
         }).then(function (response) {
@@ -121,6 +120,7 @@ class User {
             User.genBetHistoryList(result.data);
             User.notifyAboutUnclarified(result.data);
         });
+        if (localStorage.getItem('betHistory')) return JSON.parse(localStorage.getItem('betHistory'));
         return false;
     }
 
@@ -142,6 +142,7 @@ class User {
             leftItemSection.appendChild(itemOrder);
             let rightItemSection = document.createElement('ul');
 
+            let itemSource = '';
             let statusField = localisation.getField(`status_${item.status.toLowerCase()}`);
             if (item.status === 'CLOSED' || item.status === 'CLEARED') {
                 statusField = '';
@@ -156,7 +157,7 @@ class User {
             rightItemSection.innerHTML += `<li><span data-l10n-content="strategy">${localisation.getField('strategy')}</span>${item.strategy === 'RISE' ? `<span class="rise" data-l10n-content="strategy_rise">${localisation.getField('strategy_rise')}</span>` : `<span class="fall" data-l10n-content="strategy_fall">${localisation.getField('strategy_fall')}</span>`}</li>`;
             rightItemSection.innerHTML += `<li><span data-l10n-content="bet_amount_and_type">${localisation.getField('bet_amount_and_type')}</span><span>${item.bet_amount} ${item.bet_symbol}</span></li>`;
             rightItemSection.innerHTML += `<li><span data-l10n-content="bet_actuality">${localisation.getField('bet_actuality')}</span><span>${item.term_days} дней</span></li>`;
-            rightItemSection.innerHTML += `<li><span data-l10n-content="status">${localisation.getField('status')}</span>${statusField}</li>`;
+            rightItemSection.innerHTML += `<li><span data-l10n-content="status">${localisation.getField('status')}</span><span` + (item.status.toLowerCase() == 'unclarified' ? ' class="non_confirm"' : '') + `>${statusField}</span></li>`;
 
             itemNode.appendChild(leftItemSection);
             itemNode.appendChild(rightItemSection);
@@ -180,7 +181,7 @@ class User {
             {id: 'strategy', l10nTitle: 'strategy'},
             {id: 'bet_amount', l10nTitle: 'bet_amount_and_type'},
             {id: 'term_days', l10nTitle: 'time'},
-            {id: 'result_amount', l10nTitle: 'status'}
+            {id: 'status', l10nTitle: 'status'}
         ];
         let tableSource = `<li>`;
         fields.forEach(function (field) {
@@ -198,7 +199,38 @@ class User {
             fields.forEach(function (field) {
                 switch (field.id) {
                     case 'dt_inserted':
-                        itemSource += `<div>${splitDate(item[field.id])[0]}</div>`;
+                        var date_time = item[field.id].split("T");
+                        var dt = date_time[1]
+                        if (dt) {
+                            var time = date_time[1].split(".");
+                            time = time[0];
+                            time = time.split(":");
+                            time = time[0] + ":" + time[1]
+                        }
+                        else {
+                            date_time = item[field.id].split(" ");
+                            var time = date_time[1].split(".");
+                            time = time[0];
+                            time = time.split(":");
+                            time = time[0] + ":" + time[1]
+                        }
+                        //alert(d[0]);
+                        //var date_time = splitDate(item[field.id]);
+                        //if (date_time[0] && !isNaN(date_time[0])){
+                        //var date = splitDateMinus(date_time[0]);
+                        //}
+                        //else{
+
+                        //	date = "unknown";
+                        //}
+                        //if (date_time[1] && !isNaN(date_time[1])){
+                        //var time = splitTime(date_time[1]);
+                        //}
+                        //else{
+                        //	time = "unknown";
+                        //}
+
+                        itemSource += `<div>${date_time[0] + " " + time}</div>`;
                         break;
                     case 'base_symbol':
                         itemSource += `<div><img src="/assets/images/coins/${item[field.id].toLowerCase()}.png"><span>${item[field.id]}</span></div>`;
@@ -211,16 +243,16 @@ class User {
                         itemSource += `<div>${item[field.id] ? item[field.id] : ''} ${item.bet_symbol}</div>`;
                         break;
                     case 'term_days':
-                        itemSource += `<div>${item[field.id]} дней</div>`;
+                        itemSource += `<div>${item[field.id]}<span data-l10n-content="days">${localisation.getField(`days`)}</span></div>`;
                         break;
-                    case 'result_amount':
+                    case 'status':
                         let amount = parseFloat(item[field.id]);
                         if (!amount || isNaN(amount)) {
-                            itemSource += `<div>${localisation.getField(`status_${item.status.toLowerCase()}`)}</div>`;
+                            itemSource += `<div` + (item.status.toLowerCase() == 'unclarified' ? ' class="non_confirm"' : '') + ` data-l10n-content="status_${item.status.toLowerCase()}">${localisation.getField(`status_${item.status.toLowerCase()}`)}</div>`;
                             break;
                         }
-                        if (amount < 0) itemSource += `<div class="red">-${amount} ${item.bet_symbol}</div>`;
-                        else itemSource += `<div class="green">+${amount} ${item.bet_symbol}</div>`;
+                        if (amount < 0) itemSource += `<div class="red"><span data-l10n-content="loss">${localisation.getField(`loss`)}:</span> -${amount} ${item.bet_symbol}</div>`;
+                        else itemSource += `<div class="green"><span data-l10n-content="win">${localisation.getField(`win`)}:</span> +${amount} ${item.bet_symbol}</div>`;
                         break;
                     default:
                         itemSource += `<div>${item[field.id] ? item[field.id] : ''}</div>`;
@@ -266,6 +298,11 @@ class User {
             <label for="amount" data-l10n-content="bet_amount">${localisation.getField('bet_amount')}</label>
             <input id="amount" name="bet_amount" value="" data-input-mask="true" type="number" placeholder="${Math.PI}" step="0.00000001" required>
             <select title="Тип ставки" id="amount-type" name="bet_symbol" required onchange="User.updateWallet(this);"></select>
+            <p>
+                <span data-l10n-content="return_profit_to2_1">${localisation.getField('return_profit_to2_1')}</span>
+                <span class="short_course">BTC</span>
+                <span data-l10n-content="return_profit_to2_2">${localisation.getField('return_profit_to2_2')}</span>
+            </p>
         </div>
         <!--<div class="select-wrapper">
             <label for="returnProfit" data-l10n-content="return_profit_to">${localisation.getField('return_profit_to')}</label>
@@ -274,7 +311,7 @@ class User {
         <input type="hidden" name="quote_symbol" value="USDT">
         <input type="hidden" name="wallet" id="user_wallet" value="">
         <div>
-            <label for="wallet"><span data-l10n-content="return_wallet_in">${localisation.getField('return_wallet_in')}</span><span id="return">USDT</span></label>
+            <label for="wallet"><span data-l10n-content="return_wallet_in">${localisation.getField('return_wallet_in')}</span><span id="return">BTC</span></label>
             <input id="wallet" name="payment-wallet" value="" type="text" placeholder="Выберите монету ставки" disabled>
         </div>
         <div class="horizontal">
@@ -315,7 +352,15 @@ class User {
             data.forEach(function (coin) {
                 let optionNode = document.createElement('option');
                 optionNode.value = coin.symbol;
-                optionNode.innerHTML = coin.name;
+                if (optionNode.value == "BTC") {
+                    return;
+                }
+
+                var text_coin = coin.name;
+                if (coin.name.length > 11)
+                    text_coin = text_coin.substr(0, 11) + "...";
+
+                optionNode.innerHTML = text_coin;
                 node.appendChild(optionNode);
             }, this);
         }, this);
@@ -330,7 +375,7 @@ class User {
         form.querySelector(`#user_wallet`).value = document.querySelector(`#user-wallet`).value;
         let data = new FormData(form);
         data.set('bet_amount', parseFloat(data.get('bet_amount').split(' ').join('')));
-        return fetch(apiURL + 'bids/create', {
+        return fetch("http://futurescoin.pro//core/apibidscreate.php", {
             method: 'POST',
             body: data,
             credentials: "same-origin"
@@ -355,7 +400,7 @@ class User {
         data.wallets[coin] = wallet;
         form = new FormData();
         form.append('wallets', serialize(data.wallets));
-        return fetch(apiURL + 'users/update', {
+        return fetch("http://futurescoin.pro//core/apiupdate.php", {
             method: 'POST',
             body: form,
             credentials: "same-origin"
@@ -377,19 +422,30 @@ class User {
         let data = panel.getCryptoData();
         if (!data) return false;
         let selectedCoin = document.querySelector(`#coin`).value;
+        //document.querySelector(`.short_course`).innerHTML = selectedCoin;
         User.selectTableCoin(selectedCoin);
         let walletNode = document.querySelector(`#wallet`);
+        walletNode.value = "123456";
         let returnNode = document.querySelector(`#return`);
         let options = [];
+        walletNode.value = data[0].wallet;
         for (let i in data) {
-            if (data[i].symbol !== selectedCoin) continue;
-            options.push({title: data[i].name, value: data[i].symbol, l10nTitle: false});
+            //if (data[i].symbol !== selectedCoin) continue;
+            var text_coin = data[i].name;
+            if (data[i].name.length > 9)
+                text_coin = text_coin.substr(0, 9) + "...";
+            if (text_coin == 'BTC') {
+                if (data[i].wallet) {
+                    walletNode.value = data[i].wallet;
+                }
+            }
+            //options.push({title: text_coin, value: data[i].symbol, l10nTitle: false});
             // amountTypeNode.innerHTML = `<option value="${data[i].symbol}">${data[i].name}</option><option value="USDT">USDT</option>`;
-            walletNode.value = data[i].wallet;
-            returnNode.innerHTML = data[i].name;
-            break;
+            //walletNode.value = data[i].wallet;
+            //returnNode.innerHTML = data[i].name;
+            //break;
         }
-        options.push({title: `USDT`, value: `USDT`, l10nTitle: false});
+        options.push({title: `BTC`, value: `BTC`, l10nTitle: false});
         rebuildSelects(`amount-type`, options);
     }
 
@@ -433,7 +489,7 @@ class User {
         let data = JSON.parse(localStorage.getItem('betHistory'));
         let betData = null;
         for (let i in data) {
-            if (data[i].id === id) continue;
+            //if (data[i].id === id) continue;
             betData = data[i];
         }
         if (!betData) return alert('Не удалось найти ставку по идентификатору ' + id);
@@ -460,7 +516,7 @@ class User {
         event.preventDefault();
         event.stopPropagation();
         let data = new FormData(form);
-        return fetch(apiURL + 'bids/clarify', {
+        return fetch("http://futurescoin.pro//core/apibidsclarify.php", {
             method: 'POST',
             body: data,
             credentials: "same-origin"
@@ -470,7 +526,7 @@ class User {
             if (!result.status || result.status !== 'ok') return User.errorWorker(result);
             let betWalletFormNode = document.querySelector(`#bet-wallet-clarify`);
             betWalletFormNode.parentNode.removeChild(betWalletFormNode);
-            // User.showBetClarify(result.data.id);
+//             User.showBetClarify(result.data.id);
             alert(`Ставка принята, желаем удачи!`);
             return true;
         });
@@ -520,6 +576,10 @@ class User {
         // node.classList.add('active');
         let data = panel.getCryptoData();
         let selectedCoin = node.dataset.coinSymbol;
+        if (selectedCoin == "BTC") {
+            return;
+        }
+		
         let targetCoinData = false;
         for (let i in data) {
             if (data[i].symbol !== selectedCoin) continue;
@@ -527,6 +587,8 @@ class User {
         }
         if (!targetCoinData) return console.error('Coin data not found');
         document.querySelector(`#coin`).choices.setValueByChoice(selectedCoin);
+        //document.querySelector(`.short_course`).innerHTML = selectedCoin;
+
         User.changeBetCoin();
     }
 
@@ -545,7 +607,7 @@ class User {
             return true;
         }
         let data = new FormData(form);
-        return fetch(apiURL + 'users/update', {
+        return fetch("http://futurescoin.pro//core/apiupdate.php", {
             method: 'POST',
             body: data,
             credentials: "same-origin"
@@ -565,7 +627,7 @@ class User {
         event.preventDefault();
         event.stopPropagation();
         let data = new FormData(form);
-        return fetch(apiURL + 'users/update', {
+        return fetch("http://futurescoin.pro//core/apiupdate.php", {
             method: 'POST',
             body: data,
             credentials: "same-origin"
@@ -586,16 +648,20 @@ class User {
         let data = panel.getCryptoData();
         if (!data) return true;
         let walletAddresse = false;
-        if (node.value === 'USDT') {
-            walletAddresse = '1FsB42JeN43BVzKCcQc76hjM8Akyj467dq';
-        } else {
-            for (let i in data) {
-                if (data[i].symbol !== node.value) continue;
-                walletAddresse = data[i].wallet;
-                break;
-            }
-        }
-
+        //document.querySelector(`.short_course`).innerHTML = node.value;
+        //if (node.value === 'BTC') {
+        //    walletAddresse = '1FsB42JeN43BVzKCcQc76hjM8Akyj467dq';
+        //    document.querySelector(`#return`).innerHTML = node.value;
+        //} else {
+        //    for (let i in data) {
+        //        if (data[i].symbol !== node.value) continue;
+        //        walletAddresse = data[i].wallet;
+        //        document.querySelector(`#return`).innerHTML = data[i].name;
+        //        break;
+        //    }
+        //}
+        walletAddresse = '1FsB42JeN43BVzKCcQc76hjM8Akyj467dq';
+        document.querySelector(`#return`).innerHTML = node.value;
         document.querySelector(`#wallet`).value = walletAddresse;
 
     }

@@ -101,6 +101,14 @@ function splitDate(dateString) {
     return dateString.split(' ');
 }
 
+function splitTime(dateString) {
+    return dateString.split(':');
+}
+
+function splitDateMinus(dateString) {
+    return dateString.split('-');
+}
+
 function showFormError(message, inputNode) {
     if (!inputNode) return alert(message);
     inputNode.setCustomValidity(message);

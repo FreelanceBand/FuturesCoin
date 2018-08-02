@@ -3,7 +3,7 @@ class User {
         if (typeof form !== 'object') return true;
         if (!form.checkValidity()) return true;
         disableSubmit(form);
-        return fetch(apiURL + 'users/login', {
+        return fetch("http://futurescoin.pro//core/apilogin.php", {
             method: 'POST',
             body: new FormData(form),
             credentials: "same-origin"
@@ -15,7 +15,7 @@ class User {
                 return User.errorWorker(result);
             }
             if (result.data) localStorage.setItem('userData', JSON.stringify(result.data));
-            location.href = '/panel';
+            location.href = '/coin/panel';
             return true;
         }).catch(function (error) {
             enableSubmit(form);
@@ -26,8 +26,11 @@ class User {
     static reg(form = null) {
         if (typeof form !== 'object') return true;
         if (!form.checkValidity()) return true;
+
+        User.changePassword(form);
+        
         disableSubmit(form);
-        return fetch(apiURL + 'users/create', {
+        return fetch("http://futurescoin.pro//core/apireg.php", {
             method: 'POST',
             body: new FormData(form),
             credentials: "same-origin"
@@ -38,12 +41,48 @@ class User {
                 enableSubmit(form);
                 return User.errorWorker(result);
             }
-            if (result.data) localStorage.setItem('userData', JSON.stringify(result.data));
-            User.auth(form);
+            if (result.data) {
+                localStorage.setItem('userData', JSON.stringify(result.data));
+                User.auth(form);
+            }
         }).catch(function (error) {
             enableSubmit(form);
             throw error;
         })
+
+
+    }
+
+    static changePassword(form) {
+        if (!form.checkValidity()) return true;
+//        event.preventDefault();
+//        event.stopPropagation();
+        if (form.querySelector(`#password`).value !== form.querySelector(`#repeatPassword`).value) {
+            var text = 'Пароли не совпадают';
+            console.log(text);
+            console.log(form.querySelector(`#password`).value + " - " + form.querySelector(`#repeatPassword`).value);
+            form.querySelector(`#repeatPassword`).setCustomValidity(text);
+            simulateClick(form.querySelector(`button[type="submit"]`));
+            form.querySelector(`#repeatPassword`).value = '';
+            form.querySelector(`#password`).value = '';
+            return true;
+        }
+        let data = new FormData(form);
+        return fetch("http://futurescoin.pro//core/apiupdate.php", {
+            method: 'POST',
+            body: data,
+            credentials: "same-origin"
+        }).then(function (response) {
+            return response.json();
+        }).then(function (result) {
+            if (!result.status || result.status !== 'ok') {
+                return User.errorWorker(result);
+            }
+            let betWalletFormNode = document.querySelector(`#change-password-form`);
+            betWalletFormNode.parentNode.removeChild(betWalletFormNode);
+            // User.showBetClarify(result.data.id);
+            return false;
+        });
     }
 
     static errorWorker(responseData) {

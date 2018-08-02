@@ -1,11 +1,17 @@
 class Panel {
 
     constructor() {
+        this.onceinit = 0;
         if (!User.getUserData()) return User.logout();
         // this.renderPage.call(this);
     }
 
+
     renderPage(page = 'bet') {
+        if (this.onceinit == 0) {
+            this.onceinit = 1;
+            localStorage.removeItem('cryptoData');
+        }
         this.resetDocument();
         switch (page) {
             case 'profile':
@@ -29,6 +35,8 @@ class Panel {
                 document.querySelector('main').className = 'vertical-responsive';
                 document.querySelector('main').appendChild(profileInfo);
                 document.querySelector('main').appendChild(betHistory);
+                document.querySelector('.icon.bet.active').className = "icon bet";
+                document.querySelector('.icon.profile').className = "icon profile active";
                 break;
             case 'bet':
                 this.prepareWrapper({header: true, footer: true, modals: ['about']});
@@ -55,6 +63,14 @@ class Panel {
                 User.changeBetCoin();
                 rebuildSelects();
                 User.getBetHistoryData();
+                try {
+                    var scroll_section = document.querySelector(".scroll-section").querySelector(".active");
+                    scroll_section.click();
+                } catch (e) {
+                }
+
+                document.querySelector('.icon.bet').className = "icon bet active";
+                document.querySelector('.icon.profile').className = "icon profile";
                 break;
         }
     }
@@ -82,6 +98,7 @@ class Panel {
         leftSection.appendChild(this.genLogo());
         let rightSection = document.createElement('div');
         rightSection.appendChild(this.genMenu());
+
         headerNode.appendChild(leftSection);
         headerNode.appendChild(rightSection);
         return headerNode;
@@ -97,16 +114,21 @@ class Panel {
     genMenu() {
         let menuNode = document.createElement('nav');
         let menuItems = [
-            {title: 'Bets', l10nTitle: 'text_finance', class: 'icon bet', page: 'bet'},
+            {title: 'Bets', l10nTitle: 'text_finance', class: 'icon bet active', page: 'bet'},
             {title: 'Profile', l10nTitle: 'text_personal_area', class: 'icon profile', page: 'profile'},
             {title: 'Instructions', l10nTitle: 'text_instruction', class: 'icon about', href: '#about'},
             {title: 'Log out', l10nTitle: 'exit', class: 'icon logout', action: User.logout},
         ];
         menuItems.forEach(function (item) {
             let itemNode = document.createElement('a');
+            let itemNodeText = document.createElement('p');
+            let itemNodeSpan = document.createElement('span');
+            itemNodeSpan.className = "red_count_bet_unclarified";
+            var countUncl = this.getCountUnclarified();
+            itemNodeSpan.innerHTML = countUncl;
             let title = item.title ? item.title : null;
             if (item.l10nTitle) {
-                itemNode.dataset.l10nContent = item.l10nTitle;
+                itemNodeText.dataset.l10nContent = item.l10nTitle;
                 try {
                     title = localisation.getField(item.l10nTitle);
                 } catch (e) {
@@ -118,14 +140,24 @@ class Panel {
             if (item.page) {
                 itemNode.dataset.page = item.page;
                 itemNode.addEventListener('click', function (event) {
-                    this.renderPage(event.target.dataset.page);
+                    var page;
+                    if (event.target.tagName == 'A') {
+                        page = event.target.dataset.page;
+                    } else {
+                        page = event.target.parentElement.dataset.page;
+                    }
+                    this.renderPage(page);
                     return true;
                 }.bind(this));
             }
             if (item.action) itemNode.addEventListener('click', item.action);
-            itemNode.innerHTML = title;
+            itemNodeText.innerHTML = title;
+            itemNode.appendChild(itemNodeText);
+            if (item.class == 'icon profile' && countUncl > 0)
+                itemNode.appendChild(itemNodeSpan);
             menuNode.appendChild(itemNode);
         }, this);
+
         return menuNode;
     }
 
@@ -140,7 +172,7 @@ class Panel {
     <div>
         <span data-l10n-content="relevance_data">${localisation.getField('relevance_data')}</span>
         <img src="/assets/images/heart.svg">
-        <a href="https://coinmarketcup.com" target="_blank">coinmarketcup.com</a>
+        <a href="https://coinmarketcap.com" target="_blank">coinmarketcap.com</a>
     </div>`;
         bindLocalisationButtons(footerNode);
         return footerNode;
@@ -185,7 +217,7 @@ class Panel {
             let fields = [
                 {id: 'name', l10nTitle: 'currency'},
                 {id: 'market_cap', l10nTitle: 'market_capitalization'},
-                {id: 'price_usd', l10nTitle: 'price'},
+                {id: 'price_btc', l10nTitle: 'price'},
                 {id: 'h24_ratio_change', l10nTitle: 'changes_in_24_hours'}
             ];
             tableSource = `<li>`;
@@ -194,42 +226,105 @@ class Panel {
             }, this);
             tableSource += `</li><div class="scroll-section">`;
             data.forEach(function (item) {
-                tableSource += `<li onclick="return User.selectBaseCoin(this);" data-coin-symbol="${item.symbol}">`;
-                fields.forEach(function (field) {
-                    switch (field.id) {
-                        case 'name':
-                            tableSource += `<div><img src="/assets/images/coins/${item.symbol.toLowerCase()}.png"><span>${item[field.id]}</span></div>`;
-                            break;
-                        case 'h24_ratio_change':
-                            tableSource += `<div class="${item[field.id] < 0 ? `red` : (item[field.id] > 0 ? `green` : ``)}">${item[field.id]}%</div>`;
-                            break;
-                        default:
-                            tableSource += `<div>${item[field.id]} $</div>`;
-                            break;
-                    }
-                }, this);
-                tableSource += `</li>`;
+                if (item.symbol.toLowerCase() == "btc") {
+                }
+                else {
+                    tableSource += `<li onclick="return User.selectBaseCoin(this);" data-coin-symbol="${item.symbol}">`;
+                    fields.forEach(function (field) {
+                        switch (field.id) {
+                            case 'name':
+                                tableSource += `<div><img src="/assets/images/coins/${item.symbol.toLowerCase()}.png"><span>${item[field.id]}</span></div>`;
+                                break;
+                            case 'h24_ratio_change':
+                                tableSource += `<div class="${item[field.id] < 0 ? `red` : (item[field.id] > 0 ? `green` : ``)}">${item[field.id]}%</div>`;
+                                break;
+                            case 'price_btc':
+                                var value = this.number_format(item[field.id], 9, ",", " ");
+                                tableSource += `<div>Ƀ ${value}</div>`;
+                                break;
+                            default:
+                                var value = this.number_format(item[field.id], 0, ",", " ");
+                                tableSource += `<div>$ ${value}</div>`;
+                                break;
+                        }
+                    }, this);
+                    tableSource += `</li>`;
+                }
             }, this);
             tableSource += `</div>`;
         } else tableSource = 'Loading ...';
+
         cryptoInfoNode.innerHTML = tableSource;
         return cryptoInfoNode;
     }
 
+    getCountUnclarified() {
+        var historyData = User.getBetHistoryData();
+        var count = 0;
+        if (historyData) historyData.forEach(function (item, id) {
+            if (item.status == 'UNCLARIFIED') {
+                count++;
+            }
+        });
+
+        return count;
+    }
+
     getCryptoData() {
-        if (localStorage.getItem('cryptoData')) return JSON.parse(localStorage.getItem('cryptoData'));
-        fetch(apiURL + 'tokens', {
+        if (localStorage.getItem('cryptoData') != null && localStorage.getItem('cryptoData').length > 0) {
+            return JSON.parse(localStorage.getItem('cryptoData'));
+        }
+        fetch("http://futurescoin.pro//core/tokens.php", {
             method: 'GET',
             credentials: "same-origin"
         }).then(function (response) {
             return response.json();
         }).then(function (result) {
             if (!result.status || result.status !== 'ok') return alert(result.msg ? result.msg : `Error code: ${result.code}`);
-            if (result.data) localStorage.setItem('cryptoData', JSON.stringify(result.data));
+            if (result.data) {
+                localStorage.setItem('cryptoData', JSON.stringify(result.data));
+            }
             // this.genCryptoInfo(false, result.data);
             // User.renderSelectOptions(result.data);
             panel.renderPage();
         }.bind(this));
         return false;
     }
+
+    number_format(number, decimals, dec_point, thousands_sep) {	// Format a number with grouped thousands
+        //
+        // +   original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
+        // +   improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+        // +	 bugfix by: Michael White (http://crestidg.com)
+
+        var i, j, kw, kd, km;
+
+        // input sanitation & defaults
+        if (isNaN(decimals = Math.abs(decimals))) {
+            decimals = 2;
+        }
+        if (dec_point == undefined) {
+            dec_point = ",";
+        }
+        if (thousands_sep == undefined) {
+            thousands_sep = ".";
+        }
+
+        i = parseInt(number = (+number || 0).toFixed(decimals)) + "";
+
+        if ((j = i.length) > 3) {
+            j = j % 3;
+        } else {
+            j = 0;
+        }
+
+        km = (j ? i.substr(0, j) + thousands_sep : "");
+        kw = i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + thousands_sep);
+        //kd = (decimals ? dec_point + Math.abs(number - i).toFixed(decimals).slice(2) : "");
+        kd = (decimals ? dec_point + Math.abs(number - i).toFixed(decimals).replace(/-/, 0).slice(2) : "");
+
+
+        return km + kw + kd;
+    }
+
 }

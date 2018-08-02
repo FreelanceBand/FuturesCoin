@@ -1,5 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+<script>
+    if ((navigator.userAgent.match(/iPhone/i)) || (navigator.userAgent.match(/iPod/i))) {
+        if (document.cookie.indexOf("iphone_redirect=false") == -1) window.location = "/coin/mobile.html";
+    }
+    if ((navigator.userAgent.match(/Android/i))) {
+        if (document.cookie.indexOf("iphone_redirect=false") == -1) window.location = "/coin/mobile.html";
+    }
+</script>
 <head>
     <meta charset="UTF-8">
     <title>Login - FuturesCoin</title>

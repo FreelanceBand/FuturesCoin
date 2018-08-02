@@ -1,7 +1,7 @@
 @font-face {
     font-family: "Futura";
     font-weight: bold;
-    src: url("../fonts/futur.ttf");
+    src: url("../fonts/futur.ttf") format('truetype');
 }
 
 * {
@@ -86,6 +86,13 @@ input, select {
     line-height: calc(var(--height) - 2px);
 }
 
+input[type=number],
+input[type=text],
+input[type=password],
+input[type=email] {
+    line-height: 14px;
+}
+
 input[type="checkbox"], input[type="radio"], select {
     cursor: pointer;
 }
@@ -108,7 +115,7 @@ input[type="checkbox"] {
 input[type="checkbox"]:checked {
     border-color: #335877;
     background: #335877 url("../images/check.svg") no-repeat center;
-    background-size: 20px;
+    background-size: 16px;
 }
 
 #login.icon, .icon.login {
@@ -191,7 +198,7 @@ body.landing aside .header {
 body.landing > aside .interactive-section, body.landing > aside .interactive-section form {
     display: flex;
     flex-direction: column;
-
+    margin-bottom: 20px;
 }
 
 body.landing > aside .interactive-section form {
