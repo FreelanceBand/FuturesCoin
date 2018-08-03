@@ -1,6 +1,6 @@
 class User {
     static logout() {
-        return fetch("http://fc.dev-freelansband.xyz/refresh/core/logout.php")
+        return fetch("http://fc.dev-freelansband.xyz/refresh/core/logout.php", {credentials: "same-origin"})
             .then(response => response.status)
             .finally(function () {
                 localStorage.removeItem('betHistory');
@@ -82,7 +82,7 @@ class User {
             profileData.appendChild(fieldNode);
         }, this);
 
-        infoNode.appendChild(profileImage);
+        // infoNode.appendChild(profileImage);
         infoNode.appendChild(profileData);
         return infoNode;
     }
@@ -158,7 +158,7 @@ class User {
             rightItemSection.innerHTML += `<li><span>${item.base_symbol}<span class="transparent">${splitDate(item.dt_inserted)[0]} <span data-l10n-content="at"> ${localisation.getField('at')} </span> ${splitDate(item.dt_inserted)[1]}</span></span></li>`;
             rightItemSection.innerHTML += `<li><span data-l10n-content="strategy">${localisation.getField('strategy')}</span>${item.strategy === 'RISE' ? `<span class="rise" data-l10n-content="strategy_rise">${localisation.getField('strategy_rise')}</span>` : `<span class="fall" data-l10n-content="strategy_fall">${localisation.getField('strategy_fall')}</span>`}</li>`;
             rightItemSection.innerHTML += `<li><span data-l10n-content="bet_amount_and_type">${localisation.getField('bet_amount_and_type')}</span><span>${item.bet_amount} ${item.bet_symbol}</span></li>`;
-            rightItemSection.innerHTML += `<li><span data-l10n-content="bet_actuality">${localisation.getField('bet_actuality')}</span><span>${item.term_days} дней</span></li>`;
+            rightItemSection.innerHTML += `<li><span data-l10n-content="bet_actuality">${localisation.getField('bet_actuality')}</span><span>${item.term_days} ${item.term_days === 1 ? 'день' : 'дней'}</span></li>`;
             rightItemSection.innerHTML += `<li><span data-l10n-content="status">${localisation.getField('status')}</span><span` + (item.status.toLowerCase() == 'unclarified' ? ' class="non_confirm"' : '') + `>${statusField}</span></li>`;
 
             itemNode.appendChild(leftItemSection);
@@ -245,7 +245,8 @@ class User {
                         itemSource += `<div>${item[field.id] ? item[field.id] : ''} ${item.bet_symbol}</div>`;
                         break;
                     case 'term_days':
-                        itemSource += `<div>${item[field.id]}<span data-l10n-content="days">${localisation.getField(`days`)}</span></div>`;
+                        itemSource += item[field.id] === 1 ? `<div>${item[field.id]} <span data-l10n-content="day">${localisation.getField(`day`)}</span></div>` :
+                            `<div>${item[field.id]} <span data-l10n-content="days">${localisation.getField(`days`)}</span></div>`;
                         break;
                     case 'status':
                         let amount = parseFloat(item[field.id]);
@@ -359,10 +360,10 @@ class User {
                 }
 
                 var text_coin = coin.name;
-                if (coin.name.length > 11)
-                    text_coin = text_coin.substr(0, 11) + "...";
+                if (coin.name.length > 20)
+                    text_coin = text_coin.substr(0, 20) + "...";
 
-                optionNode.innerHTML = text_coin;
+                optionNode.innerHTML = coin.name;
                 node.appendChild(optionNode);
             }, this);
         }, this);
@@ -373,7 +374,7 @@ class User {
         if (!form.checkValidity()) return true;
         event.preventDefault();
         event.stopPropagation();
-        if (!confirm('Пожалуйста, учитывайте minig free при отправке транзакции. Т.е. данная сумма должна прийти в указанный кошелек целиком')) return true;
+        if (!confirm('Пожалуйста, учитывайте mining free при отправке транзакции. Т.е. данная сумма должна прийти в указанный кошелек целиком')) return true;
         form.querySelector(`#user_wallet`).value = document.querySelector(`#user-wallet`).value;
         let data = new FormData(form);
         data.set('bet_amount', parseFloat(data.get('bet_amount').split(' ').join('')));
@@ -389,7 +390,8 @@ class User {
             betWalletFormNode.parentNode.removeChild(betWalletFormNode);
             User.pathWalletToProfileData(form);
             User.pathBetHistory(result.data);
-            User.showBetClarify(result.data.id);
+            // User.showBetClarify(result.data.id);
+            alert(`Ставка принята, желаем удачи!`);
             return false;
         });
     }
@@ -464,8 +466,8 @@ class User {
         modalNode.id = 'bet-wallet-form';
         modalNode.className = 'modal';
         modalNode.innerHTML = `<form class="content" onsubmit="return false">
-        <h3 class="title">Адрес кошелька</h3>
-        <input class="icon wallet" id="user-wallet" name="wallet" value="${savedWallet}" placeholder="Адрес кошелька" type="text" required>
+        <h3 class="title">Укажите кошелек BTC для возврата прибыли</h3>
+        <input class="icon wallet" id="user-wallet" name="wallet" value="${savedWallet}" placeholder="Укажите кошелек BTC для возврата прибыли" type="text" required>
         <button type="submit">Продолжить</button>
         <a class="close" href="#">Закрыть</a>
     </form>

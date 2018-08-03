@@ -16,7 +16,7 @@ class User {
                 return User.errorWorker(result);
             }
             if (result.data) localStorage.setItem('userData', JSON.stringify(result.data));
-            location.href = '/refresh/panel';
+            location.href = '../../panel';
             return true;
         }).catch(function (error) {
             enableSubmit(form);
@@ -111,7 +111,7 @@ class User {
     }
 
     static logout() {
-        return fetch("http://fc.dev-freelansband.xyz/refresh/core/logout.php").then(response => response.status);
+        return fetch("http://fc.dev-freelansband.xyz/refresh/core/logout.php", {credentials: "same-origin"}).then(response => response.status);
     }
 
 }
