@@ -1,11 +1,13 @@
 class User {
     static logout() {
-        // TODO: Request for delete cookie
-
-        localStorage.removeItem('betHistory');
-        localStorage.removeItem('userData');
-        localStorage.removeItem('cryptoData');
-        location.href = '/';
+        return fetch("http://fc.dev-freelansband.xyz/refresh/core/logout.php")
+            .then(response => response.status)
+            .finally(function () {
+                localStorage.removeItem('betHistory');
+                localStorage.removeItem('userData');
+                localStorage.removeItem('cryptoData');
+                location.href = '/refresh/';
+            });
     }
 
     static getUserData() {
@@ -109,7 +111,7 @@ class User {
     }
 
     static getBetHistoryData() {
-        fetch("http://futurescoin.pro//core/apibids.php", {
+        fetch("http://fc.dev-freelansband.xyz/refresh/core/apibids.php", {
             method: 'POST',
             credentials: "same-origin"
         }).then(function (response) {
@@ -375,7 +377,7 @@ class User {
         form.querySelector(`#user_wallet`).value = document.querySelector(`#user-wallet`).value;
         let data = new FormData(form);
         data.set('bet_amount', parseFloat(data.get('bet_amount').split(' ').join('')));
-        return fetch("http://futurescoin.pro//core/apibidscreate.php", {
+        return fetch("http://fc.dev-freelansband.xyz/refresh/core/apibidscreate.php", {
             method: 'POST',
             body: data,
             credentials: "same-origin"
@@ -400,7 +402,7 @@ class User {
         data.wallets[coin] = wallet;
         form = new FormData();
         form.append('wallets', serialize(data.wallets));
-        return fetch("http://futurescoin.pro//core/apiupdate.php", {
+        return fetch("http://fc.dev-freelansband.xyz/refresh/core/apiupdate.php", {
             method: 'POST',
             body: form,
             credentials: "same-origin"
@@ -516,7 +518,7 @@ class User {
         event.preventDefault();
         event.stopPropagation();
         let data = new FormData(form);
-        return fetch("http://futurescoin.pro//core/apibidsclarify.php", {
+        return fetch("http://fc.dev-freelansband.xyz/refresh/core/apibidsclarify.php", {
             method: 'POST',
             body: data,
             credentials: "same-origin"
@@ -579,7 +581,7 @@ class User {
         if (selectedCoin == "BTC") {
             return;
         }
-		
+
         let targetCoinData = false;
         for (let i in data) {
             if (data[i].symbol !== selectedCoin) continue;
@@ -607,7 +609,7 @@ class User {
             return true;
         }
         let data = new FormData(form);
-        return fetch("http://futurescoin.pro//core/apiupdate.php", {
+        return fetch("http://fc.dev-freelansband.xyz/refresh/core/apiupdate.php", {
             method: 'POST',
             body: data,
             credentials: "same-origin"
@@ -627,7 +629,7 @@ class User {
         event.preventDefault();
         event.stopPropagation();
         let data = new FormData(form);
-        return fetch("http://futurescoin.pro//core/apiupdate.php", {
+        return fetch("http://fc.dev-freelansband.xyz/refresh/core/apiupdate.php", {
             method: 'POST',
             body: data,
             credentials: "same-origin"

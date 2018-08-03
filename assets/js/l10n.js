@@ -1,6 +1,6 @@
 class L10n {
 
-    constructor({sourcesPath = '/coin/l10n', localizeOnInit = false} = {}) {
+    constructor({sourcesPath = '/l10n', localizeOnInit = false} = {}) {
         this.parameters = {sourcesPath};
         this.languageData = {};
         this.selectedLanguage = this.getSelectedLanguage();

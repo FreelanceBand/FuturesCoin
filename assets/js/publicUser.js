@@ -1,9 +1,10 @@
 class User {
+
     static auth(form = null) {
         if (typeof form !== 'object') return true;
         if (!form.checkValidity()) return true;
         disableSubmit(form);
-        return fetch("http://futurescoin.pro//core/apilogin.php", {
+        return fetch("http://fc.dev-freelansband.xyz/refresh/core/apilogin.php", {
             method: 'POST',
             body: new FormData(form),
             credentials: "same-origin"
@@ -15,7 +16,7 @@ class User {
                 return User.errorWorker(result);
             }
             if (result.data) localStorage.setItem('userData', JSON.stringify(result.data));
-            location.href = '/coin/panel';
+            location.href = '/refresh/panel';
             return true;
         }).catch(function (error) {
             enableSubmit(form);
@@ -28,9 +29,9 @@ class User {
         if (!form.checkValidity()) return true;
 
         User.changePassword(form);
-        
+
         disableSubmit(form);
-        return fetch("http://futurescoin.pro//core/apireg.php", {
+        return fetch("http://fc.dev-freelansband.xyz/refresh/core/apireg.php", {
             method: 'POST',
             body: new FormData(form),
             credentials: "same-origin"
@@ -68,7 +69,7 @@ class User {
             return true;
         }
         let data = new FormData(form);
-        return fetch("http://futurescoin.pro//core/apiupdate.php", {
+        return fetch("http://fc.dev-freelansband.xyz/refresh/core/apiupdate.php", {
             method: 'POST',
             body: data,
             credentials: "same-origin"
@@ -107,6 +108,10 @@ class User {
         let error = errors[responseData.code];
         error.forEach(error => showFormError(error.l10nMessages[localisation.getSelectedLanguage()], document.querySelector(error.node)));
         return true;
+    }
+
+    static logout() {
+        return fetch("http://fc.dev-freelansband.xyz/refresh/core/logout.php").then(response => response.status);
     }
 
 }
