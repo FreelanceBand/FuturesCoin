@@ -233,7 +233,7 @@ class Panel {
                     fields.forEach(function (field) {
                         switch (field.id) {
                             case 'name':
-                                tableSource += `<div><img src="/assets/images/coins/${item.symbol.toLowerCase()}.png"><span>${item[field.id]}</span></div>`;
+                                tableSource += `<div><img src="//futurescoin.pro/assets/images/coins/${item.symbol.toLowerCase()}.png"><span>${item[field.id]}</span></div>`;
                                 break;
                             case 'h24_ratio_change':
                                 tableSource += `<div class="${item[field.id] < 0 ? `red` : (item[field.id] > 0 ? `green` : ``)}">${item[field.id]}%</div>`;
@@ -274,7 +274,7 @@ class Panel {
         if (localStorage.getItem('cryptoData') != null && localStorage.getItem('cryptoData').length > 0) {
             return JSON.parse(localStorage.getItem('cryptoData'));
         }
-        fetch("http://fc.dev-freelansband.xyz/refresh/core/tokens.php", {
+        fetch("/core/tokens.php", {
             method: 'GET',
             credentials: "same-origin"
         }).then(function (response) {

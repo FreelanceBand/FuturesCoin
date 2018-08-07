@@ -4,7 +4,7 @@ class User {
         if (typeof form !== 'object') return true;
         if (!form.checkValidity()) return true;
         disableSubmit(form);
-        return fetch("http://fc.dev-freelansband.xyz/refresh/core/apilogin.php", {
+        return fetch("/core/apilogin.php", {
             method: 'POST',
             body: new FormData(form),
             credentials: "same-origin"
@@ -31,7 +31,7 @@ class User {
         User.changePassword(form);
 
         disableSubmit(form);
-        return fetch("http://fc.dev-freelansband.xyz/refresh/core/apireg.php", {
+        return fetch("/core/apireg.php", {
             method: 'POST',
             body: new FormData(form),
             credentials: "same-origin"
@@ -69,7 +69,7 @@ class User {
             return true;
         }
         let data = new FormData(form);
-        return fetch("http://fc.dev-freelansband.xyz/refresh/core/apiupdate.php", {
+        return fetch("/core/apiupdate.php", {
             method: 'POST',
             body: data,
             credentials: "same-origin"
@@ -103,6 +103,10 @@ class User {
                 l10nMessages: {en: 'Email already taken', ru: 'Email уже используется'},
                 node: `#email`
             }],
+            '409.1': [{
+                l10nMessages: {en: 'Name already taken', ru: 'Логин уже используется'},
+                node: `#login`
+            }],
         };
         if (!errors[responseData.code]) return false;
         let error = errors[responseData.code];
@@ -111,7 +115,7 @@ class User {
     }
 
     static logout() {
-        return fetch("http://fc.dev-freelansband.xyz/refresh/core/logout.php", {credentials: "same-origin"}).then(response => response.status);
+        return fetch("/core/logout.php", {credentials: "same-origin"}).then(response => response.status);
     }
 
 }

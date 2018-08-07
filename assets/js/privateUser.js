@@ -1,12 +1,12 @@
 class User {
     static logout() {
-        return fetch("http://fc.dev-freelansband.xyz/refresh/core/logout.php", {credentials: "same-origin"})
+        return fetch("/core/logout.php", {credentials: "same-origin"})
             .then(response => response.status)
             .finally(function () {
                 localStorage.removeItem('betHistory');
                 localStorage.removeItem('userData');
                 localStorage.removeItem('cryptoData');
-                location.href = '/refresh/';
+                location.href = '/';
             });
     }
 
@@ -111,7 +111,7 @@ class User {
     }
 
     static getBetHistoryData() {
-        fetch("http://fc.dev-freelansband.xyz/refresh/core/apibids.php", {
+        fetch("/core/apibids.php", {
             method: 'POST',
             credentials: "same-origin"
         }).then(function (response) {
@@ -136,7 +136,7 @@ class User {
             let itemNode = document.createElement('li');
             let leftItemSection = document.createElement('div');
             let itemCoinIcon = document.createElement('img');
-            itemCoinIcon.src = `/assets/images/coins/${item.base_symbol.toLowerCase()}.png`;
+            itemCoinIcon.src = `//futurescoin.pro/assets/images/coins/${item.base_symbol.toLowerCase()}.png`;
             let itemOrder = document.createElement('span');
             itemOrder.className = 'order';
             itemOrder.innerHTML = '#' + (id + 1);
@@ -235,7 +235,7 @@ class User {
                         itemSource += `<div>${date_time[0] + " " + time}</div>`;
                         break;
                     case 'base_symbol':
-                        itemSource += `<div><img src="/assets/images/coins/${item[field.id].toLowerCase()}.png"><span>${item[field.id]}</span></div>`;
+                        itemSource += `<div><img src="//futurescoin.pro/assets/images/coins/${item[field.id].toLowerCase()}.png"><span>${item[field.id]}</span></div>`;
                         break;
                     case 'strategy':
                         let state = item[field.id] === 'RISE' ? `rise` : `fall`;
@@ -267,10 +267,10 @@ class User {
 
             betHistoryTableSectionNode.appendChild(itemNode);
 
-            if (item.status === 'UNCLARIFIED') {
+            /*if (item.status === 'UNCLARIFIED') {
                 itemNode.style.cursor = 'pointer';
                 itemNode.addEventListener('click', () => User.showBetClarify(item.id))
-            }
+            }*/
         }, this);
         else betHistoryTableSectionNode.innerHTML = 'Loading ...';
         return betHistoryTableNode;
@@ -378,7 +378,7 @@ class User {
         form.querySelector(`#user_wallet`).value = document.querySelector(`#user-wallet`).value;
         let data = new FormData(form);
         data.set('bet_amount', parseFloat(data.get('bet_amount').split(' ').join('')));
-        return fetch("http://fc.dev-freelansband.xyz/refresh/core/apibidscreate.php", {
+        return fetch("/core/apibidscreate.php", {
             method: 'POST',
             body: data,
             credentials: "same-origin"
@@ -404,7 +404,7 @@ class User {
         data.wallets[coin] = wallet;
         form = new FormData();
         form.append('wallets', serialize(data.wallets));
-        return fetch("http://fc.dev-freelansband.xyz/refresh/core/apiupdate.php", {
+        return fetch("/core/apiupdate.php", {
             method: 'POST',
             body: form,
             credentials: "same-origin"
@@ -520,7 +520,7 @@ class User {
         event.preventDefault();
         event.stopPropagation();
         let data = new FormData(form);
-        return fetch("http://fc.dev-freelansband.xyz/refresh/core/apibidsclarify.php", {
+        return fetch("/core/apibidsclarify.php", {
             method: 'POST',
             body: data,
             credentials: "same-origin"
@@ -611,7 +611,7 @@ class User {
             return true;
         }
         let data = new FormData(form);
-        return fetch("http://fc.dev-freelansband.xyz/refresh/core/apiupdate.php", {
+        return fetch("/core/apiupdate.php", {
             method: 'POST',
             body: data,
             credentials: "same-origin"
@@ -631,7 +631,7 @@ class User {
         event.preventDefault();
         event.stopPropagation();
         let data = new FormData(form);
-        return fetch("http://fc.dev-freelansband.xyz/refresh/core/apiupdate.php", {
+        return fetch("/core/apiupdate.php", {
             method: 'POST',
             body: data,
             credentials: "same-origin"
