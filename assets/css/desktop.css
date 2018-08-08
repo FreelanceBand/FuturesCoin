@@ -553,7 +553,6 @@ body.panel .bet-history.table li {
 body.panel .bet-history.table .scroll-section li:nth-child(odd) {
     background-color: var(--background-color);
 }
-
 body.panel .bet-history.table .scroll-section li > div.non_confirm {
     color: red;
 }

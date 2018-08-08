@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1"
+     xmlns="http://www.w3.org/2000/svg">
+    <!-- Generator: Sketch 49.3 (51167) - http://www.bohemiancoding.com/sketch -->
+    <title>logout-icon-active</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="futurescoin" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="icons" transform="translate(-223.000000, -65.000000)">
+            <g id="logout-icon-active" transform="translate(220.000000, 62.000000)">
+                <rect id="bg" x="0" y="0" width="30" height="30"></rect>
+                <path d="M11,3.6875 C6.347656,5.339844 3,9.785156 3,15 C3,21.617188 8.382813,27 15,27 C21.617188,27 27,21.617188 27,15 C27,9.785156 23.652344,5.339844 19,3.6875 L19,5.84375 C22.527344,7.390625 25,10.910156 25,15 C25,20.515625 20.515625,25 15,25 C9.484375,25 5,20.515625 5,15 C5,10.910156 7.472656,7.390625 11,5.84375 L11,3.6875 Z"
+                      id="logout-icon" fill="#FFFFFF" fill-rule="nonzero"></path>
+                <polygon id="Path" fill="#0084FF" points="14 3 14 15 16 15 16 3"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>

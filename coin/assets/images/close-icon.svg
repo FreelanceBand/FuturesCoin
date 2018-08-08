@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1"
+     xmlns="http://www.w3.org/2000/svg">
+    <!-- Generator: Sketch 49.3 (51167) - http://www.bohemiancoding.com/sketch -->
+    <title>close-icon</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="futurescoin" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="readme" transform="translate(-1378.000000, -38.000000)" fill="#FFFFFF">
+            <g id="btn-close" transform="translate(1340.000000, 0.000000)">
+                <path d="M50,48.5945946 L60.5945946,38 L62,39.4054054 L51.4054054,50 L62,60.5945946 L60.5945946,62 L50,51.4054054 L39.4054054,62 L38,60.5945946 L48.5945946,50 L38,39.4054054 L39.4054054,38 L50,48.5945946 Z"
+                      id="close-icon"></path>
+            </g>
+        </g>
+    </g>
+</svg>

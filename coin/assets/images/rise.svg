@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="7px" height="10px" viewBox="0 0 7 10" version="1.1"
+     xmlns="http://www.w3.org/2000/svg">
+    <!-- Generator: Sketch 49.3 (51167) - http://www.bohemiancoding.com/sketch -->
+    <title>Group 4</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="futurescoin" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="profile" transform="translate(-908.000000, -450.000000)">
+            <g id="Group" transform="translate(750.000000, 145.000000)">
+                <g id="3" transform="translate(0.000000, 251.000000)">
+                    <g id="up"
+                       transform="translate(161.500000, 59.000000) rotate(-180.000000) translate(-161.500000, -59.000000) translate(158.000000, 54.000000)">
+                        <g id="Group-4">
+                            <path d="M3.5,7.5 L3.5,0.5" id="Line" stroke="#0084FF" stroke-width="2"></path>
+                            <polygon id="Rectangle-4" fill="#0084FF" points="0 6 7 6 3.5 10"></polygon>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

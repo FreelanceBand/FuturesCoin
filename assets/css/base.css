@@ -85,7 +85,6 @@ input, select {
     border: 1px solid rgba(255, 255, 255, 0.3);
     line-height: calc(var(--height) - 2px);
 }
-
 input[type=number],
 input[type=text],
 input[type=password],

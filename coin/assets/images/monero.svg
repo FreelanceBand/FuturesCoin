@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="32px" height="32px" viewBox="0 0 32 32" version="1.1"
+     xmlns="http://www.w3.org/2000/svg">
+    <!-- Generator: Sketch 49.3 (51167) - http://www.bohemiancoding.com/sketch -->
+    <title>monero</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <circle id="path-1" cx="16" cy="16" r="16"></circle>
+    </defs>
+    <g id="futurescoin" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="profile" transform="translate(-1100.000000, -216.000000)">
+            <g id="Group" transform="translate(750.000000, 145.000000)">
+                <g id="2" transform="translate(330.000000, 51.000000)">
+                    <g id="monero" transform="translate(20.000000, 20.000000)">
+                        <mask id="mask-2" fill="white">
+                            <use xlink:href="#path-1"></use>
+                        </mask>
+                        <use id="Oval" fill="#FFFFFF" xlink:href="#path-1" mask="url(#mask-2)"></use>
+                        <polygon id="Shape" fill="#4C4C4C" mask="url(#mask-2)"
+                                 points="23.5157729 24.9794953 23.5157729 16.2981073 16.5 23.3138801 9.48422713 16.2981073 9.48422713 24.9794953 1.97318612 24.9794953 1.97318612 32.9556227 30.0268139 32.9556227 30.0268139 24.9794953"></polygon>
+                        <polygon id="Shape" fill="#FF6B01" mask="url(#mask-2)"
+                                 points="6.15299685 8.32334385 16.5 18.670347 26.8470032 8.32334385 26.8470032 21.648265 33.5 21.648265 33.5 -1 -1 -1 -1 21.648265 6.15299685 21.648265"></polygon>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

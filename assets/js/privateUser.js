@@ -299,7 +299,7 @@ class User {
         </div>
         <div class="select-wrapper amount">
             <label for="amount" data-l10n-content="bet_amount">${localisation.getField('bet_amount')}</label>
-            <input id="amount" name="bet_amount" value="" data-input-mask="true" type="number" placeholder="${Math.PI}" step="0.00000001" required>
+            <input id="amount" name="bet_amount" value="" data-input-mask="true" type="number" placeholder="минимум 0.001btc" step="0.00000001" min=0.001 required>
             <select title="Тип ставки" id="amount-type" name="bet_symbol" required onchange="User.updateWallet(this);"></select>
             <p>
                 <span data-l10n-content="return_profit_to2_1">${localisation.getField('return_profit_to2_1')}</span>
