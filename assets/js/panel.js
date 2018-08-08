@@ -327,4 +327,17 @@ class Panel {
         return km + kw + kd;
     }
 
+    getDaysCaptionId(days) {
+        switch (days % 10) {
+            case 1:
+                return days === 11 ? 'days' : 'day';
+            case 2:
+            case 3:
+            case 4:
+                return days > 10 && days < 20 ? 'days' : 'days2';
+            default:
+                return 'days';
+        }
+    }
+
 }

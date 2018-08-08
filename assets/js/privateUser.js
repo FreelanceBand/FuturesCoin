@@ -245,8 +245,9 @@ class User {
                         itemSource += `<div>${item[field.id] ? item[field.id] : ''} ${item.bet_symbol}</div>`;
                         break;
                     case 'term_days':
-                        itemSource += item[field.id] === 1 ? `<div>${item[field.id]} <span data-l10n-content="day">${localisation.getField(`day`)}</span></div>` :
-                            `<div>${item[field.id]} <span data-l10n-content="days">${localisation.getField(`days`)}</span></div>`;
+                        let daysCaptionId = panel.getDaysCaptionId(item[field.id]);
+                        // itemSource += item[field.id] === 1 ? `<div>${item[field.id]} <span data-l10n-content="day">${localisation.getField(`day`)}</span></div>` :
+                        itemSource += `<div>${item[field.id]} <span data-l10n-content="${daysCaptionId}">${localisation.getField(daysCaptionId)}</span></div>`;
                         break;
                     case 'status':
                         let amount = parseFloat(item[field.id]);
