@@ -202,7 +202,11 @@ class Panel {
 
         document.body.appendChild(modalNode);
 
-        localisation.replaceStrings(false, modalNode);
+        try {
+            localisation.replaceStrings(false, modalNode);
+        } catch (e) {
+            console.error(e);
+        }
     }
 
     genCryptoInfo(tagName = 'div', data = false) {

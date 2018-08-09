@@ -18,6 +18,10 @@ class L10n {
             return resolve(language);
         }.bind(this))
             .then(this.replaceStrings.bind(this))
+            .catch(function (e) {
+                console.error(e);
+                return language;
+            })
             .then(this.saveSelectedLanguage.bind(this))
             .then(function () {
                 document.body.dataset.language = language;
