@@ -250,13 +250,21 @@ class User {
                         itemSource += `<div>${item[field.id]} <span data-l10n-content="${daysCaptionId}">${localisation.getField(daysCaptionId)}</span></div>`;
                         break;
                     case 'status':
-                        let amount = parseFloat(item[field.id]);
+                        //let amount = parseFloat(item["result_amount"]);
+                        let amount = parseFloat(item.result_amount);
+                        //let bet_a = parseFloat(item["bet_amount"]);
+                        let bet_a = parseFloat(item.bet_amount);
+
                         if (!amount || isNaN(amount)) {
                             itemSource += `<div` + (item.status.toLowerCase() == 'unclarified' ? ' class="non_confirm"' : '') + ` data-l10n-content="status_${item.status.toLowerCase()}">${localisation.getField(`status_${item.status.toLowerCase()}`)}</div>`;
                             break;
                         }
-                        if (amount < 0) itemSource += `<div class="red"><span data-l10n-content="loss">${localisation.getField(`loss`)}:</span> -${amount} ${item.bet_symbol}</div>`;
-                        else itemSource += `<div class="green"><span data-l10n-content="win">${localisation.getField(`win`)}:</span> +${amount} ${item.bet_symbol}</div>`;
+                        var amount2 = amount.toFixed(7);
+                        amount2 = amount2
+                        amount = amount - bet_a;
+                        amount = parseFloat(amount).toFixed(7);
+                        if (amount < 0) itemSource += `<div class="red"><span data-l10n-content="loss">Loss:</span> ${amount2}Ƀ</div>`;
+                        else itemSource += `<div class="green"><span data-l10n-content="win">Win:</span> ${amount2}Ƀ</div>`;
                         break;
                     default:
                         itemSource += `<div>${item[field.id] ? item[field.id] : ''}</div>`;
@@ -300,7 +308,7 @@ class User {
         </div>
         <div class="select-wrapper amount">
             <label for="amount" data-l10n-content="bet_amount">${localisation.getField('bet_amount')}</label>
-            <input id="amount" name="bet_amount" value="" data-input-mask="true" type="number" placeholder="минимум 0.001btc" step="0.00000001" min=0.001 required>
+            <input id="amount" name="bet_amount" value="" data-input-mask="true" type="number" placeholder="0.001" step="0.00000001" min="0.001" required>
             <select title="Тип ставки" id="amount-type" name="bet_symbol" required onchange="User.updateWallet(this);"></select>
             <p>
                 <span data-l10n-content="return_profit_to2_1">${localisation.getField('return_profit_to2_1')}</span>
