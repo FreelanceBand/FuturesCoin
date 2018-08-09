@@ -20,7 +20,7 @@
     "error": "Ошибка",
     "login_hint": "Логин",
     "password_hint": "Пароль",
-    "password_hint": "Пароль",
+    "password_hint2": "Пароль",
     "forgot_password": "Забыли пароль?",
     "login_button_text": "Войти",
     "register_button_text": "Зарегистрироваться",
