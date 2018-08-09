@@ -10,7 +10,7 @@ class Panel {
     renderPage(page = 'bet') {
         if (this.onceinit == 0) {
             this.onceinit = 1;
-            localStorage.removeItem('cryptoData');
+            sessionStorage.removeItem('cryptoData');
         }
         this.resetDocument();
         switch (page) {
@@ -237,7 +237,7 @@ class Panel {
                     fields.forEach(function (field) {
                         switch (field.id) {
                             case 'name':
-                                tableSource += `<div><img src="//futurescoin.pro/assets/images/coins/${item.symbol.toLowerCase()}.png"><span>${item[field.id]}</span></div>`;
+                                tableSource += `<div><img src="/assets/images/coins/${item.symbol.toLowerCase()}.png"><span>${item[field.id]}</span></div>`;
                                 break;
                             case 'h24_ratio_change':
                                 tableSource += `<div class="${item[field.id] < 0 ? `red` : (item[field.id] > 0 ? `green` : ``)}">${item[field.id]}%</div>`;
@@ -275,8 +275,8 @@ class Panel {
     }
 
     getCryptoData() {
-        if (localStorage.getItem('cryptoData') != null && localStorage.getItem('cryptoData').length > 0) {
-            return JSON.parse(localStorage.getItem('cryptoData'));
+        if (sessionStorage.getItem('cryptoData') != null && sessionStorage.getItem('cryptoData').length > 0) {
+            return JSON.parse(sessionStorage.getItem('cryptoData'));
         }
         fetch("/core/tokens.php", {
             method: 'GET',
@@ -286,7 +286,7 @@ class Panel {
         }).then(function (result) {
             if (!result.status || result.status !== 'ok') return User.errorWorker(result); // console.error(result.msg ? result.msg : `Error code: ${result.code}`);
             if (result.data) {
-                localStorage.setItem('cryptoData', JSON.stringify(result.data));
+                sessionStorage.setItem('cryptoData', JSON.stringify(result.data));
             }
             // this.genCryptoInfo(false, result.data);
             // User.renderSelectOptions(result.data);

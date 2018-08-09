@@ -3,7 +3,7 @@ class User {
         if (typeof form !== 'object') return true;
         if (!form.checkValidity()) return true;
         disableSubmit(form);
-        return fetch("http://futurescoin.pro//core/apilogin.php", {
+        return fetch("/core/apilogin.php", {
             method: 'POST',
             body: new FormData(form),
             credentials: "same-origin"
@@ -30,7 +30,7 @@ class User {
         User.changePassword(form);
 
         disableSubmit(form);
-        return fetch("http://futurescoin.pro//core/apireg.php", {
+        return fetch("/core/apireg.php", {
             method: 'POST',
             body: new FormData(form),
             credentials: "same-origin"
@@ -68,7 +68,7 @@ class User {
             return true;
         }
         let data = new FormData(form);
-        return fetch("http://futurescoin.pro//core/apiupdate.php", {
+        return fetch("/core/apiupdate.php", {
             method: 'POST',
             body: data,
             credentials: "same-origin"

@@ -274,7 +274,7 @@ class Panel {
         if (localStorage.getItem('cryptoData') != null && localStorage.getItem('cryptoData').length > 0) {
             return JSON.parse(localStorage.getItem('cryptoData'));
         }
-        fetch("http://futurescoin.pro//core/tokens.php", {
+        fetch("/core/tokens.php", {
             method: 'GET',
             credentials: "same-origin"
         }).then(function (response) {

@@ -112,6 +112,7 @@ class User {
     }
 
     static getBetHistoryData() {
+        if (sessionStorage.getItem('betHistory')) return JSON.parse(sessionStorage.getItem('betHistory'));
         fetch("/core/apibids.php", {
             method: 'POST',
             credentials: "same-origin"
@@ -119,11 +120,10 @@ class User {
             return response.json();
         }).then(function (result) {
             if (!result.status || result.status !== 'ok') return User.errorWorker(result); // console.error(result.msg ? result.msg : `Error code: ${result.code}`);
-            if (result.data) localStorage.setItem('betHistory', JSON.stringify(result.data));
+            if (result.data) sessionStorage.setItem('betHistory', JSON.stringify(result.data));
             User.genBetHistoryList(result.data);
             User.notifyAboutUnclarified(result.data);
         });
-        if (localStorage.getItem('betHistory')) return JSON.parse(localStorage.getItem('betHistory'));
         return false;
     }
 
@@ -137,7 +137,7 @@ class User {
             let itemNode = document.createElement('li');
             let leftItemSection = document.createElement('div');
             let itemCoinIcon = document.createElement('img');
-            itemCoinIcon.src = `//futurescoin.pro/assets/images/coins/${item.base_symbol.toLowerCase()}.png`;
+            itemCoinIcon.src = `/assets/images/coins/${item.base_symbol.toLowerCase()}.png`;
             let itemOrder = document.createElement('span');
             itemOrder.className = 'order';
             itemOrder.innerHTML = '#' + (id + 1);
@@ -236,7 +236,7 @@ class User {
                         itemSource += `<div>${date_time[0] + " " + time}</div>`;
                         break;
                     case 'base_symbol':
-                        itemSource += `<div><img src="//futurescoin.pro/assets/images/coins/${item[field.id].toLowerCase()}.png"><span>${item[field.id]}</span></div>`;
+                        itemSource += `<div><img src="/assets/images/coins/${item[field.id].toLowerCase()}.png"><span>${item[field.id]}</span></div>`;
                         break;
                     case 'strategy':
                         let state = item[field.id] === 'RISE' ? `rise` : `fall`;
@@ -493,15 +493,15 @@ class User {
     }
 
     static pathBetHistory(betItemData = false) {
-        let data = JSON.parse(localStorage.getItem('betHistory'));
+        let data = JSON.parse(sessionStorage.getItem('betHistory'));
         if (!data) return true;
         data.push(betItemData);
-        localStorage.setItem('betHistory', JSON.stringify(data));
+        sessionStorage.setItem('betHistory', JSON.stringify(data));
         return true;
     }
 
     static showBetClarify(id) {
-        let data = JSON.parse(localStorage.getItem('betHistory'));
+        let data = JSON.parse(sessionStorage.getItem('betHistory'));
         let betData = null;
         for (let i in data) {
             //if (data[i].id === id) continue;
