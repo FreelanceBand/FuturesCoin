@@ -219,6 +219,9 @@
     "error_timeout": "Время соединения истекло(Time Out).",
     "passwords_not_match": "Пароли не совпадают",
     "bitcoin_cash_30": "Вы осуществляете ставку на повышение Bitcoin Cash через 30 дней",
+    "select_wallet": "Wallet address BTC",
+    "mining_fee": "Please consider mining fee when performing a transaction, ie. the entire amount must be sent to the specified wallet.",
+    "bet_accepted": "Bet accepted, good luck!",
     "language": "Language",
     "error_inputed_value": "Wrong info",
     "close": "Close",
@@ -233,14 +236,14 @@
     "days2": " days",
     "not_busy": "Not busy",
     "status": "Status",
-    "status_confirmed": "Inserted",
-    "status_unconfirmed": "Inserted",
-    "status_waiting": "Inserted",
-    "status_created": "CREATED",
+    "status_confirmed": "In progress",
+    "status_unconfirmed": "In progress",
+    "status_waiting": "In progress",
+    "status_created": "Bet accepted",
     "status_closed": "Completed",
-    "status_cleared": "Inserted",
-    "status_unclarified": "Inserted",
-    "status_inserted": "Inserted",
-    "status_other": "Inserted"
+    "status_cleared": "In progress",
+    "status_unclarified": "In progress",
+    "status_inserted": "In progress",
+    "status_other": "In progress"
   }
 }

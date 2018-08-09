@@ -115,7 +115,7 @@ class User {
         }).then(function (response) {
             return response.json();
         }).then(function (result) {
-            if (!result.status || result.status !== 'ok') return alert(result.msg ? result.msg : `Error code: ${result.code}`);
+            if (!result.status || result.status !== 'ok') return User.errorWorker(result); // console.error(result.msg ? result.msg : `Error code: ${result.code}`);
             if (result.data) localStorage.setItem('betHistory', JSON.stringify(result.data));
             User.genBetHistoryList(result.data);
             User.notifyAboutUnclarified(result.data);

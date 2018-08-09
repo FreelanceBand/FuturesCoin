@@ -117,7 +117,7 @@ class User {
         }).then(function (response) {
             return response.json();
         }).then(function (result) {
-            if (!result.status || result.status !== 'ok') return alert(result.msg ? result.msg : `Error code: ${result.code}`);
+            if (!result.status || result.status !== 'ok') return User.errorWorker(result); // console.error(result.msg ? result.msg : `Error code: ${result.code}`);
             if (result.data) localStorage.setItem('betHistory', JSON.stringify(result.data));
             User.genBetHistoryList(result.data);
             User.notifyAboutUnclarified(result.data);
@@ -383,7 +383,7 @@ class User {
         if (!form.checkValidity()) return true;
         event.preventDefault();
         event.stopPropagation();
-        if (!confirm('Пожалуйста, учитывайте mining free при отправке транзакции. Т.е. данная сумма должна прийти в указанный кошелек целиком')) return true;
+        if (!confirm(localisation.getField(`mining_fee`))) return true;
         form.querySelector(`#user_wallet`).value = document.querySelector(`#user-wallet`).value;
         let data = new FormData(form);
         data.set('bet_amount', parseFloat(data.get('bet_amount').split(' ').join('')));
@@ -400,7 +400,7 @@ class User {
             User.pathWalletToProfileData(form);
             User.pathBetHistory(result.data);
             // User.showBetClarify(result.data.id);
-            alert(`Ставка принята, желаем удачи!`);
+            alert(localisation.getField(`bet_accepted`));
             return false;
         });
     }
@@ -469,18 +469,18 @@ class User {
 
     static showBetWalletModal(form) {
         let userData = User.getUserData();
-        let selectedCoin = form.querySelector(`#coin`).value;
+        let selectedCoin = form.querySelector(`#amount-type`).value;
         let savedWallet = userData.wallets[selectedCoin] ? userData.wallets[selectedCoin] : '';
         let modalNode = document.createElement('div');
         modalNode.id = 'bet-wallet-form';
         modalNode.className = 'modal';
         modalNode.innerHTML = `<form class="content" onsubmit="return false">
-        <h3 class="title">Укажите кошелек BTC для возврата прибыли</h3>
-        <input class="icon wallet" id="user-wallet" name="wallet" value="${savedWallet}" placeholder="Укажите кошелек BTC для возврата прибыли" type="text" required>
-        <button type="submit">Продолжить</button>
-        <a class="close" href="#">Закрыть</a>
-    </form>
-    <a class="backdrop-close" href="#">Закрыть</a>`;
+        <h3 class="title" data-l10n-content="select_wallet">${localisation.getField(`select_wallet`)}</h3>
+        <input class="icon wallet" id="user-wallet" name="wallet" value="${savedWallet}" data-l10n-placeholder="select_wallet" placeholder="${localisation.getField(`select_wallet`)}" type="text" required>
+            <button type="submit" data-l10n-content="continue">${localisation.getField(`continue`)}</button>
+            <a class="close" href="#">Закрыть</a>
+        </form>
+        <a class="backdrop-close" href="#">Закрыть</a>`;
         document.body.appendChild(modalNode);
         location.href = '#' + modalNode.id;
         modalNode.querySelector(`button[type=submit]`).addEventListener(`click`, function (event) {
@@ -540,7 +540,7 @@ class User {
             let betWalletFormNode = document.querySelector(`#bet-wallet-clarify`);
             betWalletFormNode.parentNode.removeChild(betWalletFormNode);
 //             User.showBetClarify(result.data.id);
-            alert(`Ставка принята, желаем удачи!`);
+            alert(localisation.getField(`bet_accepted`));
             return true;
         });
     }

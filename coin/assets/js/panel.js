@@ -280,7 +280,7 @@ class Panel {
         }).then(function (response) {
             return response.json();
         }).then(function (result) {
-            if (!result.status || result.status !== 'ok') return alert(result.msg ? result.msg : `Error code: ${result.code}`);
+            if (!result.status || result.status !== 'ok') return User.errorWorker(result); // console.error(result.msg ? result.msg : `Error code: ${result.code}`);
             if (result.data) {
                 localStorage.setItem('cryptoData', JSON.stringify(result.data));
             }
