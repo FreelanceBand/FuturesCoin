@@ -3,9 +3,10 @@ class User {
         return fetch("/core/logout.php", {credentials: "same-origin"})
             .then(response => response.status)
             .finally(function () {
-                localStorage.removeItem('betHistory');
-                localStorage.removeItem('userData');
-                localStorage.removeItem('cryptoData');
+                // localStorage.removeItem('betHistory');
+                // localStorage.removeItem('userData');
+                // localStorage.removeItem('cryptoData');
+                localStorage.clear();
                 location.href = '/';
             });
     }
@@ -383,7 +384,8 @@ class User {
         if (!form.checkValidity()) return true;
         event.preventDefault();
         event.stopPropagation();
-        if (!confirm(localisation.getField(`mining_fee`))) return true;
+        if (!localStorage.getItem('miningFeeConfirmed')) if (!confirm(localisation.getField(`mining_fee`))) return true;
+        localStorage.setItem('miningFeeConfirmed', 'true');
         form.querySelector(`#user_wallet`).value = document.querySelector(`#user-wallet`).value;
         let data = new FormData(form);
         data.set('bet_amount', parseFloat(data.get('bet_amount').split(' ').join('')));
@@ -484,7 +486,7 @@ class User {
         document.body.appendChild(modalNode);
         location.href = '#' + modalNode.id;
         modalNode.querySelector(`button[type=submit]`).addEventListener(`click`, function (event) {
-            if (!this.checkValidity()) return true;
+            if (!this.form.checkValidity()) return true;
             return User.createBet(form, event);
         });
         return false;
