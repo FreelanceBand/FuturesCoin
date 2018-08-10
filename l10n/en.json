@@ -39,6 +39,7 @@
     "strategy_fall": "fall",
     "win": "Win",
     "lose": "Lose",
+    "loss": "Loss",
     "result": "Result",
     "empty_bets": "Проигрыш",
     "personal_login": "Login",

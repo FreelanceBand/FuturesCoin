@@ -264,8 +264,8 @@ class User {
                         amount2 = amount2
                         amount = amount - bet_a;
                         amount = parseFloat(amount).toFixed(7);
-                        if (amount < 0) itemSource += `<div class="red"><span data-l10n-content="loss">Loss:</span> ${amount2}Ƀ</div>`;
-                        else itemSource += `<div class="green"><span data-l10n-content="win">Win:</span> ${amount2}Ƀ</div>`;
+                        if (amount < 0) itemSource += `<div class="red"><span data-l10n-content="loss">${localisation.getField(`loss`)}</span><span>:</span> ${amount2}Ƀ</div>`;
+                        else itemSource += `<div class="green"><span data-l10n-content="win">${localisation.getField(`win`)}</span><span>:</span> ${amount2}Ƀ</div>`;
                         break;
                     default:
                         itemSource += `<div>${item[field.id] ? item[field.id] : ''}</div>`;
